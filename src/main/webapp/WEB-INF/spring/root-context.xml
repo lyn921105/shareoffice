@@ -31,6 +31,6 @@
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage"><value>com.spring.**.**.dao</value></property>
+		<property name="basePackage"><value>com.wt.**.**.dao</value></property>
 	</bean>
 </beans>

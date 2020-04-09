@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="intro" template="/WEB-INF/views/template/client/mainLayout.jsp">
+		<put-attribute name="title" value="워크트리" />
+		<put-attribute name="header" value="/WEB-INF/views/template/client/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp" />		
+	</definition>
+	
+	<definition name="content" template="/WEB-INF/views/template/client/contentLayout.jsp">
+		<put-attribute name="title" value="워크트리" />
+		<put-attribute name="header" value="/WEB-INF/views/template/client/header.jsp" />
+ 		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp" />		
+	</definition>
+	
+	<definition name="policy/*" extends="content">
+		<put-attribute name="title" value="워크트리 정책" />
+ 		<put-attribute name="body" value="/WEB-INF/views/policy/{1}.jsp" />
+	</definition>
+	
+	<definition name="member/*" extends="content">
+		<put-attribute name="title" value="로그인 및 회원가입"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp"/>
+	</definition>
+</tiles-definitions>
+
