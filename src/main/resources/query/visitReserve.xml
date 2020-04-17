@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.client.visit.dao.visitReservationDao">
+
+	<insert id="visitInsert" parameterType="vvo">
+		<selectKey keyProperty="v_num" resultType="int" order="BEFORE">
+			SELECT visit_seq.nextval
+			FROM dual
+		</selectKey>
+		
+		INSERT INTO visit_tbl (v_num, v_name, v_phone, v_date, v_time, v_status)
+		VALUES(#{v_num},#{v_name},#{v_phone},#{v_date},#{v_time},'1')
+	</insert>
+	
+	<select id="visitList" parameterType="String" resultType="vvo">
+		SELECT *
+		FROM visit_tbl
+		WHERE v_date = #{date}
+	</select>
+
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.client.qna.dao.QnaDao">
+
+	<!-- Q&A 게시물 검색 -->
+	<sql id="qnaCommon">
+		SELECT q_num, c_id, a_id, q_title, q_state, q_regdate
+		FROM question_tbl
+		<where>
+			<if test="search=='q_title'">
+				<![CDATA[q_title LIKE '%' || #{keyword} || '%' ]]>
+			</if>
+			<if test="search=='c_id'">
+				<![CDATA[c_id LIKE '%' || #{keyword} || '%' ]]>
+			</if>
+		</where>
+	</sql>
+	
+	<!-- Q&A 게시물 기본 조회 -->
+	<select id="qnaList" parameterType="qna" resultType="qna">
+		SELECT q_num, c_id, a_id, q_title, q_state, to_char(q_regdate, 'YYYY-MM-DD') as q_regdate
+		FROM (
+			SELECT list.*, ROWNUM AS rnum
+			FROM (
+				<include refid="qnaCommon"></include>
+			) list
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+			 	<if test="end_row != null and end_row != ''">
+			 		rnum BETWEEN #{start_row} AND #{end_row}
+			 	</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- Q&A 게시물 카운트 페이징 -->
+	<select id="qnaListCnt" parameterType="qna" resultType="int">
+		SELECT nvl(count(1), 0)
+		FROM (SELECT list.*, ROWNUM AS rnum
+				FROM (
+				<include refid="qnaCommon"></include>
+				ORDER BY q_num desc
+				) list
+			)
+	</select>
+
+	<!-- Q&A 상세 페이지를 위한 게시물 조회 -->
+	<select id="qnaDetail" parameterType="int" resultType="qna">
+		SELECT q_num, c_id, q_title, q_content, q_file
+		FROM question_tbl
+		WHERE q_num = #{q_num}
+	</select>
+
+	<!-- Q&A 게시물 등록 -->
+	<insert id="qnaInsert" parameterType="qna">
+		<selectKey keyProperty="q_num" resultType="int" order="BEFORE">
+			SELECT question_seq.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO question_tbl(q_num, c_id, q_regdate, q_title, q_content, q_file, q_ref, q_step, q_level, q_state)
+		VALUES(#{q_num},'test',sysdate,#{q_title},#{q_content},'1',#{q_num},0,0,'1')
+	</insert>
+
+	<!-- 해당 글의 아이디 확인 -->
+	<select id="idConfirm" parameterType="qna" resultType="int">
+		SELECT NVL((
+			SELECT 1
+			FROM question_tbl
+			WHERE q_num = #{q_num} AND c_id = #{c_id}
+		), 0) as state
+		FROM DUAL
+	</select>
+	
+	<!-- Q&A 게시물 수정 -->
+	<update id="qnaUpdate" parameterType="qna">
+		UPDATE question_tbl
+		SET	q_title = #{q_title},
+			q_content = #{q_content},
+			q_regdate = sysdate
+		WHERE q_num = #{q_num}
+	</update>
+
+	<!-- Q&A 게시물 삭제 -->
+	<delete id="qnaDelete" parameterType="qna">
+		DELETE FROM question_tbl
+		WHERE q_num = #{q_num}
+	</delete>
+
+</mapper>
