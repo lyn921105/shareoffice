@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.admin.room.dao.adminRoomDao">
+
+
+	<!-- 호실 메인 페이지(default 1층 페이지 출력) -->
+	<select id="roomMain" resultType="adminRoom">
+		SELECT o_floor, o_room,
+		o_status
+		FROM office_tbl
+		WHERE o_floor = 1
+		ORDER BY o_room
+	</select>
+
+	<!-- 호실 목록 출력 -->
+	<select id="roomList" parameterType="String"
+		resultType="adminRoom">
+		SELECT o_floor, o_room, o_status
+		FROM office_tbl
+		WHERE
+		o_floor = #{o}
+		ORDER BY o_room
+	</select>
+
+	<!-- 호실 등록 -->
+	<insert id="roomInsert" parameterType="adminRoom">
+		<selectKey keyProperty="o_no" resultType="int" order="BEFORE">
+			select office_tbl_seq.nextval from dual
+		</selectKey>
+		INSERT INTO
+		office_tbl(
+			o_floor,
+			o_room,
+			o_price,
+			o_member
+		)
+		VALUES ('1', '03', 100000, 3, '1', '이미지', '사용');
+	</insert>
+
+	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
+		column="columnname1" /> <result property="param2" column="columnname2" /> 
+		<result property="param3" column="columnname3" /> </resultMap> <select id="getAll" 
+		resultMap="YourResultSet"> SELECT * FROM tablename1 </select> <update id="updateSomething" 
+		parameterType="#modelname"> UPDATE tablename1 SET columnname1=#{param1} WHERE 
+		columnname2 = #{param2} </update> <delete id="deleteSomething" parameterType="int"> 
+		DELETE FROM tablename1 WHERE columnname1 = #{param1} </delete> -->
+
+</mapper>
