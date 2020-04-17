@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.title-menu {
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+
+#f_question{
+	width: 630px;
+	height: 30px;
+}
+
+#f_answer{
+	width: 630px;
+	height: 1500px;
+}
+
+.question , .answer{
+	border:1px solid;
+	width: 630px;
+}
