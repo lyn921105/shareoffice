@@ -10,4 +10,8 @@ public interface AdminRoomService {
 	public Map<String, AdminRoomVO> roomMain();
 	public List<AdminRoomVO> roomList(String o_room);
 	public int roomInsert(AdminRoomVO avo);
+	public AdminRoomVO roomDetail(AdminRoomVO avo);
+	public int roomUpdate(AdminRoomVO avo);
+	public int roomDelete(AdminRoomVO avo);
+	public int fileDelete(AdminRoomVO avo);
 }

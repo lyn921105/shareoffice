@@ -23,9 +23,8 @@ public class AdminLoginController {
 	private AdminLoginService adminLoginService;
 
 	// 로그인 화면을 보여주는 메소드
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String adminLogin() {
-		log.info("adminLogin get 호출 성공");
 		return "login/adminLogin";
 	}
 
@@ -34,7 +33,6 @@ public class AdminLoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView adminLoginProc(@ModelAttribute("adminLoginVO") AdminLoginVO avo, HttpSession session,
 			HttpServletRequest request) {
-		log.info("adminLogin post 호출 성공");
 		ModelAndView mav = new ModelAndView();
 
 

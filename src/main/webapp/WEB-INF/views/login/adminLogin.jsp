@@ -16,10 +16,7 @@
 				"method" : "POST",
 				"action" : "/adminLogin/login"
 			})
-			
-			
-			
-			
+		
 			$("#loginForm").submit();
 		})
 		

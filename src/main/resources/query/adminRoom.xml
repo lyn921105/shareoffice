@@ -24,27 +24,115 @@
 		ORDER BY o_room
 	</select>
 
+	<!-- 호실 상세 정보 출력 -->
+	<select id="roomDetail" parameterType="String"
+		resultType="adminRoom">
+		SELECT *
+		FROM office_tbl
+		WHERE
+		o_floor = #{o_floor}
+		AND o_room
+		= #{o_room}
+	</select>
+
 	<!-- 호실 등록 -->
 	<insert id="roomInsert" parameterType="adminRoom">
-		<selectKey keyProperty="o_no" resultType="int" order="BEFORE">
+		<selectKey keyProperty="o_no" resultType="int"
+			order="BEFORE">
 			select office_tbl_seq.nextval from dual
 		</selectKey>
 		INSERT INTO
 		office_tbl(
-			o_floor,
-			o_room,
-			o_price,
-			o_member
+		o_no,
+		o_floor,
+		o_room,
+		o_price,
+		o_member,
+		o_info,
+		o_thumb,
+		<if test="o_image1 != null and o_image1 != ''">
+			o_image1,
+		</if>
+		<if test="o_image2 != null and o_image2 != ''">
+			o_image2,
+		</if>
+		<if test="o_image3 != null and o_image3 != ''">
+			o_image3,
+		</if>
+		o_status
 		)
-		VALUES ('1', '03', 100000, 3, '1', '이미지', '사용');
+		VALUES (#{o_no}, #{o_floor}, #{o_room}, #{o_price},
+		#{o_member},
+		#{o_info}, #{o_thumb},
+		<if test="o_image1 != null and o_image1 != ''">
+			#{o_image1},
+		</if>
+		<if test="o_image2 != null and o_image2 != ''">
+			#{o_image2},
+		</if>
+		<if test="o_image3 != null and o_image3 != ''">
+			#{o_image3},
+		</if>
+		#{o_status})
 	</insert>
 
-	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
-		column="columnname1" /> <result property="param2" column="columnname2" /> 
-		<result property="param3" column="columnname3" /> </resultMap> <select id="getAll" 
-		resultMap="YourResultSet"> SELECT * FROM tablename1 </select> <update id="updateSomething" 
-		parameterType="#modelname"> UPDATE tablename1 SET columnname1=#{param1} WHERE 
-		columnname2 = #{param2} </update> <delete id="deleteSomething" parameterType="int"> 
-		DELETE FROM tablename1 WHERE columnname1 = #{param1} </delete> -->
+	<!-- 호실 수정 -->
+	<update id="roomUpdate" parameterType="adminRoom">
+		UPDATE office_tbl
+		SET
+		o_member=#{o_member},
+		o_info=#{o_info},
+		o_price=#{o_price},
+		<if test="o_thumb != null and o_thumb != ''">
+			o_thumb=#{o_thumb},
+		</if>
+		<if test="o_image1 != null and o_image1 != ''">
+			o_image1=#{o_image1},
+		</if>
+		<if test="o_image2 != null and o_image2 != ''">
+			o_image2=#{o_image2},
+		</if>
+		<if test="o_image3 != null and o_image3 != ''">
+			o_image3=#{o_image3},
+		</if>
+		o_status=#{o_status}
+		WHERE
+		o_floor = #{o_floor}
+		AND o_room
+		=
+		#{o_room}
+	</update>
+
+	<!-- 파일 삭제 -->
+	<update id="fileDelete" parameterType="String">
+		UPDATE office_tbl
+		SET
+		<if test="o_image1 != null and o_image1 != ''">
+			o_image1=null
+		</if>
+		<if test="o_image2 != null and o_image2 != ''">
+			o_image2=null
+		</if>
+		<if test="o_image3 != null and o_image3 != ''">
+			o_image3=null
+		</if>
+		WHERE
+		o_floor = #{o_floor}
+		AND o_room
+		=
+		#{o_room}
+
+	</update>
+
+
+	<!-- 호실 삭제 -->
+	<delete id="roomDelete" parameterType="adminRoom">
+		DELETE FROM office_tbl
+		WHERE
+		o_floor = #{o_floor}
+		AND o_room
+		=
+		#{o_room}
+	</delete>
 
 </mapper>
