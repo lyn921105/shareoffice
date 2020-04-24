@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.admin/question/dao.QuestionDAO">
+	<sql id="qnaCommon">
+		select q_num, q_title, c_id, a_id, q_regdate, q_state, q_ref, q_step,
+		q_level
+		from question_tbl
+		<where>
+			<if test="selectOption=='notAnswer'">
+				q_state=1
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="qnaList" resultType="qna">
+		SELECT
+		q_num, q_title, c_id, a_id, to_char(q_regdate,'YYYY-MM-DD HH24:MI') as
+		q_regdate, q_state,
+		q_ref, q_step, q_level
+		from (select list.*, rownum
+		as rnum from(
+		<include refid="qnaCommon"></include>
+		) list
+		)
+		<where>
+			<if test="start_row !=null and start_row!=''">
+				<if test="end_row!=null and end_row!=''">
+					rnum between #{start_row} and #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<select id="qnaListCnt" parameterType="qna" resultType="int">
+		select nvl(count(1), 0) from(
+		select list.*, rownum as rnum
+		from(
+		<include refid="qnaCommon"></include>
+		order by q_num desc
+		) list
+		)
+	</select>
+
+	<!-- <select id="qnaDetail" parameterType="int" resultType="qna"> q_num. 
+		q_title, c_id, to_char(q_regdate, 'yyyy-mm-dd hh:mi') as q_regdate, q_file, 
+		q_content from Qeustion_tbl where q_num=#{q_num} </select> <insert id="answerInsert" 
+		parameterType="qna"> <selectKey keyProperty="q_num" resultType="int" order="BEFORE"> 
+		select question_seq.nextval from dual </selectKey> INSERT INTO Question_tbl 
+		(q_num, q_title, q_content, q_ref, q_step, q_level, c_id) VALUES(#{value1},#{value2},#{value3}) 
+		</insert> <update id="updateSomething" parameterType="#modelname"> UPDATE 
+		tablename1 SET columnname1=#{param1} WHERE columnname2 = #{param2} </update> 
+		<delete id="deleteSomething" parameterType="int"> DELETE FROM tablename1 
+		WHERE columnname1 = #{param1} </delete> -->
+</mapper>

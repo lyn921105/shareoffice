@@ -18,9 +18,9 @@ private FaqDAO faqDao;
 	
 //글목록 구현
 	@Override
-	public List<FaqVO> faqList() {
+	public List<FaqVO> adminFaqList() {
 		List<FaqVO> faqList=null;
-		faqList=faqDao.faqList();
+		faqList=faqDao.adminFaqList();
 		return faqList;
 	}
 
@@ -56,15 +56,8 @@ private FaqDAO faqDao;
 	//글삭제 구현
 	@Override
 	public int faqDelete(int f_num) {
-		int result=0;
 		
-		try {
-			result=faqDao.faqDelete(f_num);
-		} catch(Exception e) {
-			e.printStackTrace();
-			result=0;
-		}
-		return result;
+		return faqDao.faqDelete(f_num);
 	}
 
 }

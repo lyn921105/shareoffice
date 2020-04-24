@@ -30,12 +30,12 @@
 		<put-attribute name="title" value="계약 관리"/>
 		<put-attribute name="content" value="/WEB-INF/views/adminContractList/{1}.jsp"/>
 	</definition>
-	
-	<definition name="adminRoom/*" extends="mainLayout">
+		-->
+	<definition name="admin/room/*" extends="mainLayout">
 		<put-attribute name="title" value="호실 관리"/>
 		<put-attribute name="content" value="/WEB-INF/views/adminRoomMain.jsp"/>
 	</definition>
-	-->
+
 	
 	<definition name="admin/question/*" extends="mainLayout">
 		<put-attribute name="title" value="문의 관리"/>

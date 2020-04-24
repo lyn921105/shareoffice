@@ -2,13 +2,15 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.wt.client.qna.vo.QnaVO" alias="qna"/>
-		<typeAlias type="com.wt.client.faq.vo.FaqVO" alias="faq"/>
-		<typeAlias type="com.wt.client.visit.vo.VisitReservationVO" alias="vvo"/>
-		<typeAlias type="com.wt.client.member.vo.MemberVO" alias="member"/>
+		<!-- <typeAlias type="com.spring.client.reply.vo.ReplyVO" alias="reply"/>
+		<typeAlias type="com.spring.client.login.vo.LoginVO" alias="login"/>
+		<typeAlias type="com.spring.client.member.vo.MemberVO" alias="member"/>
+		<typeAlias type="com.spring.client.gallery.vo.GalleryVO" alias="gallery"/>
+		<typeAlias type="com.spring.client.member.vo.MemberSecurity" alias="security" /> -->
 		
-		<typeAlias type="com.wt.admin.login.vo.AdminLoginVO" alias="adminLogin"/>
-		<typeAlias type="com.wt.admin.room.vo.AdminRoomVO" alias="adminRoom" />
+		<typeAlias type="com.wt.admin.room.vo.AdminRoomVO" alias="adminRoom"/>
+		<typeAlias type="com.wt.client.qna.vo.QnaVO" alias="qna"/>
 		<typeAlias type="com.wt.admin.question.vo.FaqVO" alias="faq"/>
+		
 	</typeAliases>
 </configuration>

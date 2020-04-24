@@ -7,7 +7,7 @@ import com.wt.admin.question.vo.FaqVO;
 
 public interface FaqDAO {
 
-	public List<FaqVO> faqList();
+	public List<FaqVO> adminFaqList();
 	public int faqInsert(FaqVO fvo);
 	public int faqUpdate(FaqVO fvo);
 	public int faqDelete(int f_num);

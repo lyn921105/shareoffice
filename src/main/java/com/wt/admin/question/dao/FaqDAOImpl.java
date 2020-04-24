@@ -15,7 +15,7 @@ public class FaqDAOImpl implements FaqDAO {
 	private SqlSession session;
 	
 	@Override
-	public List<FaqVO> faqList() {
+	public List<FaqVO> adminFaqList() {
 		// TODO Auto-generated method stub
 		return session.selectList("faqList");
 	}
