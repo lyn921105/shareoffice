@@ -4,8 +4,13 @@
 
 <mapper namespace="com.wt.client.member.dao.MemberDAO">
 
+<<<<<<< HEAD
+	
+	<insert id="join" parameterType="mvo">
+=======
 	<!-- 게시판 글 작성 -->
 	<insert id="join" parameterType="member">
+>>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 		INSERT INTO client_tbl 
 		VALUES( #{c_id}
 		, #{c_pwd}
@@ -17,7 +22,11 @@
 	</insert>
 
 	<!-- 로그인 -->
+<<<<<<< HEAD
+	<select id="login" resultType="mvo" parameterType="mvo">
+=======
 	<select id="login" resultType="member" parameterType="member">
+>>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 		SELECT c_id, c_pwd
 		FROM client_tbl
 		WHERE c_id = #{c_id}
@@ -25,18 +34,82 @@
 	</select>
 
 	<!-- 패스워드 체크 -->
+<<<<<<< HEAD
+	<select id="pwChk" resultType="int" parameterType="mvo">
+=======
 	<select id="pwChk" resultType="int" parameterType="member">
+>>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 		SELECT COUNT(*) FROM client_tbl
 		WHERE c_id = #{c_id}
 		AND c_pwd = #{c_pwd}
 	</select>
 
 	<!-- 아이디 중복 체크 -->
+<<<<<<< HEAD
+	<select id="idChk" resultType="int" parameterType="mvo">
+=======
 	<select id="idChk" resultType="int" parameterType="member">
+>>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 		SELECT COUNT(*) FROM client_tbl
 		WHERE c_id = #{c_id}
 	</select>
 
+<<<<<<< HEAD
+	<!-- 비활성 -->
+	<delete id="memberDelete" parameterType="mvo">
+		DELETE FROM client_tbl
+		WHERE c_id = #{c_id}
+		AND c_pwd = #{c_pwd}
+	</delete>
+	
+	<!-- 회원정보수정 비민번호확인 -->
+	<select id="memberModifyPwChk" parameterType="mvo">
+	SELECT FROM client_tbl
+	WHERE c_id = #{c_id}
+		AND c_pwd = #{c_pwd}
+	</select>
+	
+	<!-- 회원정보수정 -->
+	<update id="modifySuccess" parameterType="mvo" >
+	 UPDATE client_tbl
+	 set
+	 c_name = #{c_pwd}
+	 c_pwd = #{c_name}
+	 c_email = #{c_email}
+	 c_phone = #{c_phone}
+	 where c_id = #{c_id}
+	</update>
+	<!-- 마이페이지 비밀번호 확인 -->
+	<select id="memberListPwd" parameterType="mvo" resultType="mvo">
+		SELECT c_pwd
+		FROM client_tbl
+		WHERE c_id = #{c_id} AND c_pwd = #{c_pwd}
+	</select>
+	
+	<select id="memberReserve" parameterType="String" resultType="res">
+		SELECT r_num, TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reserveDate, TO_CHAR(r_enddate, 'yyyy-mm-dd') r_endDate, r_floor, r_room, r_price, r_company, r_status
+		FROM reservation_tbl
+		WHERE c_id = #{c_id} AND r_status = '1'
+		ORDER BY r_num DESC
+	</select>
+	
+	<select id="memberUse" parameterType="String" resultType="res">
+		SELECT r_num, TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reserveDate, TO_CHAR(r_enddate, 'yyyy-mm-dd') r_endDate, r_floor, r_room, r_price, r_company, r_status
+		FROM reservation_tbl
+		WHERE c_id = #{c_id} AND r_status IN ('2', '3')
+		ORDER BY r_num DESC
+	</select>
+	
+	<select id="memberDone" parameterType="String" resultType="res">
+		SELECT r_num, TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reserveDate, TO_CHAR(r_enddate, 'yyyy-mm-dd') r_endDate, r_floor, r_room, r_price, r_company, r_status
+		FROM reservation_tbl
+		WHERE c_id = #{c_id} AND NOT r_status IN ('1', '2', '3')
+		ORDER BY r_num DESC
+	</select>
+	
+	
+	
+=======
 	<!-- 회원탈퇴 -->
 	<delete id="memberDelete" parameterType="member">
 		DELETE FROM WT_MEMBER
@@ -44,4 +117,5 @@
 		AND c_pwd = #{c_pwd}
 	</delete>
 
+>>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 </mapper>

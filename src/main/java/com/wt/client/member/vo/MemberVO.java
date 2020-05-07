@@ -1,6 +1,9 @@
 package com.wt.client.member.vo;
 
+<<<<<<< HEAD
+=======
 import java.util.Date;
+>>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 
 public class MemberVO {
 	

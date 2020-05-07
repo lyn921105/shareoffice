@@ -1,5 +1,7 @@
 package com.wt.admin.room.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AdminRoomVO {
 	private int o_no; // 호실 시퀀스
 	private String o_floor; // 호실 층 정보
@@ -7,9 +9,13 @@ public class AdminRoomVO {
 	private int o_price; // 가격
 	private int o_member; // 인원수
 	private String o_info; // 기본정보(창측,내측)
+	private MultipartFile thumbfile; // 대표사진 첨부파일
 	private String o_thumb; // 대표사진
+	private MultipartFile file1; // 첨부파일
 	private String o_image1; // 이미지1
+	private MultipartFile file2; // 첨부파일
 	private String o_image2; // 이미지2
+	private MultipartFile file3; // 첨부파일
 	private String o_image3; // 이미지3
 	private String o_status; // 현재 상태(사용 가능/불가능)
 
@@ -18,7 +24,8 @@ public class AdminRoomVO {
 	}
 
 	public AdminRoomVO(int o_no, String o_floor, String o_room, int o_price, int o_member, String o_info,
-			String o_thumb, String o_image1, String o_image2, String o_image3, String o_status) {
+			MultipartFile thumbfile, String o_thumb, MultipartFile file1, String o_image1, MultipartFile file2,
+			String o_image2, MultipartFile file3, String o_image3, String o_status) {
 		super();
 		this.o_no = o_no;
 		this.o_floor = o_floor;
@@ -26,9 +33,13 @@ public class AdminRoomVO {
 		this.o_price = o_price;
 		this.o_member = o_member;
 		this.o_info = o_info;
+		this.thumbfile = thumbfile;
 		this.o_thumb = o_thumb;
+		this.file1 = file1;
 		this.o_image1 = o_image1;
+		this.file2 = file2;
 		this.o_image2 = o_image2;
+		this.file3 = file3;
 		this.o_image3 = o_image3;
 		this.o_status = o_status;
 	}
@@ -81,12 +92,28 @@ public class AdminRoomVO {
 		this.o_info = o_info;
 	}
 
+	public MultipartFile getThumbfile() {
+		return thumbfile;
+	}
+
+	public void setThumbfile(MultipartFile thumbfile) {
+		this.thumbfile = thumbfile;
+	}
+
 	public String getO_thumb() {
 		return o_thumb;
 	}
 
 	public void setO_thumb(String o_thumb) {
 		this.o_thumb = o_thumb;
+	}
+
+	public MultipartFile getFile1() {
+		return file1;
+	}
+
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
 	}
 
 	public String getO_image1() {
@@ -97,12 +124,28 @@ public class AdminRoomVO {
 		this.o_image1 = o_image1;
 	}
 
+	public MultipartFile getFile2() {
+		return file2;
+	}
+
+	public void setFile2(MultipartFile file2) {
+		this.file2 = file2;
+	}
+
 	public String getO_image2() {
 		return o_image2;
 	}
 
 	public void setO_image2(String o_image2) {
 		this.o_image2 = o_image2;
+	}
+
+	public MultipartFile getFile3() {
+		return file3;
+	}
+
+	public void setFile3(MultipartFile file3) {
+		this.file3 = file3;
 	}
 
 	public String getO_image3() {
