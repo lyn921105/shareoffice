@@ -4,42 +4,48 @@
 
 <!-- 메인페이지 -->
 <tiles-definitions>
-	<definition name="adminStart" template="/WEB-INF/views/main/adminMain.jsp">
-		<put-attribute name="title" value="워크트리 관리자 페이지"/>
-		<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"/>
+	<definition name="adminStart"
+		template="/WEB-INF/views/main/adminMain.jsp">
+		<put-attribute name="title" value="워크트리 관리자 페이지" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/admin/header.jsp" />
 	</definition>
-	
+
 	<!-- 메인 레이아웃 -->
-	<definition name="mainLayout" template="/WEB-INF/views/template/admin/mainLayout.jsp">
-	<put-attribute name="header" value="/WEB-INF/views/template/admin/header.jsp"></put-attribute>
-	<put-attribute name="aside" value="/WEB-INF/views/template/admin/aside.jsp"></put-attribute>
-	<put-attribute name="footer" value="/WEB-INF/views/template/client/footer.jsp"></put-attribute>
+	<definition name="mainLayout"
+		template="/WEB-INF/views/template/admin/mainLayout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/template/admin/header.jsp"></put-attribute>
+		<put-attribute name="aside"
+			value="/WEB-INF/views/template/admin/aside.jsp"></put-attribute>
+		<put-attribute name="footer"
+			value="/WEB-INF/views/template/client/footer.jsp"></put-attribute>
 	</definition>
-	
-<!-- 	<definition name="adminMember/*" extends="mainLayout">
-		<put-attribute name="title" value="회원 관리"/>
-		<put-attribute name="content" value="/WEB-INF/views/adminMemberList/{1}.jsp"/>
+
+	<!-- <definition name="adminMember/*" extends="mainLayout"> <put-attribute 
+		name="title" value="회원 관리"/> <put-attribute name="content" value="/WEB-INF/views/adminMemberList/{1}.jsp"/> 
+		</definition> <definition name="adminContract/*" extends="mainLayout"> <put-attribute 
+		name="title" value="계약 관리"/> <put-attribute name="content" value="/WEB-INF/views/adminContractList/{1}.jsp"/> 
+		</definition> -->
+
+	<definition name="admin/reservation/*" extends="mainLayout">
+		<put-attribute name="title" value="예약 관리" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/reservation/{1}.jsp" />
 	</definition>
-	
-	<definition name="adminrRservation/*" extends="mainLayout">
-		<put-attribute name="title" value="예약 관리"/>
-		<put-attribute name="content" value="/WEB-INF/views/visitConsultList/{1}.jsp"/>
+
+
+	<definition name="admin/room/*" extends="mainLayout">
+		<put-attribute name="title" value="호실 관리" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/adminRoomMain.jsp" />
 	</definition>
-	
-	<definition name="adminContract/*" extends="mainLayout">
-		<put-attribute name="title" value="계약 관리"/>
-		<put-attribute name="content" value="/WEB-INF/views/adminContractList/{1}.jsp"/>
-	</definition>
-	
-	<definition name="adminRoom/*" extends="mainLayout">
-		<put-attribute name="title" value="호실 관리"/>
-		<put-attribute name="content" value="/WEB-INF/views/adminRoomMain.jsp"/>
-	</definition>
-	-->
-	
+
+
 	<definition name="admin/question/*" extends="mainLayout">
-		<put-attribute name="title" value="문의 관리"/>
-		<put-attribute name="content" value="/WEB-INF/views/admin/question/{1}.jsp"/>
+		<put-attribute name="title" value="문의 관리" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/question/{1}.jsp" />
 	</definition>
-	 
+
 </tiles-definitions>

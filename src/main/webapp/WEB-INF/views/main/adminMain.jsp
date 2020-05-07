@@ -14,12 +14,12 @@
 	rel="stylesheet">
 <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="/resource/include/css/admin.css" />
+	href="/resources/include/css/admin.css" />
 
 <!-- js -->
 <script type="text/javascript"
-	src="resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="resources/include/js/common.js"></script>
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 </head>
 
 <body>
@@ -33,8 +33,6 @@
 			role="button">예약 관리</a> <a class="title-menu"
 			href="/adminRoom/main" role="button">호실 관리</a> <a
 			class="title-menu" href="/adminQuestion/qnaList" role="button">
-			문의 관리</a> <a
-			class="title-menu" href="/adminQuestion/faq" role="button">
-			faq</a>
+			문의 관리</a>
 	</div>
 </body>

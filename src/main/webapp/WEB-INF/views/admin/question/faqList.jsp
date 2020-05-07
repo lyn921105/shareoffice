@@ -1,63 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>FAQ 등록/수정</title>
 <!-- CSS -->
-<link href="/resources/include/css/common.css" rel="stylesheet">
 <link href="/resources/include/admin.css" rel="stylesheet">
 
 <!-- js -->
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript"
-	src="/resources/include/js/jquery.from.min.js"></script>
 
 <script type="text/javascript">
-	var f_num = $(this).parents("tr").attr("data-num");
-	$("#f_num").val(f_num)
-
 	$(function() {
+
 		//등록 버튼 클릭 시 이벤트
 		$("#faq_ok").click(function() {
-			if ($('#f_question') == "" || $('#f_question') == null) {
-				alert("faq 질문을 작성해주세요.");
-				$("#f_question").focus();
-			} else if ($("#f_answer") == "" || $("#f_answer") == null) {
-				alert("faq 답변을 작성해주세요.");
-				$("#f_answer").focus();
-			} else {
-				$("#faqWriteForm").attr({
-					"method" : "POST",
-					"action" : "/adminQuestion/faqInsert"
-				});
-
-				$("#faqWriteForm").submit();
+			//입력 값 체크
+			if(!chkData("#f_question", "faq 질문을")){
+				return;
+			} else if(!chkData("#f_answer", "faq 답변을")){
+				return;
+			} else{
+				//내용이 모두 작성 되었을 때 실행
+				$.ajax({
+					url:"/adminQuestion/faqInsert",
+					type:"post",
+					header:{
+						"Content-Type":"application/json",
+						"X-HTTP-Method-Override":"POST"
+					},
+					dataType:"text",
+					data:$("#faqWriteForm").serialize(),
+					success:function(){
+						location.href="/adminQuestion/faq";
+					}
+					
+				})
 			}
-		})
+		});
 		
 		//수정 버튼 클릭 시 수정 폼 출력
 		$(".faqUpdate").click(function(){
-			var f_num=$(this).parents("tr").attr("data-num");
-			$("#f_num").val(f_num); //클릭한 글의 글 번호 가져오기
+			var f_row=$(this).parents("tr");
+			var f_num=f_row.data("num");
+			var f_question=f_row.children("td").children(".question").data("fq");
+			var f_answer=f_row.children("td").children(".answer").data("fa");
 			
-			var f_question=$(this).parents("tr").children().eq(1);
+			var htmls="";
+			htmls+='<td class="faqRow_'+f_num+'">';
+			htmls+='<input type="button" value="저장" id="edit_ok" onclick=faqUpdate()>';
+			htmls+='<input type="button" value="취소" id="edit_cancle" onclick="cancle()"><br>';
+			htmls+='<form id="faqEditForm">';
+			htmls+='<input type="hidden" value='+f_num+' name="f_num" id="f_num">';
+			htmls+='<input type="text" maxlength="100" id="f_question" name="f_question" value="'+f_question+'"><br>';
+			htmls+='<textarea maxlength="1000" id="f_answer" name="f_answer">'+f_answer+'</textarea>';
+			htmls+='</form></td>';
 			
-			//수정 폼 태그
-			var upTag="<tr class=tac data-num="+f_num+">";
-			upTag+="<td><input type=button value=수정완료 class=update_ok>";
-			upTag+="<input type=button value=취소 class=cancle>";
-			upTag+="<input type=hidden name=f_num value="+f_num+">"
-			upTag+="<div class=f_question>"+f_question+"</div>"
+			//기존 입력 창 없애기
+			$("#faqwrite").html("");
 			
-		 
-		})
+			$('.faqRow_'+f_num).replaceWith(htmls);
+			
+			
+		});
 		
-	})
+	});
+	
+	function cancle(){
+		location.href="/adminQuestion/faq";
+	};
+	
+	function faqDelete(f_num){
+		$.ajax({
+			url:"/adminQuestion/faqDelete?f_num="+f_num,
+		data:{"f_num":f_num},
+		type:"POST",
+		dataType:"text",
+		success:function(result){
+			location.href="/adminQuestion/faq";
+		}
+		})
+	}
+	
+	function faqUpdate(){
+	if(!chkData("#f_question", "faq 질문을")){
+			return;
+		} else if(!chkData("#f_answer", "faq 답변을")){
+			return;
+		} else{
+			
+			 $("#faqEditForm").attr({
+				"method":"POST",
+				"action":"/adminQuestion/faqUpdate"
+			});
+			
+			$("#faqEditForm").submit(); 
+		}
+	}
 
 </script>
 <body>
@@ -66,45 +110,44 @@
 			<input type="button" id="faq_ok" value="등록" class="btn">
 		</div>
 		<form id="faqWriteForm" name="faqWriteForm">
-			<table id="faqform">
-				<tr>
-					<td class="fq"><input type="text" name="f_question"
-						id="f_question" maxlength="100"></td>
-				</tr>
-				<tr>
-					<td class="fa"><textarea name="f_answer" id="f_qnswer"
-							maxlength="1000"></textarea></td>
-				</tr>
-			</table>
-		</form>
-
-		<form id="faqListForm">
-			<div class="faqList">
-				<br> <br>
-				<table summary="FAQ 리스트">
-					<tbody id="list">
-						<c:choose>
-							<c:when test="${not empty faqList }">
-								<c:forEach var="faq" items="${faqList }" varStatus="status">
-									<tr class="tac" data-num="${faq.f_num }">
-										<td><input type="button" value="수정" class="faqUpdate"><a href="/adminQuestion/faqDelete?f_num=${faq.f_num }">삭제</a>
-											<input type="hidden" name="f_num" value="${faq.f_num }">
-											<div class="question">${faq.f_question }</div>
-											<div class="answer">${faq.f_answer }</div></td>
-									</tr>
-
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<tr>
-									<td colspan="4" class="tag">등록된 faq가 없습니다. faq를 작성해주세요.</td>
-								</tr>
-							</c:otherwise>
-						</c:choose>
-					</tbody>
-				</table>
+			<div id="faqwrite">
+				<span class="fq"><input type="text" name="f_question"
+					id="f_question" maxlength="100"><br> <textarea
+						name="f_answer" id="f_answer" maxlength="1000" rows="5"></textarea>
+				</span>
 			</div>
 		</form>
+
+
+			<div id="faqList">
+				<br> <br>
+				<div id="list">
+					<table>
+						<tbody id="list">
+							<c:choose>
+								<c:when test="${not empty faqList }">
+									<c:forEach var="faq" items="${faqList }" varStatus="status">
+										<tr class="faqList" data-num="${faq.f_num }">
+											<td class="faqRow_${faq.f_num }"><input type="button"
+												value="수정" class="faqUpdate"> <input type="button"
+												value="삭제" class="faqDelete"
+												onclick="faqDelete(${faq.f_num})"> <br>
+												<div class="question" data-fq="${faq.f_question }">${faq.f_question }</div>
+												<div class="answer" data-fa="${faq.f_answer }">${faq.f_answer }</div></td>
+										</tr>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div>
+										<span>등록된 faq가 없습니다. faq를 작성해주세요.</span>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	
 	</div>
 </body>
 </html>

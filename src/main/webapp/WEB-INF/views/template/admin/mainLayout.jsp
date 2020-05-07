@@ -14,12 +14,12 @@
 	rel="stylesheet">
 <link href="/resources/include/dist/css/dashboard.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="/resource/include/css/admin.css" />
+	href="/resources/include/admin.css" />
 
 <!-- js -->
 <script type="text/javascript"
-	src="resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="resources/include/js/common.js"></script>
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/resources/include/dist/js/bootstrap.min.js"></script>
@@ -32,20 +32,19 @@
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</nav>
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="min-height: 730px;">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
+			<div class="col-sm-3 sidenav" style="position:static; bottom:61px;">
 				<tiles:insertAttribute name="aside" />
 			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="col-sm-9 main">
 				<tiles:insertAttribute name="content" />
 			</div>
 
 		</div>
 	</div>
-	<div class="footer">
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-	</div>
-
+		<div class="footer">
+			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+		</div>
 </body>
 </html>

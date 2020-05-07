@@ -14,10 +14,16 @@
 
 #f_answer{
 	width: 630px;
-	height: 1500px;
 }
 
-.question , .answer{
-	border:1px solid;
-	width: 630px;
+input[type=text], textarea{
+width: 630px;	
+}
+
+.qnaList{
+	margin-top: 30px;
+}
+
+.menuList{
+	margin-left: 10px;
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.admin.reservation.dao.VisitConsultDAO">
+	<sql id="visitCommon">
+		select v_num, v_name, v_phone, v_date, v_time, v_status
+		from visit_tbl
+		<if test="search=='today'">
+			<where>to_char(v_date, 'yyyy/mm/dd')= to_char(sysdate, 'yyyy/mm/dd')
+			</where>
+		</if>
+	</sql>
+
+	<select id="adminVisitList" parameterType="visit"
+		resultType="visit">
+		SELECT
+		v_num, v_name, v_phone, to_char(v_date,'YYYY-MM-DD') as
+		v_date,
+		v_time, v_status
+		from (select list.*, rownum as rnum
+		from(
+		<include refid="visitCommon"></include>
+		) list
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row!= null and end_row != ''">
+					rnum between #{start_row} and #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+
+	<select id="adminVisitListCnt" parameterType="visit"
+		resultType="int">
+		select nvl(count(1), 0) from(
+		select list.*, rownum as rnum
+		from(
+		<include refid="visitCommon"></include>
+		order by v_num desc
+		) list
+		)
+	</select>
+
+	<select id="adminVisitConsultDetail" parameterType="visit"
+		resultType="visit">
+		select v_name, v_phone, to_char(v_date, 'yyyy-mm-dd') as
+		v_date, v_time,
+		v_status
+		from visit_tbl where v_num=#{v_num}
+	</select>
+
+	<update id="updateConsultState" parameterType="int">
+		update visit_tbl
+		set v_status='2' where v_num=#{v_num}
+	</update>
+
+</mapper>
