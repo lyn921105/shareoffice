@@ -16,15 +16,23 @@ public class AdminRoomServiceImpl implements AdminRoomService {
 
 	@Autowired
 	private AdminRoomDao adminRoomDao;
-	
-	
+
 	// 호실 메인 페이지(1페이지)
-	public Map<String, AdminRoomVO> roomMain(){
-		Map<String, AdminRoomVO> roomMain = null;
+	@Override
+	public List<AdminRoomVO> roomMain() {
+		List<AdminRoomVO> roomMain = null;
 		roomMain = adminRoomDao.roomMain();
 		return roomMain;
 	}
-	
+
+	// 호실 상세 페이지
+	@Override
+	public AdminRoomVO roomDetail(AdminRoomVO avo) {
+		AdminRoomVO rvo = null;
+		rvo = adminRoomDao.roomDetail(avo);
+		return rvo;
+	}
+
 	// 호실 목록 구현
 	@Override
 	public List<AdminRoomVO> roomList(String o) {
@@ -36,15 +44,54 @@ public class AdminRoomServiceImpl implements AdminRoomService {
 	// 호실 등록 구현
 	@Override
 	public int roomInsert(AdminRoomVO avo) {
+
 		int result = 0;
 		try {
 			result = adminRoomDao.roomInsert(avo);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			result = 0;
 		}
 		return result;
 	}
-	
+
+	// 호실 수정 구현
+	@Override
+	public int roomUpdate(AdminRoomVO avo) {
+		int result = 0;
+		try {
+			result = adminRoomDao.roomUpdate(avo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
+
+	// 호실 삭제 구현
+	@Override
+	public int roomDelete(AdminRoomVO avo) {
+		int result = 0;
+		try {
+			result = adminRoomDao.roomDelete(avo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
+
+	@Override
+	public int fileDelete(AdminRoomVO avo) {
+		// TODO Auto-generated method stub
+		int result = 0;
+		try {
+			result = adminRoomDao.fileDelete(avo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
 
 }

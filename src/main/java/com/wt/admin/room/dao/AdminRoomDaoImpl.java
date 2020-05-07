@@ -16,8 +16,15 @@ public class AdminRoomDaoImpl implements AdminRoomDao {
 	private SqlSession session;
 	
 	// 호실 메인 페이지
-	public Map<String, AdminRoomVO> roomMain(){
-		return session.selectMap("roomMain", "o_room");
+	@Override
+	public List<AdminRoomVO> roomMain(){
+		return session.selectList("roomMain");
+	}
+	
+	// 호실 상세 페이지
+	@Override
+	public AdminRoomVO roomDetail(AdminRoomVO avo) {
+		return session.selectOne("roomDetail", avo);
 	}
 	
 	// 호실 목록 구현
@@ -30,6 +37,22 @@ public class AdminRoomDaoImpl implements AdminRoomDao {
 	@Override
 	public int roomInsert(AdminRoomVO avo) {
 		return session.insert("roomInsert", avo);
+	}
+
+	// 호실 수정 구현
+	@Override
+	public int roomUpdate(AdminRoomVO avo) {
+		return session.update("roomUpdate", avo);
+	}
+
+	@Override
+	public int roomDelete(AdminRoomVO avo) {
+		return session.delete("roomDelete", avo);
+	}
+
+	@Override
+	public int fileDelete(AdminRoomVO avo) {
+		return session.update("fileDelete", avo);
 	}
 
 }
