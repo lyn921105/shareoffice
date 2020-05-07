@@ -37,4 +37,10 @@ public class MoveInDAOImpl implements MoveInDAO {
 		return (MoveInVO) session.selectOne("moveInDetail", mvo);
 	}
 
+	@Override
+	public int updateReqState(int r_num) {
+		// TODO Auto-generated method stub
+		return (Integer)session.update("updateReqState", r_num);
+	}
+
 }

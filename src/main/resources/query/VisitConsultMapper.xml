@@ -7,9 +7,15 @@
 		select v_num, v_name, v_phone, v_date, v_time, v_status
 		from visit_tbl
 		<if test="search=='today'">
-			<where>to_char(v_date, 'yyyy/mm/dd')= to_char(sysdate, 'yyyy/mm/dd')
-			</where>
+			<where>to_char(v_date, 'yyyy/mm/dd')= to_char(sysdate, 'yyyy/mm/dd')</where>
 		</if>
+		<if test="search=='3day'">
+			<where>to_char(sysdate, 'yy/mm/dd') <![CDATA[ <=]]>v_date and v_date<![CDATA[ <=]]>to_char(sysdate+2, 'yy/mm/dd')</where>
+		</if>
+		<if test="search=='week'">
+			<where>to_char(sysdate, 'yy/mm/dd') <![CDATA[ <=]]>v_date and v_date<![CDATA[ <=]]>to_char(sysdate+6, 'yy/mm/dd')</where>
+		</if>
+		
 	</sql>
 
 	<select id="adminVisitList" parameterType="visit"
@@ -30,6 +36,11 @@
 				</if>
 			</if>
 		</where>
+		group by v_num, v_name, v_phone, v_date, v_time, v_status
+		<choose>
+		<when test="order_sc=='ASC'">order by v_date asc, v_time asc</when>
+		<when test="order_sc=='DESC'">order by v_date desc, v_time desc</when>
+		</choose>
 	</select>
 
 	<select id="adminVisitListCnt" parameterType="visit"
@@ -45,7 +56,7 @@
 
 	<select id="adminVisitConsultDetail" parameterType="visit"
 		resultType="visit">
-		select v_name, v_phone, to_char(v_date, 'yyyy-mm-dd') as
+		select v_num, v_name, v_phone, to_char(v_date, 'yyyy-mm-dd') as
 		v_date, v_time,
 		v_status
 		from visit_tbl where v_num=#{v_num}

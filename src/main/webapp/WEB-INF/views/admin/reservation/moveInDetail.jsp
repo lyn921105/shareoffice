@@ -16,7 +16,23 @@
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
+		$("#req_ok").click(function(){
+			var result = confirm("상태를 변경하시겠습니까? 변경 후에는 수정이 불가능합니다.");
+			
+			if(result){
+				$("#r_data").attr({
+					"method":"get",
+					"action":"/adminReservation/updateReqState"
+				})
+				
+				$("#r_data").submit();
+			} else{
+				
+				return;
+			}
 
+		})
+		
 		$("#backList").click(function() {
 			location.href = "/adminReservation/moveInList";
 		})
@@ -30,14 +46,13 @@
 		<form id="r_data">
 			<input type="hidden" id="r_num" name="r_num" value="${detail.r_num }" />
 			<input type="hidden" name="page" id="page" value="${param.page }" />
-			<input type="hidden" name="pageSize" id="pageSize" value="10" />
 		</form>
 
 		<h1>입주 예약 상세</h1>
 		<table id="moveInDetail" class="table table-bordered">
 
 			<tr>
-				<td>예약자</td>
+				<td>예약자 아이디</td>
 				<td>${detail.c_id }</td>
 				<td>신청일</td>
 				<td>${detail.r_regdate }</td>
@@ -52,7 +67,7 @@
 			</tr>
 			<tr>
 				<td>이용인원</td>
-				<td colspan="3">${detail.r_member }</td>
+				<td colspan="3">${detail.r_member }명</td>
 			</tr>
 			<tr>
 				<td>입주예정일</td>

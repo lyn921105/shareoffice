@@ -103,4 +103,11 @@ public String moveInDetail(@ModelAttribute MoveInVO mvo, Model model) {
 	return "admin/reservation/moveInDetail";
 }
 
+@RequestMapping(value="/updateReqState")
+public String updateReqState(@ModelAttribute MoveInVO mvo) {
+	moService.updateReqState(mvo.getR_num());
+
+	return "redirect:/adminReservation/moveInList";
+
+}
 }

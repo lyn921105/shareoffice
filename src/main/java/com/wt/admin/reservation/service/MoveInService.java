@@ -9,6 +9,6 @@ public List<MoveInVO> moveInList(MoveInVO mvo);
 public int moveInListCnt(MoveInVO mvo);
 public int newRequest(MoveInVO mvo);
 public MoveInVO moveInDetail (MoveInVO mvo);
-
+public int updateReqState(int r_num);
 
 }

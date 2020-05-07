@@ -6,8 +6,23 @@
 
 	<sql id="moveInCommon">
 		select r_num, c_id, r_phone, r_member, r_reservedate,
-		r_regdate, r_status
-		from reservation_tbl where r_status='99' or r_status='0'
+		r_regdate,
+		r_status
+		from reservation_tbl
+
+		<if test="search=='cancle'">
+			<where>r_status='99'</where>
+		</if>
+		<if test="search=='wait'">
+			<where>r_status='0'</where>
+		</if>
+		<if test="search=='viewAll'">
+			<where>r_status='99' or r_status='0'</where>
+		</if>
+		<if test="search==''">
+			<where>r_status='99' or r_status='0'</where>
+		</if>
+
 	</sql>
 
 	<select id="moveInList" parameterType="moveIn"
@@ -28,9 +43,14 @@
 				</if>
 			</if>
 		</where>
+		<choose>
+			<when test="order_sc=='ASC'">order by r_reservedate asc</when>
+			<when test="order_sc=='DESC'">order by r_reservedate desc</when>
+		</choose>
 	</select>
-	
-	<select id="moveInListCnt" parameterType="moveIn" resultType="int">
+
+	<select id="moveInListCnt" parameterType="moveIn"
+		resultType="int">
 		select nvl(count(1), 0) from(
 		select list.*, rownum as rnum
 		from(
@@ -39,14 +59,24 @@
 		) list
 		)
 	</select>
-	
+
 	<select id="newRequest" parameterType="moveIn" resultType="int">
-	select count (*) from reservation_tbl where r_status='0'
+		select count (*) from reservation_tbl where r_status='0'
 	</select>
-	
-	<select id="moveInDetail" parameterType="moveIn" resultType="moveIn">
-	select c_id, r_regdate, r_phone, r_floor, r_room, r_member, to_char(r_reservedate, 'yyyy-mm-dd') as r_reservedate, to_char(r_enddate, 'yyyy-mm-dd') as r_enddate, r_price, r_status
-	from reservation_tbl where r_num=#{r_num}
+
+	<select id="moveInDetail" parameterType="moveIn"
+		resultType="moveIn">
+		select c_id, r_regdate, r_phone, r_floor, r_room, r_member,
+		to_char(r_reservedate, 'yyyy-mm-dd') as r_reservedate,
+		to_char(r_enddate, 'yyyy-mm-dd') as r_enddate, r_price, r_status ,
+		r_num
+		from reservation_tbl where r_num=#{r_num}
 	</select>
+
+	<update id="updateReqState" parameterType="int">
+		update reservation_tbl
+		set r_status='1', r_regdate=sysdate where
+		r_num=#{r_num}
+	</update>
 
 </mapper>
