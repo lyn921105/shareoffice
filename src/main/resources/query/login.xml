@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.wt.client.member.dao.LoginDAO">
+	<select id="loginSuccess" parameterType="lvo" resultType="lvo">
+	select c_id
+	from 
+	client_tbl
+	where c_id = #{c_id}
+	and c_pwd = #{c_pwd}
+	</select>
+	
+	<select id="serchId" parameterType="mvo" resultType="String">
+	select c_id
+	from client_tbl
+	where c_name = #{c_name}
+	and c_email = #{c_email}
+	</select>
+	
+	<select id="serchIdChk" parameterType="mvo" resultType="String">
+	select c_id
+	from client_tbl
+	where c_name = #{c_name}
+	and c_email = #{c_email}
+	</select>
+	
+	<select id="serchPwChk" parameterType="mvo" resultType="String">
+	select c_pwd
+	from client_tbl
+	where c_email = #{c_email}
+	</select>
+	
+</mapper>
