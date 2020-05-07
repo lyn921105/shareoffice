@@ -1,66 +1,90 @@
+<%@page
+	import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/tld/custom_tag.tld"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Q&A</title>
 <!-- CSS -->
-<link href="/resources/include/css/common.css" rel="stylesheet">
 <link href="/resources/include/admin.css" rel="stylesheet">
 
 <!-- js -->
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript"
-	src="/resources/include/js/jquery.from.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		//선택한 옵션에 따라 테이블 내용 변경
-		$("#stateOption").change(function() {
-			var option = $(this).val();
-			if (option == "notAnswer") {
-				$("td:contains('답변완료')").parent().css("display", "none");
-				$("td:contains('관리자')").parent().css("display", "none");
-			}
-			if (option == "viewAll") {
-				$("td:contains('답변완료')").parent().css("display", "");
-				$("td:contains('관리자')").parent().css("display", "");
-			}
+		//페이지 로드 시 셀렉트 박스 설정
+		$("#search").val("<c:out value='${data.search}'/>");
 
-		})
-
-		//페이징 처리
-		if ("<c:out value='${data.pageSize}'/>" != "") {
-			$("#pageSize").val("<c:out value='${data.pageSize}'/>");
+		if ($("#search").val() == 'notAnswer') {
+			$('#notAnswer').attr('selected', 'selected');
+		} else{
+			$('#viewAll').attr('selected', 'selected');
 		}
 
+		//선택한 옵션에 따라 테이블 내용 변경
+		$("#search").change(function() {
+
+			goPage(1);
+		});
+		
+		//행 클릭 시 상세 페이지 이동을 위한 처리 이벤트
+		$(".goDetail").click(function(){
+			var q_num=$(this).data("num");
+			
+			$("#q_num").val(q_num);
+			
+			$("#detailForm").attr({
+				"method":"get",
+				"action":"/adminQuestion/questionDetail"
+			})
+			
+			$("#detailForm").submit();
+		})
+
 	})
+
+	function goPage(page) {
+		$("#page").val(page);
+		$("#listOption").attr({
+			"method" : "get",
+			"action" : "/adminQuestion/qnaList"
+		});
+		$("#listOption").submit();
+	}
 </script>
 
 </head>
 <body>
 	<!-- 상세 페이지 이동을 위한 Form -->
 	<form id="detailForm" name="detailForm">
-		<input type="hidden" name="q_num" id="q_num"> <input
-			type="hidden" name="page" value="${data.page }"> <input
-			type="hidden" name="pageSize" value="10">
+		<input type="hidden" name="q_num" id="q_num"> 
+		<input type="hidden" name="q_state" id="q_state" value="${qna.q_state }">
+		<input type="hidden" name="page" value="${data.page }">
+<input type="hidden" name="pageSize" value="5">
 	</form>
 
-	<div class="qnaContainer">
-		<!-- 문의 글 상태에 따른 조회 옵션 -->
-		<h1>문의 관리</h1>
-		<select id="stateOption" name="stateOption">
-			<option value="viewAll">전체 문의</option>
-			<option value="notAnswer">미답변</option>
-		</select>
+	<div class="container">
 
+		<h1>문의 관리</h1>
+		<!-- 문의 글 상태에 따른 조회 옵션 -->
+		<form id="listOption">
+			<input type="hidden" id="page" name="page" value="${data.page }">
+
+			<select id="search" name="search">
+				<option id="viewAll" value="viewAll">전체 문의</option>
+				<option id="notAnswer" value="notAnswer">미답변</option>
+			</select>
+		</form>
 		<!-- 문의글  리스트 출력 -->
 		<div id="qnaList">
-			<table class="qnaList">
+			<table class="qnaList table table-striped table-bordered" >
 				<colgroup>
 					<!-- 번호 -->
 					<col width="10%">
@@ -81,14 +105,15 @@
 						<th>답변상태</th>
 					</tr>
 				</thead>
+				<!-- 데이터 출력 -->
 				<tbody id="list">
 					<c:choose>
 						<c:when test="${not empty qnaList }">
 							<c:forEach var="qna" items="${qnaList }" varStatus="status">
-								<tr class="allList" data-num="${qna.q_num }"
-									style="diplay: inlien;">
-									<td>${qna.q_num }</td>
-									<td class="goDetail tal">${qna.q_title }</td>
+								<tr class="goDetail" data-num="${qna.q_num }"
+									style="diplay: inline;">
+									<td>${count - status.index}</td>
+									<td>${qna.q_title }</td>
 									<c:choose>
 										<c:when test="${not empty qna.a_id }">
 											<td>${qna.a_id }</td>
@@ -123,9 +148,9 @@
 			</table>
 		</div>
 		<!-- 페이지 네비게이션 -->
+		<br> <br>
 		<div id="qnaPage">
-			<tag:paging page="${param.page }" total="${total }"
-				list_size="10"></tag:paging>
+			<tag:paging page="${param.page }" total="${total }" list_size="10"></tag:paging>
 		</div>
 	</div>
 

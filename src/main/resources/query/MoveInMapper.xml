@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.admin.reservation.dao.MoveInDAO">
+
+	<sql id="moveInCommon">
+		select r_num, c_id, r_phone, r_member, r_reservedate,
+		r_regdate, r_status
+		from reservation_tbl where r_status='99' or r_status='0'
+	</sql>
+
+	<select id="moveInList" parameterType="moveIn"
+		resultType="moveIn">
+		select r_num, c_id, r_phone, r_member, to_char(r_reservedate,
+		'yyyy-mm-dd') as r_reservedate, to_char(r_regdate, 'yyyy-mm-dd') as
+		r_regdate, r_status
+		from (select
+		list.*, rownum
+		as rnum from(
+		<include refid="moveInCommon"></include>
+		) list
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row!= null and end_row != ''">
+					rnum between #{start_row} and #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<select id="moveInListCnt" parameterType="moveIn" resultType="int">
+		select nvl(count(1), 0) from(
+		select list.*, rownum as rnum
+		from(
+		<include refid="moveInCommon"></include>
+		order by r_num desc
+		) list
+		)
+	</select>
+	
+	<select id="newRequest" parameterType="moveIn" resultType="int">
+	select count (*) from reservation_tbl where r_status='0'
+	</select>
+	
+	<select id="moveInDetail" parameterType="moveIn" resultType="moveIn">
+	select c_id, r_regdate, r_phone, r_floor, r_room, r_member, to_char(r_reservedate, 'yyyy-mm-dd') as r_reservedate, to_char(r_enddate, 'yyyy-mm-dd') as r_enddate, r_price, r_status
+	from reservation_tbl where r_num=#{r_num}
+	</select>
+
+</mapper>

@@ -14,28 +14,52 @@ public class QuestionDAOImpl implements QuestionDAO {
 	private SqlSession session;
 
 	@Override
-	public List<QnaVO> adminQnaList() {
+	public List<QnaVO> adminQnaList(QnaVO avo) {
 		// TODO Auto-generated method stub
-		return session.selectList("qnaList");
+		return session.selectList("qnaList", avo);
+	}
+
+	@Override
+	public int adminQnaListCnt(QnaVO avo) {
+		return (Integer) session.selectOne("qnaListCnt", avo);
+	}
+
+	@Override
+	public QnaVO questionDetail(QnaVO avo) {
+		return (QnaVO) session.selectOne("questionDetail", avo);
+	}
+
+	@Override
+	public QnaVO getAdminAccount(QnaVO avo) {
+		return (QnaVO) session.selectOne("getAdminAccount", avo);
+	}
+
+	@Override
+	public int insertAnswer(QnaVO avo) {
+		return session.insert("insertAnswer", avo);
 	}
 	
 	@Override
-	public int adminQnaListCnt(QnaVO avo) {
-		return (Integer)session.selectOne("qnaListCnt");
+	public int updateState(int num) {
+		return session.update("updateState", num);
+	}
+	
+	@Override
+	public int deleteAnswer(int q_num) {
+		return session.delete("deleteAnswer", q_num);
+	}
+	
+	@Override
+	public int deleteState(int q_ref) {
+		return session.update("deleteState", q_ref);
 	}
 
-	/*
-	 * @Override public QnaVO qnaDetail(QnaVO avo) { // TODO Auto-generated method
-	 * stub return (QnaVO) session.selectOne("qnaDetail", avo); }
-	 * 
-	 * @Override public int answerInsert(QnaVO avo) { // TODO Auto-generated method
-	 * stub return session.insert("answerInsert", avo); }
-	 * 
-	 * @Override public int answerUpdate(QnaVO avo) { // TODO Auto-generated method
-	 * stub return session.update("answerUpdate", avo); }
-	 * 
-	 * @Override public int answerDelete(int q_num) { // TODO Auto-generated method
-	 * stub return session.delete("answerDelete", q_num); }
-	 */
+	@Override
+	public int updateAnswer(QnaVO avo) {
+		// TODO Auto-generated method stub
+		return session.update("updateAnswer", avo);
+	}
+
+
 
 }

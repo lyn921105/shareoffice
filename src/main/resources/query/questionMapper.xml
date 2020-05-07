@@ -2,32 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.admin/question/dao.QuestionDAO">
+<mapper namespace="com.wt.admin.questin.dao.QuestionDAO">
+
 	<sql id="qnaCommon">
-		select q_num, q_title, c_id, a_id, q_regdate, q_state, q_ref, q_step,
-		q_level
+		select q_num, q_title, c_id, a_id, q_regdate, q_state, q_ref, q_step
+		
 		from question_tbl
-		<where>
-			<if test="selectOption=='notAnswer'">
-				q_state=1
-			</if>
-		</where>
+		<if test="search=='notAnswer'">
+			<where>
+				q_state='1'
+			</where>
+		</if>
 	</sql>
 
 
-	<select id="qnaList" resultType="qna">
+	<select id="qnaList" resultType="qna" parameterType="qna">
 		SELECT
-		q_num, q_title, c_id, a_id, to_char(q_regdate,'YYYY-MM-DD HH24:MI') as
+		q_num, q_title, c_id, a_id, to_char(q_regdate,'YYYY-MM-DD
+		HH24:MI') as
 		q_regdate, q_state,
-		q_ref, q_step, q_level
-		from (select list.*, rownum
+		q_ref, q_step
+		from (select
+		list.*, rownum
 		as rnum from(
 		<include refid="qnaCommon"></include>
+		order by q_ref desc, q_step asc
 		) list
 		)
 		<where>
-			<if test="start_row !=null and start_row!=''">
-				<if test="end_row!=null and end_row!=''">
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row!= null and end_row != ''">
 					rnum between #{start_row} and #{end_row}
 				</if>
 			</if>
@@ -44,14 +48,45 @@
 		)
 	</select>
 
-	<!-- <select id="qnaDetail" parameterType="int" resultType="qna"> q_num. 
-		q_title, c_id, to_char(q_regdate, 'yyyy-mm-dd hh:mi') as q_regdate, q_file, 
-		q_content from Qeustion_tbl where q_num=#{q_num} </select> <insert id="answerInsert" 
-		parameterType="qna"> <selectKey keyProperty="q_num" resultType="int" order="BEFORE"> 
-		select question_seq.nextval from dual </selectKey> INSERT INTO Question_tbl 
-		(q_num, q_title, q_content, q_ref, q_step, q_level, c_id) VALUES(#{value1},#{value2},#{value3}) 
-		</insert> <update id="updateSomething" parameterType="#modelname"> UPDATE 
-		tablename1 SET columnname1=#{param1} WHERE columnname2 = #{param2} </update> 
-		<delete id="deleteSomething" parameterType="int"> DELETE FROM tablename1 
-		WHERE columnname1 = #{param1} </delete> -->
+	<select id="questionDetail" parameterType="int" resultType="qna">
+
+		select
+		q_num, q_title, c_id, a_id, to_char(q_regdate, 'yyyy-mm-dd hh24:mi')
+		as q_regdate,
+		q_file, q_ref, q_file,
+		q_content, q_state from Question_tbl where q_num=#{q_num}
+	</select>
+
+	<select id="getAdminAccount" parameterType="qna"
+		resultType="qna">
+		select a_id, a_passwd from admin_tbl
+	</select>
+
+	<insert id="insertAnswer" parameterType="qna">
+		<selectKey keyProperty="q_num" resultType="int"
+			order="BEFORE">
+			select question_seq.nextval from dual
+		</selectKey>
+		INSERT INTO Question_tbl
+		(q_num, q_title, q_content, q_ref, q_step, a_id, q_state, c_id <if test="q_file!=null and q_file!=''">, q_file</if>)
+		VALUES
+		(#{q_num},#{q_title},#{q_content},#{q_ref},'1', #{a_id}, '3', #{c_id} <if test="q_file !=null and q_file!=''">, #{q_file}</if> )
+	</insert>
+	
+	<update id="updateState" parameterType="int">
+	update question_tbl set q_state='2' where q_num=#{num}
+	</update>
+	
+	<delete id="deleteAnswer" parameterType="qna">
+	DELETE FROM question_tbl WHERE q_num= #{q_num} </delete>
+	
+	<update id="deleteState" parameterType="int">
+	update question_tbl set q_state='1' where q_num=#{q_ref}
+	</update>
+	
+	<update id="updateAnswer" parameterType="qna">
+	update question_tbl set q_content=#{q_content}<if test="q_file !=null and q_file!=''">, q_file=#{q_file}</if> where q_num=#{q_num}
+	
+	</update>
+
 </mapper>

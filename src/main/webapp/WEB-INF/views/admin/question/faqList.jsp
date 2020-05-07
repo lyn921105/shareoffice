@@ -8,15 +8,12 @@
 <meta charset="UTF-8">
 <title>FAQ 등록/수정</title>
 <!-- CSS -->
-<link href="/resources/include/css/common.css" rel="stylesheet">
 <link href="/resources/include/admin.css" rel="stylesheet">
 
 <!-- js -->
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript"
-	src="/resources/include/js/jquery.from.min.js"></script>
 
 <script type="text/javascript">
 	$(function() {
