@@ -1,32 +1,32 @@
 package com.wt.admin.login.vo;
 
 public class AdminLoginVO {
-	private String admin_id = "";
-	private String admin_passwd = "";
-	
-	
-	public AdminLoginVO() {}
-	
-	public AdminLoginVO(String admin_id, String admin_passwd) {
+	private String a_id = "";
+	private String a_passwd = "";
+
+	public AdminLoginVO() {
+	}
+
+	public AdminLoginVO(String a_id, String a_passwd) {
 		super();
-		this.admin_id = admin_id;
-		this.admin_passwd = admin_passwd;
+		this.a_id = a_id;
+		this.a_passwd = a_passwd;
 	}
 
-	public String getAdmin_id() {
-		return admin_id;
+	public String getA_id() {
+		return a_id;
 	}
 
-	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
+	public void setA_id(String a_id) {
+		this.a_id = a_id;
 	}
 
-	public String getAdmin_passwd() {
-		return admin_passwd;
+	public String getA_passwd() {
+		return a_passwd;
 	}
 
-	public void setAdmin_passwd(String admin_passwd) {
-		this.admin_passwd = admin_passwd;
+	public void setA_passwd(String a_passwd) {
+		this.a_passwd = a_passwd;
 	}
 
 }
