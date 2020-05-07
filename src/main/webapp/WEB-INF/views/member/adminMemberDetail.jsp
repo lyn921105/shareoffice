@@ -24,46 +24,47 @@
 					"action" : "/adminMember/disabled"
 				})
 				$("#form").submit();
+				alert("성공!")
 			}
-			alert("성공!")
 			opener.location.reload();
 			window.close();
 		})
 	})
 </script>
+<style type="text/css">
+th {
+text-align:left;
+}
+</style>
 </head>
 <body>
-	<h1>회원 상세 페이지</h1>
-	<h2>${avo.c_id }</h2>
+	<h2>회원 상세 페이지</h2>
+	<hr/>
 	<form id="form">
 		<input type="hidden" value="${avo.c_id }" name="c_id">
 		<table>
 			<tr>
-				<td>ID</td>
+				<th>ID</th>
 				<td>${avo.c_id }</td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<th>이름</th>
 				<td>${avo.c_name }</td>
 			</tr>
 			<tr>
-				<td>이메일</td>
+				<th>이메일</th>
 				<td>${avo.c_email }</td>
 			</tr>
 			<tr>
-				<td>가입일</td>
+				<th>가입일</th>
 				<td>${avo.c_regdate }</td>
 			</tr>
 			<tr>
-				<td>전화번호</td>
+				<th>전화번호</th>
 				<td>${avo.c_phone }</td>
 			</tr>
 			<tr>
-				<td>이용현황</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>구분</td>
+				<th>구분</th>
 				<td><select name="c_disabled" id="c_disabled">
 						<c:forEach var="i" begin="0" end="1">
 							<c:choose>

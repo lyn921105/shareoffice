@@ -6,9 +6,9 @@
 
 	<select id="adminLoginSelect" parameterType="adminLogin"
 		resultType="adminLogin">
-		select admin_id, admin_passwd
+		select a_id, a_passwd
 		from admin_tbl
-		where admin_id = #{admin_id} and admin_passwd = #{admin_passwd}
+		where a_id = #{a_id} and a_passwd = #{a_passwd}
 	</select>
 
 

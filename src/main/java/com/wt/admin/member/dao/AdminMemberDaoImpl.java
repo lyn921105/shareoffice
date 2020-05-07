@@ -18,8 +18,8 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 	
 	// 회원 리스트 출력
 	@Override
-	public List<AdminMemberVO> memberList() {
-		return session.selectList("memberList");
+	public List<AdminMemberVO> memberList(AdminMemberVO avo) {
+		return session.selectList("memberList", avo);
 	}
 
 	// 상세 회원 정보 출력
@@ -32,6 +32,12 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 	@Override
 	public int memberDisabled(AdminMemberVO rvo) {
 		return session.update("memberDisabled", rvo);
+	}
+
+	// 회원 명수 메소드
+	@Override
+	public int memberListCnt(AdminMemberVO avo) {
+		return (Integer)session.selectOne("memberListCnt", avo);
 	}
 
 

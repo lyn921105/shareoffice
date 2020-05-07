@@ -1,8 +1,8 @@
 package com.wt.admin.member.vo;
 
-import java.util.Date;
+import com.wt.common.vo.CommonVO;
 
-public class AdminMemberVO {
+public class AdminMemberVO extends CommonVO {
 	public String c_id; // 회원 아이디
 	public String c_pwd; // 회원 비밀번호
 	public String c_email; // 회원 이메일

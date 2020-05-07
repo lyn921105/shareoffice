@@ -59,7 +59,8 @@
 		<if test="o_image3 != null and o_image3 != ''">
 			o_image3,
 		</if>
-		o_status
+		o_status,
+		o_reserve
 		)
 		VALUES (#{o_no}, #{o_floor}, #{o_room}, #{o_price},
 		#{o_member},
@@ -73,7 +74,7 @@
 		<if test="o_image3 != null and o_image3 != ''">
 			#{o_image3},
 		</if>
-		#{o_status})
+		#{o_status}, '1')
 	</insert>
 
 	<!-- 호실 수정 -->

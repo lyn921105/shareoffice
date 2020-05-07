@@ -19,9 +19,9 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	
 	// 회원 리스트 출력
 	@Override
-	public List<AdminMemberVO> memberList() {
+	public List<AdminMemberVO> memberList(AdminMemberVO avo) {
 		List<AdminMemberVO> memberList = null;
-		memberList = adminMemberDao.memberList();
+		memberList = adminMemberDao.memberList(avo);
 		return memberList;
 	}
 
@@ -43,6 +43,12 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return result;
 	}
 
+
+	// 전체 회원 레코드 건수 구현
+	@Override
+	public int memberListCnt(AdminMemberVO avo) {
+		return adminMemberDao.memberListCnt(avo);
+	}
 
 	
 }

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#o_floor").html("${o_floor}")
@@ -14,22 +15,30 @@
 		// 저장 버튼 클릭 시 처리 이벤트
 		$("#roomInsertBtn").click(function() {
 			// 입력값 체크
-
-			$("#form").attr({
-				"method" : "POST",
-				"action" : "/adminRoom/roomInsert"
-			})
-			$("#form").submit();
-			alert("호실 등록 성공");
-			window.opener.location.reload();
-			window.close();
+			if(!chkSubmit($("#o_price"), "가격을")) {
+				return;
+			} else if ($("#thumbfile").val()=="") {
+				alert("썸네일 이미지는 필수로 첨부해야 합니다.");
+				return;
+			} else {
+				if(!chkFile($("#thumbfile"))){
+					return;
+				}
+				$("#form").attr({
+					"method" : "POST",
+					"action" : "/adminRoom/roomInsert"
+				})
+				$("#form").submit();
+				alert("호실 등록 성공");
+				window.opener.location.reload();
+				window.close();
+			}
 		})
-
 	})
 </script>
 </head>
 <body>
-	<h1>${o_floor }${o_room }호 등록</h1>
+	<h1>${o_floor }${o_room }호등록</h1>
 	<div>
 		<form id="form" enctype="multipart/form-data">
 			<%-- 층과 호실 번호는 hidden으로 보냄 --%>
@@ -50,13 +59,13 @@
 				<option value="2">내측</option>
 			</select>
 			<h3>가격</h3>
-			<input type="text" name="o_price" placeholder="가격을 입력하세요(단위 : 원)" />
+			<input type="text" id="o_price" name="o_price"
+				placeholder="가격을 입력하세요(단위 : 원)" />
 			<h3>사진 첨부</h3>
 			<h2>(1개 이상 첨부해주세요!)</h2>
-			<input type="file" name="thumbfile"><br />
-			<input type="file" name="file1"><br />
-			<input type="file" name="file2"><br />
-			<input type="file" name="file3"><br />
+			<input type="file" id="thumbfile" name="thumbfile"><br /> <input
+				type="file" name="file1"><br /> <input type="file"
+				name="file2"><br /> <input type="file" name="file3"><br />
 
 			<h3>호실 상태</h3>
 			<select name="o_status">

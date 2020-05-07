@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.admin.contract.dao.adminContractDao">
+
+	<!-- 계약 검색 쿼리 분리 -->
+	<sql id="contractCommon">
+		SELECT r_num, c_id,
+		r_company, r_phone, r_member,
+		r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor, r_room,
+		r_status
+		FROM reservation_tbl
+		<where>
+			<if test='search == "1"'>
+				r_reservedate > sysdate
+			</if>
+			<if test='search == "2"'>
+				sysdate >= r_reservedate
+			</if>
+			<if test='search != "0"'>
+				AND
+			</if>
+			r_status=1
+		</where>
+	</sql>
+	
+	<!-- 퇴실 검색 쿼리 분리 -->
+	<sql id="leaveCommon">
+		SELECT
+		r_company,
+		r_status,
+		TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,
+		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate
+		FROM reservation_tbl
+		WHERE r_status = 3
+		OR
+		SYSDATE > r_enddate
+	</sql>
+	
+	<!-- 환불 검색 쿼리 분리 -->
+	<sql id="refundCommon">
+		SELECT r_num, c_id,
+		r_company, r_phone, r_member,
+		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor, r_room,
+		r_status, r_refundprice, TO_CHAR(r_refunddate, 'yyyy-mm-dd') r_refunddate
+		FROM reservation_tbl
+		<where>
+			<if test='search == "1"'>
+				r_status=2
+			</if>
+			<if test='search == "2"'>
+				r_status=3
+			</if>
+			<if test='search != "1" and search != "2"'>
+				r_status=2 or r_status=3
+			</if>
+		</where>
+		ORDER BY
+		r_regdate ASC
+	</sql>
+
+	<!-- 계약 전체 조회 -->
+	<select id="contractList" parameterType="adminContract"
+		resultType="adminContract">
+		SELECT r_num, c_id,
+		r_company, r_phone, r_member,
+		r_regdate, r_price, r_enddate, r_reservedate,
+		r_floor, r_room,
+		r_status
+		FROM
+		( SELECT list.*, ROWNUM AS RNUM
+		FROM (
+		<include refid="contractCommon"></include>
+		ORDER BY r_reservedate desc
+		) list
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 퇴실 전체 조회 -->
+	<select id="leaveList" parameterType="adminContract"
+		resultType="adminContract">
+		SELECT
+		r_company,
+		r_status,
+		r_enddate,
+		r_regdate
+		FROM
+		( SELECT list.*, ROWNUM AS RNUM
+		FROM (
+		<include refid="leaveCommon"></include>
+		ORDER BY
+		r_enddate DESC
+		) list
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 환불 전체 조회 -->
+	<select id="refundList" parameterType="adminContract"
+		resultType="adminContract">
+		SELECT *
+		FROM
+		( SELECT list.*, ROWNUM AS RNUM
+		FROM (
+		<include refid="refundCommon"></include>
+		) list
+		)
+		<where>
+			<if test="start_row != null and start_row != ''">
+				<if test="end_row != null and end_row != ''">
+					RNUM BETWEEN #{start_row} AND #{end_row}
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 계약 카운트 페이징 -->
+	<select id="contractListCnt" parameterType="adminContract"
+		resultType="int">
+		SELECT NVL(count(1), 0)
+		FROM (
+		<include refid="contractCommon"></include>
+		)
+	</select>
+	
+	<!-- 퇴실 카운트 페이징 -->
+	<select id="leaveListCnt" parameterType="adminContract"
+		resultType="int">
+		SELECT NVL(count(1), 0)
+		FROM (
+		<include refid="leaveCommon"></include>
+		)
+	</select>
+	
+	<!-- 환불 카운트 페이징 -->
+	<select id="refundListCnt" parameterType="adminContract"
+		resultType="int">
+		SELECT NVL(count(1), 0)
+		FROM (
+		<include refid="refundCommon"></include>
+		)
+	</select>
+	
+	<select id="contractDetail" resultType="adminContract" parameterType="String">
+		SELECT r_num, c_id,
+		r_company, r_phone, r_member,
+		r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor, r_room,
+		r_status
+		FROM reservation_tbl
+		WHERE r_num = #{r_num}
+	</select>
+	
+	<select id="refundDetail" resultType="adminContract" parameterType="String">
+		SELECT r_num, c_id,
+		r_company, r_phone, r_member,
+		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor, r_room,
+		r_status, r_refundprice, TO_CHAR(r_refunddate, 'yyyy-mm-dd') r_refunddate
+		FROM reservation_tbl
+		WHERE r_num = #{r_num}
+		ORDER BY
+		r_reservedate DESC
+	</select>
+	
+	<update id="refundUpdate" parameterType="adminContract">
+		UPDATE reservation_tbl
+		SET
+		r_refundprice = #{r_refundprice},
+		r_status = 3,
+		r_refunddate = SYSDATE
+		WHERE
+		r_num = #{r_num}
+	</update>
+
+	<!-- <select id="memberDetail" resultType="adminMember"> SELECT * FROM client_tbl 
+		WHERE c_id = #{c_id} </select> <update id="memberDisabled" parameterType="adminMember"> 
+		UPDATE client_tbl SET c_disabled = #{c_disabled} WHERE c_id = #{c_id} </update> -->
+
+	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
+		column="columnname1" /> <result property="param2" column="columnname2" /> 
+		<result property="param3" column="columnname3" /> </resultMap> <select id="getAll" 
+		resultMap="YourResultSet"> SELECT * FROM tablename1 </select> <insert id="insertSomething" 
+		parameterType="#modelname"> INSERT INTO tablename1 (columnname1, columnname2, 
+		columnname3) VALUES(#{value1},#{value2},#{value3}) </insert> <delete id="deleteSomething" 
+		parameterType="int"> DELETE FROM tablename1 WHERE columnname1 = #{param1} 
+		</delete> -->
+
+</mapper>

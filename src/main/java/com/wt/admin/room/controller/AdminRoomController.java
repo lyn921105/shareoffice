@@ -33,8 +33,9 @@ public class AdminRoomController {
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String roomMain(Model model) {
 
-		Map<String, AdminRoomVO> roomMain = adminRoomService.roomMain();
+		List<AdminRoomVO> roomMain = adminRoomService.roomMain();
 
+		
 		if (!roomMain.isEmpty()) {
 			model.addAttribute("roomMain", roomMain);
 		} else {
@@ -131,8 +132,6 @@ public class AdminRoomController {
 	@RequestMapping(value = "/roomUpdate", method = RequestMethod.POST)
 	public String roomUpdate(@ModelAttribute AdminRoomVO avo, Model model, HttpServletRequest request)
 			throws IOException {
-		int result = 0;
-		String url = "";
 
 		AdminRoomVO rvo = adminRoomService.roomDetail(avo);
 		System.out.println(avo.getThumbfile().getOriginalFilename());
@@ -167,7 +166,7 @@ public class AdminRoomController {
 			avo.setO_image3(o_file3);
 		}
 
-		result = adminRoomService.roomUpdate(avo);
+		adminRoomService.roomUpdate(avo);
 
 		return "room/adminRoomMain";
 	}
@@ -176,7 +175,6 @@ public class AdminRoomController {
 	@RequestMapping(value = "/fileDelete", method = RequestMethod.GET)
 	@ResponseBody
 	public String fileDelete(HttpServletRequest request) throws IOException {
-		int result = 0;
 		String url = "";
 
 		String o_floor = request.getParameter("o_floor");
@@ -204,7 +202,7 @@ public class AdminRoomController {
 		}
 
 
-		result = adminRoomService.fileDelete(avo);
+		adminRoomService.fileDelete(avo);
 
 		return url;
 	}
@@ -213,8 +211,6 @@ public class AdminRoomController {
 	@RequestMapping(value = "/roomDelete", method = RequestMethod.POST)
 	public String roomDelete(@ModelAttribute AdminRoomVO avo, Model model, HttpServletRequest request)
 			throws IOException {
-		int result = 0;
-		String url = "";
 
 		FileUploadUtil.fileDelete(avo.getO_thumb(), request);
 		if (!avo.getO_image1().isEmpty()) {
@@ -227,7 +223,7 @@ public class AdminRoomController {
 			FileUploadUtil.fileDelete(avo.getO_image3(), request);
 		}
 
-		result = adminRoomService.roomDelete(avo);
+		adminRoomService.roomDelete(avo);
 
 		return "room/adminRoomMain";
 	}

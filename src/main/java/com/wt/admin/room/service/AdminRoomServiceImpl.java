@@ -19,8 +19,8 @@ public class AdminRoomServiceImpl implements AdminRoomService {
 
 	// 호실 메인 페이지(1페이지)
 	@Override
-	public Map<String, AdminRoomVO> roomMain() {
-		Map<String, AdminRoomVO> roomMain = null;
+	public List<AdminRoomVO> roomMain() {
+		List<AdminRoomVO> roomMain = null;
 		roomMain = adminRoomDao.roomMain();
 		return roomMain;
 	}

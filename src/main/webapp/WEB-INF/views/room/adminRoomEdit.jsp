@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
 
@@ -28,23 +29,27 @@
 		}
 		var image2 = "<c:out value='${rvo.o_image2}' />";
 		if (image2 != "") {
-		$("#Image2").attr({
-			src : "/uploadStorage/room/${rvo.o_image2}",
-			width : "100px",
-			height : "100px"
-		})
+			$("#Image2").attr({
+				src : "/uploadStorage/room/${rvo.o_image2}",
+				width : "100px",
+				height : "100px"
+			})
 		}
 		var image3 = "<c:out value='${rvo.o_image3}' />";
 		if (image3 != "") {
-		$("#Image3").attr({
-			src : "/uploadStorage/room/${rvo.o_image3}",
-			width : "100px",
-			height : "100px"
-		})
+			$("#Image3").attr({
+				src : "/uploadStorage/room/${rvo.o_image3}",
+				width : "100px",
+				height : "100px"
+			})
 		}
+
 		// 수정 버튼 클릭 시 처리 이벤트
 		$("#roomUpdateBtn").click(function() {
 			// 입력값 체크
+			if (!chkSubmit($("#o_price"), "가격을")) {
+				return;
+			}
 
 			$("#form").attr({
 				"method" : "POST",
@@ -54,6 +59,7 @@
 			alert("호실 수정 성공")
 			window.opener.location.reload();
 			window.close();
+
 		})
 
 		// 삭제 버튼 클릭 시 처리 이벤트
@@ -121,7 +127,6 @@
 </head>
 
 <body>
-	<h1>${rvo.o_room }${rvo.getO_room() }</h1>
 	<h1>${o_floor }${o_room }호정보변경및삭제</h1>
 	<div>
 		<form id="form" enctype="multipart/form-data">
@@ -164,7 +169,8 @@
 				</c:forEach>
 			</select>
 			<h3>가격</h3>
-			<input type="text" name="o_price" value="${rvo.o_price }" />
+			<input type="text" id="o_price" name="o_price"
+				value="${rvo.o_price }" />
 			<h3>사진 첨부</h3>
 			<h2>(1개 이상 첨부해주세요!)</h2>
 			<br />

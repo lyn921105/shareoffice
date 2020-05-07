@@ -17,8 +17,8 @@ public class AdminRoomDaoImpl implements AdminRoomDao {
 	
 	// 호실 메인 페이지
 	@Override
-	public Map<String, AdminRoomVO> roomMain(){
-		return session.selectMap("roomMain", "o_room");
+	public List<AdminRoomVO> roomMain(){
+		return session.selectList("roomMain");
 	}
 	
 	// 호실 상세 페이지

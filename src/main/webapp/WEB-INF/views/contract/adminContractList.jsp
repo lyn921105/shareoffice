@@ -11,10 +11,9 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
-
+		
 		$("#search").val("<c:out value='${data.search}'/>");
 
 		if ($("#search").val == '0') {
@@ -35,102 +34,100 @@
 			goPage(1);
 		})
 
-		/* 한페이지에 보여줄 레코드 수 조회 후 선택한 값 그대로
-		유지하기 위한 설정 */
-		if ("<c:out value='${data.pageSize}' />" != "") {
-			$("#pageSize").val("<c:out value='${data.pageSize}' />");
-		}
 
-		// 회원 상세 정보 팝업 페이지 이동
+		// 입주일 비교해서 계약 각각의 상태 설정
+		<c:forEach items="${contractList}" var="item" varStatus="status">
+
+		var res = "${contractList[status.index].r_reservedate}";
+
+		function parse(str) {
+			var y = str.substr(0, 4);
+			var m = str.substr(5, 2);
+			var d = str.substr(8, 2);
+
+			return new Date(y, m-1, d);
+		}
+		
+		var resDate = parse(res);
+		var nowDate = new Date();
+
+		if (resDate > nowDate) {
+			$("#stat" + "${status.index}").html('입주대기')
+		} else {
+			$("#stat" + "${status.index}").html('이용중')
+		}
+		</c:forEach>
+
+		// 계약 상세 정보 팝업 페이지 이동
 		$(".list").click(
 				function() {
 
-					var c_id = $(this).children("#c_id").html();
+					var r_num = $(this).attr("data-num");
 
-					var openDetail = window.open("/adminMember/detail?c_id="
-							+ c_id, "memberList", "width=500, height=700");
+					var openDetail = window.open("/adminContract/detail?r_num="
+							+ r_num, "contractList", "width=500, height=700");
 					openDetail.focus();
+
 				})
 
-		// 회원 이름으로 검색 메소드
-		$("#memberSearch").click(function() {
-			if(!chkSubmit($("#keyword"), "검색할 이름을")) {
-				return;
-			} else {
-				goPage(1);
-			}
-		})
 	})
-
 	/* 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을 위한
 		실질적인 처리 함수 */
 	function goPage(page) {
-		/* $("#keyword").val(""); */
 		$("#page").val(page);
 		$("#f_search").attr({
 			"method" : "get",
-			"action" : "/adminMember/list"
+			"action" : "/adminContract/main"
 		});
 		$("#f_search").submit();
 	}
 </script>
 </head>
 <body>
-	<h2>회원 관리</h2>
+	<h2>계약 현황</h2>
 	<hr />
 	<select id="division">
 		<option id="d0" value="0">전체</option>
-		<option id="d1" value="1">탈퇴</option>
-		<option id="d2" value="2">가입</option>
+		<option id="d1" value="1">입주대기</option>
+		<option id="d2" value="2">이용중</option>
 	</select>
+	<br />
 	<!-- 검색 기능 시작 -->
 	<div id="searchfunction">
 		<form id="f_search" name="f_search">
 			<input type="hidden" id="search" name="search"
 				value="${data.search }"> <input type="hidden" id="page"
 				name="page" value="${data.page }"> <input type="hidden"
-				id="pageSize" name="pageSize" value="10"> <input type="text"
-				name="keyword" id="keyword" placeholder="이름을 입력하세요"> <input
-				type="button" id="memberSearch" value="검색" />
+				id="pageSize" name="pageSize" value="10">
 		</form>
 	</div>
 	<!-- 검색 기능 종료 -->
 
-	<br />
-	<!-- 리스트 시작 -->
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>번호</th>
-			<th>이름</th>
-			<th>아이디</th>
-			<th>가입일</th>
-			<th>구분</th>
+			<th>회사명</th>
+			<th>연락처</th>
+			<th>인원</th>
+			<th>이용호실</th>
+			<th>입주일</th>
+			<th>상태</th>
 		</tr>
-		<c:forEach items="${memberList }" var="item" varStatus="status">
-			<form class="mem">
-				<input type="hidden" name="c_id" value="${item.c_id }" />
-			</form>
-			<tr class="list">
+		<c:forEach items="${contractList }" var="item" varStatus="status">
+			<tr class="list" data-num="${item.r_num }">
 				<td>${count - status.index }</td>
-				<td class="name">${item.c_name }</td>
-				<td id="c_id">${item.c_id }</td>
-				<td>${item.c_regdate }</td>
-				<td class="stat"><c:choose>
-						<c:when test="${item.c_disabled eq 1 }">
-							<c:set var="status" value="가입" />
-								${status }
-							</c:when>
-						<c:otherwise>
-							<c:set var="status" value="탈퇴" />
-								${status }
-							</c:otherwise>
-					</c:choose></td>
+				<td class="company">${item.r_company }</td>
+				<td class="member">${item.r_phone }</td>
+				<td>${item.r_member }</td>
+				<td>${item.r_floor }${item.r_room }</td>
+				<td>${item.r_reservedate }</td>
+				<td id="stat${status.index }" class="stat"></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<!-- 리스트 종료 -->
 	<!-- 페이지 네비게이션 시작 -->
-	<div id="memberPage" style="text-align:center;">
+	<div id="memberPage" style="text-align: center;">
 		<tag:paging page="${param.page }" total="${total }" list_size="10" />
 	</div>
 	<!-- 페이지 네비게이션 종료 -->
