@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wt.admin.reservation.service.MoveInService;
-import com.wt.admin.reservation.service.VisitConsultService;
+import com.wt.admin.reservation.service.AdminMoveInService;
+import com.wt.admin.reservation.service.AdminVisitConsultService;
 import com.wt.admin.reservation.vo.MoveInVO;
 import com.wt.admin.reservation.vo.VisitConsultVO;
 import com.wt.client.qna.vo.QnaVO;
@@ -22,10 +22,10 @@ import com.wt.common.util.Util;
 public class AdminReservationController {
 
 	@Autowired
-	private VisitConsultService conService;
+	private AdminVisitConsultService conService;
 
 	@Autowired
-	private MoveInService moService;
+	private AdminMoveInService moService;
 
 	// 방문 예약 목록 구현
 	@RequestMapping(value = "/consultList")
@@ -65,20 +65,20 @@ public class AdminReservationController {
 	public String updateConsultState(@ModelAttribute VisitConsultVO vvo) {
 		conService.updateConsultState(vvo.getV_num());
 
-		return "redirect:/adminReservation/visitConsultDetail?v_num="+vvo.getV_num();
+		return "redirect:/adminReservation/visitConsultDetail?v_num=" + vvo.getV_num();
 	}
 
 	// 입주 예약 관리 컨트롤러
 
 	@RequestMapping(value = "/moveInList")
-	public String moveInList(@ModelAttribute MoveInVO mvo, Model model) { 
+	public String moveInList(@ModelAttribute MoveInVO mvo, Model model) {
 		// 페이지 세팅
 		Paging.setPage(mvo);
-		
+
 		// 전체 레코드 수 구현
 		int total = moService.moveInListCnt(mvo);
-		
-		int newReq= moService.newRequest(mvo);
+
+		int newReq = moService.newRequest(mvo);
 
 		// 글 번호 재설정
 		int count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
@@ -93,14 +93,22 @@ public class AdminReservationController {
 
 		return "admin/reservation/moveInList";
 	}
-	
-@RequestMapping(value="/moveInDetail")
-public String moveInDetail(@ModelAttribute MoveInVO mvo, Model model) {
-	MoveInVO detail = moService.moveInDetail(mvo);
 
-	model.addAttribute("detail", detail);
+	@RequestMapping(value = "/moveInDetail")
+	public String moveInDetail(@ModelAttribute MoveInVO mvo, Model model) {
+		MoveInVO detail = moService.moveInDetail(mvo);
 
-	return "admin/reservation/moveInDetail";
-}
+		model.addAttribute("detail", detail);
+
+		return "admin/reservation/moveInDetail";
+	}
+
+	@RequestMapping(value = "/updateReqState")
+	public String updateReqState(@ModelAttribute MoveInVO mvo) {
+		moService.updateReqState(mvo.getR_num());
+
+		return "redirect:/adminReservation/moveInList";
+
+	}
 
 }
