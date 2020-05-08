@@ -8,8 +8,11 @@
 	<sql id="contractCommon">
 		SELECT r_num, c_id,
 		r_company, r_phone, r_member,
-		r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
-		r_floor, r_room,
+		r_regdate,
+		r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd')
+		r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor,
+		r_room,
 		r_status
 		FROM reservation_tbl
 		<where>
@@ -25,27 +28,33 @@
 			r_status=1
 		</where>
 	</sql>
-	
+
 	<!-- 퇴실 검색 쿼리 분리 -->
 	<sql id="leaveCommon">
 		SELECT
 		r_company,
 		r_status,
-		TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,
+		TO_CHAR(r_enddate, 'yyyy-mm-dd')
+		r_enddate,
 		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate
-		FROM reservation_tbl
+		FROM
+		reservation_tbl
 		WHERE r_status = 3
 		OR
 		SYSDATE > r_enddate
 	</sql>
-	
+
 	<!-- 환불 검색 쿼리 분리 -->
 	<sql id="refundCommon">
 		SELECT r_num, c_id,
 		r_company, r_phone, r_member,
-		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
-		r_floor, r_room,
-		r_status, r_refundprice, TO_CHAR(r_refunddate, 'yyyy-mm-dd') r_refunddate
+		TO_CHAR(r_regdate,
+		'yyyy-mm-dd') r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd')
+		r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor,
+		r_room,
+		r_status, r_refundprice, TO_CHAR(r_refunddate, 'yyyy-mm-dd')
+		r_refunddate
 		FROM reservation_tbl
 		<where>
 			<if test='search == "1"'>
@@ -67,11 +76,13 @@
 		resultType="adminContract">
 		SELECT r_num, c_id,
 		r_company, r_phone, r_member,
-		r_regdate, r_price, r_enddate, r_reservedate,
+		r_regdate, r_price,
+		r_enddate, r_reservedate,
 		r_floor, r_room,
 		r_status
 		FROM
-		( SELECT list.*, ROWNUM AS RNUM
+		( SELECT list.*,
+		ROWNUM AS RNUM
 		FROM (
 		<include refid="contractCommon"></include>
 		ORDER BY r_reservedate desc
@@ -85,7 +96,7 @@
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- 퇴실 전체 조회 -->
 	<select id="leaveList" parameterType="adminContract"
 		resultType="adminContract">
@@ -95,7 +106,8 @@
 		r_enddate,
 		r_regdate
 		FROM
-		( SELECT list.*, ROWNUM AS RNUM
+		( SELECT list.*,
+		ROWNUM AS RNUM
 		FROM (
 		<include refid="leaveCommon"></include>
 		ORDER BY
@@ -110,7 +122,7 @@
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- 환불 전체 조회 -->
 	<select id="refundList" parameterType="adminContract"
 		resultType="adminContract">
@@ -129,7 +141,7 @@
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- 계약 카운트 페이징 -->
 	<select id="contractListCnt" parameterType="adminContract"
 		resultType="int">
@@ -138,7 +150,7 @@
 		<include refid="contractCommon"></include>
 		)
 	</select>
-	
+
 	<!-- 퇴실 카운트 페이징 -->
 	<select id="leaveListCnt" parameterType="adminContract"
 		resultType="int">
@@ -147,7 +159,7 @@
 		<include refid="leaveCommon"></include>
 		)
 	</select>
-	
+
 	<!-- 환불 카운트 페이징 -->
 	<select id="refundListCnt" parameterType="adminContract"
 		resultType="int">
@@ -156,50 +168,69 @@
 		<include refid="refundCommon"></include>
 		)
 	</select>
-	
-	<select id="contractDetail" resultType="adminContract" parameterType="String">
+
+	<select id="contractDetail" resultType="adminContract"
+		parameterType="String">
 		SELECT r_num, c_id,
 		r_company, r_phone, r_member,
-		r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
-		r_floor, r_room,
+		r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd')
+		r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		r_floor,
+		r_room,
 		r_status
 		FROM reservation_tbl
 		WHERE r_num = #{r_num}
 	</select>
-	
-	<select id="refundDetail" resultType="adminContract" parameterType="String">
+
+	<select id="refundDetail" resultType="adminContract"
+		parameterType="String">
 		SELECT r_num, c_id,
 		r_company, r_phone, r_member,
-		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate, r_price,TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reservedate,
+		TO_CHAR(r_regdate, 'yyyy-mm-dd') r_regdate, r_price,TO_CHAR(r_enddate,
+		'yyyy-mm-dd') r_enddate,TO_CHAR(r_reservedate, 'yyyy-mm-dd')
+		r_reservedate,
 		r_floor, r_room,
-		r_status, r_refundprice, TO_CHAR(r_refunddate, 'yyyy-mm-dd') r_refunddate
+		r_status, r_refundprice,
+		TO_CHAR(r_refunddate, 'yyyy-mm-dd') r_refunddate
 		FROM reservation_tbl
 		WHERE r_num = #{r_num}
 		ORDER BY
 		r_reservedate DESC
 	</select>
-	
+
 	<update id="refundUpdate" parameterType="adminContract">
 		UPDATE reservation_tbl
 		SET
 		r_refundprice = #{r_refundprice},
 		r_status = 3,
-		r_refunddate = SYSDATE
+		r_refunddate =
+		SYSDATE
 		WHERE
 		r_num = #{r_num}
 	</update>
 
-	<!-- <select id="memberDetail" resultType="adminMember"> SELECT * FROM client_tbl 
-		WHERE c_id = #{c_id} </select> <update id="memberDisabled" parameterType="adminMember"> 
-		UPDATE client_tbl SET c_disabled = #{c_disabled} WHERE c_id = #{c_id} </update> -->
+	<!-- 라인 차트 -->
+	<select id="lineChart" resultType="adminChart">
+		SELECT count(v_time) v_count,
+		v_time
+		FROM visit_tbl
+		WHERE to_char(v_date,
+		'yyyymm') =
+		to_char(add_months(sysdate,-1), 'yyyymm')
+		GROUP BY v_time
+		ORDER BY
+		v_time asc
+	</select>
 
-	<!-- <resultMap type="#modelname" id="YourResultSet"> <id property="param1" 
-		column="columnname1" /> <result property="param2" column="columnname2" /> 
-		<result property="param3" column="columnname3" /> </resultMap> <select id="getAll" 
-		resultMap="YourResultSet"> SELECT * FROM tablename1 </select> <insert id="insertSomething" 
-		parameterType="#modelname"> INSERT INTO tablename1 (columnname1, columnname2, 
-		columnname3) VALUES(#{value1},#{value2},#{value3}) </insert> <delete id="deleteSomething" 
-		parameterType="int"> DELETE FROM tablename1 WHERE columnname1 = #{param1} 
-		</delete> -->
+	<!-- 도넛 차트 -->
+	<select id="doughnutChart" resultType="adminChart">
+		SELECT count(r_member)
+		r_count,
+		r_member
+		FROM reservation_tbl
+		WHERE SYSDATE > r_reservedate and
+		r_enddate > SYSDATE and r_status = 1
+		GROUP BY r_member
+	</select>
 
 </mapper>

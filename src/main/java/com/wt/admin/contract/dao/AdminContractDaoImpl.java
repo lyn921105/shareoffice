@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.wt.admin.chart.vo.AdminChartVO;
 import com.wt.admin.contract.vo.AdminContractVO;
 
 @Repository
@@ -56,9 +57,17 @@ public class AdminContractDaoImpl implements AdminContractDao {
 
 	@Override
 	public List<AdminContractVO> refundList(AdminContractVO avo) {
-		System.out.println(avo.getSearch());
-		System.out.println(session.selectList("refundList", avo));
 		return session.selectList("refundList", avo);
+	}
+
+	@Override
+	public List<AdminChartVO> lineChart() {
+		return session.selectList("lineChart");
+	}
+
+	@Override
+	public List<AdminChartVO> doughnutChart() {
+		return session.selectList("doughnutChart");
 	}
 
 }
