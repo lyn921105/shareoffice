@@ -8,7 +8,7 @@
 	<!-- 호실 메인 페이지(default 1층 페이지 출력) -->
 	<select id="roomMain" resultType="adminRoom">
 		SELECT o_floor, o_room,
-		o_status
+		o_status, o_reserve
 		FROM office_tbl
 		WHERE o_floor = 1
 		ORDER BY o_room
@@ -74,7 +74,7 @@
 		<if test="o_image3 != null and o_image3 != ''">
 			#{o_image3},
 		</if>
-		#{o_status}, '1')
+		#{o_status}, '0')
 	</insert>
 
 	<!-- 호실 수정 -->

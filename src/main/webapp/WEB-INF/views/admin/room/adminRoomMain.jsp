@@ -20,6 +20,10 @@
 				} else {
 					$("#o_status" + m).html("사용불가능")
 				}
+				$("#o_reserve" + m).val("${item.o_reserve}")
+				if("${item.o_reserve}" == 1){
+					$("#o_status" + m).parent("td").css("background-color", "rgb(125, 140, 255, 0.4)");
+				}
 			}
 		}
 		</c:forEach>
@@ -70,17 +74,22 @@
 		// 호실 버튼 클릭 시 호실 등록 팝업창 열기
 		$(".roomInsert").click(
 				function() {
-					var o_floor = $("#floor").val();
-					var o_room = $(this).children('.o_room').html();
+					var o_res = $(this).children(".o_reserve").val();
+					
+					if(o_res == 1){
+						alert("현재 사용중인 호실의 정보 수정은 불가능합니다.");
+						return;
+					} else {
+						var o_floor = $("#floor").val();
+						var o_room = $(this).children('.o_room').html();
 
-					var openResister = window.open(
-							"/adminRoom/resister?o_floor=" + o_floor
-									+ "&o_room=" + o_room, "roomresister",
-							"width=500, height=700");
-					openResister.focus();
-
+						var openResister = window.open(
+								"/adminRoom/resister?o_floor=" + o_floor
+										+ "&o_room=" + o_room, "roomresister",
+								"width=500, height=700");
+						openResister.focus();
+					}
 				})
-
 	})
 </script>
 <style type="text/css">
@@ -111,45 +120,45 @@ table, tr, td {
 		</select>
 		<table>
 			<tr>
-				<td class="roomInsert"><p id="o_floor3" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve3"><p id="o_floor3" class="o_floor">1</p>
 					<p id="o_room3" class="o_room">04</p>
 					<p id="o_status3" class="o_status"></p></td>
-				<td class="roomInsert"><p id="o_floor4" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve4"><p id="o_floor4" class="o_floor">1</p>
 					<p id="o_room4" class="o_room">05</p>
 					<p id="o_status4" class="o_status"></p></td>
-				<td class="roomInsert"><p id="o_floor5" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve5"><p id="o_floor5" class="o_floor">1</p>
 					<p id="o_room5" class="o_room">06</p>
 					<p id="o_status5" class="o_status"></p></td>
-				<td class="roomInsert"><p id="o_floor6" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve6"><p id="o_floor6" class="o_floor">1</p>
 					<p id="o_room6" class="o_room">07</p>
 					<p id="o_status6" class="o_status"></p></td>
 			</tr>
 			<tr>
 
-				<td id="rn3" class="roomInsert"><p id="o_floor2"
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve2"><p id="o_floor2"
 						class="o_floor">1</p>
 					<p id="o_room2" class="o_room">03</p>
 					<p id="o_status2" class="o_status"></p></td>
 
 				<td colspan="2" rowspan="3">로비</td>
 
-				<td class="roomInsert"><p id="o_floor7" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve7"><p id="o_floor7" class="o_floor">1</p>
 					<p id="o_room7" class="o_room">08</p>
 					<p id="o_status7" class="o_status"></p></td>
 			</tr>
 			<tr>
-				<td class="roomInsert"><p id="o_floor1" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve1"><p id="o_floor1" class="o_floor">1</p>
 					<p id="o_room1" class="o_room">02</p>
 					<p id="o_status1" class="o_status"></p></td>
-				<td class="roomInsert"><p id="o_floor8" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve8"><p id="o_floor8" class="o_floor">1</p>
 					<p id="o_room8" class="o_room">09</p>
 					<p id="o_status8" class="o_status"></p></td>
 			</tr>
 			<tr>
-				<td class="roomInsert"><p id="o_floor0" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve0"><p id="o_floor0" class="o_floor">1</p>
 					<p id="o_room0" class="o_room">01</p>
 					<p id="o_status0" class="o_status"></p></td>
-				<td class="roomInsert"><p id="o_floor9" class="o_floor">1</p>
+				<td class="roomInsert"><input type="hidden" class="o_reserve" id="o_reserve9"><p id="o_floor9" class="o_floor">1</p>
 					<p id="o_room9" class="o_room">10</p>
 					<p id="o_status9" class="o_status"></p></td>
 			</tr>
