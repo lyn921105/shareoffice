@@ -137,7 +137,7 @@ public class AdminContractController {
 		model.addAttribute("lineChart", lineChartList);
 		model.addAttribute("doughnutChart", doughnutChartList);
 		
-		return "contract/adminChart";
+		return "admin/contract/adminChart";
 	}
 	
 
