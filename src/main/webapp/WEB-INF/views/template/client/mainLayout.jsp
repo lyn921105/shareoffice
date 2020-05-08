@@ -48,6 +48,9 @@
 	    	<div class="jumbotron">
 	    		<h1>워크트리에 오신것을 환영합니다</h1>
 	    	</div> 
+	    	<div class="container">
+	    		<img src="../../../../../resources/images/main.jpg" height="650" width="1100">
+	    	</div>
     	</div>  	
 		
     </div><!--/.container-->

@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이용약관</title>
+<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/jquery.form.min.js"></script>
 </head>
 <body>
 	<div class="policy_wrap">
@@ -12,21 +14,21 @@
 		<div class="tit_area">
 			<h2 class="sub_tit">워크트리 이용약관</h2>
 		</div>
-		<ul class="lnb">
-			<li id="i1" class="i1 on"><a href="/policy/policyService">이용약관</a></li>
-			<li id="i2" class="i2"><a href="/policy/policyPrivacy">개인정보처리방침</a></li>
-		</ul>
+		<div class="btn-group">
+			<a href="/policy/policyService" class="btn btn-info">이용약관</a>
+			<a href="/policy/policyPrivacy" class="btn btn-info">개인정보처리방침</a>
+		</div>
 
 		<!-- 이용약관 내용 -->
 		<div class="content">
 			<div class="index">
 				<p class="fisrt_p">워크트리 서비스 이용약관은 다음과 같은 내용을 담고 있습니다.</p>
 
-				<ul class="index_info">
-					<li><a href="#a1">여러분을 환영합니다.</a></li>
-					<li><a href="#a2">여러분의 개인정보를 소중히 보호합니다.</a></li>
-					<li><a href="#a3">워크트리 서비스 이용계약을 해지하실 수 있습니다.</a></li>
-				</ul>
+				<div class="alert alert-success">
+					<a href="#a1">여러분을 환영합니다.</a><br>
+					<a href="#a2">여러분의 개인정보를 소중히 보호합니다.</a><br>
+					<a href="#a3">워크트리 서비스 이용계약을 해지하실 수 있습니다.</a>
+				</div>
 			</div>
 
 			<div class="section v1">
