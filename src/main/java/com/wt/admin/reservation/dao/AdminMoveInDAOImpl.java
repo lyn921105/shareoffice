@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.wt.admin.reservation.vo.MoveInVO;
 
 @Repository
-public class MoveInDAOImpl implements MoveInDAO {
+public class AdminMoveInDAOImpl implements AdminMoveInDAO {
 	@Autowired
 	private SqlSession session;
-	
+
 	@Override
 	public List<MoveInVO> moveInList(MoveInVO mvo) {
 		// TODO Auto-generated method stub
@@ -35,6 +35,12 @@ public class MoveInDAOImpl implements MoveInDAO {
 	public MoveInVO moveInDetail(MoveInVO mvo) {
 		// TODO Auto-generated method stub
 		return (MoveInVO) session.selectOne("moveInDetail", mvo);
+	}
+
+	@Override
+	public int updateReqState(int r_num) {
+		// TODO Auto-generated method stub
+		return (Integer) session.update("updateReqState", r_num);
 	}
 
 }
