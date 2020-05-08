@@ -5,17 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wt.admin.reservation.dao.MoveInDAO;
+import com.wt.admin.reservation.dao.AdminMoveInDAO;
 import com.wt.admin.reservation.vo.MoveInVO;
 
 @Service
-public class MoveInserviceImpl implements MoveInService {
+public class AdminMoveInserviceImpl implements AdminMoveInService {
 	@Autowired
-	private MoveInDAO mDao;
+	private AdminMoveInDAO mDao;
 
 	@Override
 	public List<MoveInVO> moveInList(MoveInVO mvo) {
-		List<MoveInVO> moveInList=mDao.moveInList(mvo);
+		// 정렬에 대한 기본 값 설정
+		if (mvo.getOrder_by() == null) {
+			mvo.setOrder_by("r_reservedate");
+		}
+		if (mvo.getOrder_sc() == null) {
+			mvo.setOrder_sc("DESC");
+		}
+
+		List<MoveInVO> moveInList = mDao.moveInList(mvo);
 		return moveInList;
 	}
 
@@ -35,6 +43,12 @@ public class MoveInserviceImpl implements MoveInService {
 	public MoveInVO moveInDetail(MoveInVO mvo) {
 		// TODO Auto-generated method stub
 		return mDao.moveInDetail(mvo);
+	}
+
+	@Override
+	public int updateReqState(int r_num) {
+		// TODO Auto-generated method stub
+		return mDao.updateReqState(r_num);
 	}
 
 }

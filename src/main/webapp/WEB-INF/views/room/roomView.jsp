@@ -41,31 +41,15 @@ $(function() {
 					<div class="carousel-inner">
 						<div class="item active" style="height: 330px;">
 							<img id="img_thumb" class="img-rounded" src="/uploadStorage/room/${roomImage.o_thumb}">
-							<div class="carousel-caption">
-								<h3>미안하다 이거 보여주려고 어그로 끌었다..</h3>
-								<p>나루토 사스케 싸움수준 ㄹㅇ 실화냐?<p>
-							</div>
 						</div>
 						<div class="item" style="height: 330px;">
 							<img id="img_image1" class="img-rounded" src="/uploadStorage/room/${roomImage.o_image1}">
-							<div class="carousel-caption">
-								<h3>진짜 세계관최강자들의 싸움이다..</h3>
-								<p>그찐따같던 나루토가 맞나?<p>
-							</div>
 						</div>
 						<div class="item" style="height: 330px;">
 							<img id="img_image2" class="img-rounded" src="/uploadStorage/room/${roomImage.o_image2}">
-							<div class="carousel-caption">
-								<h3>진짜 나루토는 전설이다..</h3>
-								<p>진짜옛날에 맨날나루토봘는데 왕같은 존재인 호카게 되서<p>
-							</div>
 						</div>
 						<div class="item" style="height: 330px;">
 							<img id="img_image3" class="img-rounded" src="/uploadStorage/room/${roomImage.o_image3}">
-							<div class="carousel-caption">
-								<h3>내용 겁나기네</h3>
-								<p>그만 써야지<p>
-							</div>
 						</div>
 					</div>
 					
@@ -84,10 +68,10 @@ $(function() {
 				<c:forEach items="${roomView}" var="room">
 					<div class="room">
 						<input type="button" class="btn btn-default report" value="1${room.o_room}호">
-						<img class="img_hide1 img-rounded" src="/uploadStorage/room/${rvo.o_thumb}" style="display: none;">
-						<img class="img_hide2 img-rounded" src="/uploadStorage/room/${rvo.o_image1}" style="display: none;">
-						<img class="img_hide3 img-rounded" src="/uploadStorage/room/${rvo.o_image2}" style="display: none;">
-						<img class="img_hide4 img-rounded" src="/uploadStorage/room/${rvo.o_image3}" style="display: none;">
+						<img class="img_hide1 img-rounded" src="/uploadStorage/room/${room.o_thumb}" style="display: none;">
+						<img class="img_hide2 img-rounded" src="/uploadStorage/room/${room.o_image1}" style="display: none;">
+						<img class="img_hide3 img-rounded" src="/uploadStorage/room/${room.o_image2}" style="display: none;">
+						<img class="img_hide4 img-rounded" src="/uploadStorage/room/${room.o_image3}" style="display: none;">
 					</div>
 				</c:forEach>
 			</div>

@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.wt.admin.reservation.dao.VisitConsultDAO;
+import com.wt.admin.reservation.dao.AdminVisitConsultDAO;
 import com.wt.admin.reservation.vo.VisitConsultVO;
 
 @Service
 @Transactional
-public class VisitConsultServiceImpl implements VisitConsultService {
+public class AdminVisitConsultServiceImpl implements AdminVisitConsultService {
 
 	@Autowired
-	private VisitConsultDAO vDao;
+	private AdminVisitConsultDAO vDao;
 	
 	@Override
 	public List<VisitConsultVO> adminVisitList(VisitConsultVO vvo) {

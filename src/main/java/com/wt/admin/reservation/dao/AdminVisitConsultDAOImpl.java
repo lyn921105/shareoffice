@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.wt.admin.reservation.vo.VisitConsultVO;
 
 @Repository
-public class VisitConsultDAOImpl implements VisitConsultDAO {
+public class AdminVisitConsultDAOImpl implements AdminVisitConsultDAO {
 @Autowired
 private SqlSession session;
 	
