@@ -2,6 +2,7 @@ package com.wt.admin.contract.dao;
 
 import java.util.List;
 
+import com.wt.admin.chart.vo.AdminChartVO;
 import com.wt.admin.contract.vo.AdminContractVO;
 
 public interface AdminContractDao {
@@ -23,5 +24,9 @@ public interface AdminContractDao {
 	public int refundListCnt(AdminContractVO avo);
 
 	public List<AdminContractVO> refundList(AdminContractVO avo);
+
+	public List<AdminChartVO> lineChart();
+
+	public List<AdminChartVO> doughnutChart();
 
 }

@@ -2,8 +2,8 @@ package com.wt.admin.contract.service;
 
 import java.util.List;
 
+import com.wt.admin.chart.vo.AdminChartVO;
 import com.wt.admin.contract.vo.AdminContractVO;
-import com.wt.admin.member.vo.AdminMemberVO;
 
 public interface AdminContractService {
 
@@ -24,5 +24,9 @@ public interface AdminContractService {
 	public int refundListCnt(AdminContractVO avo);
 
 	public List<AdminContractVO> refundList(AdminContractVO avo);
+
+	public List<AdminChartVO> lineChart();
+
+	public List<AdminChartVO> doughnutChart();
 
 }

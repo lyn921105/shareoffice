@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wt.admin.chart.vo.AdminChartVO;
 import com.wt.admin.contract.service.AdminContractService;
 import com.wt.admin.contract.vo.AdminContractVO;
 import com.wt.common.page.Paging;
@@ -122,7 +123,22 @@ public class AdminContractController {
 
 		adminContractService.refundUpdate(avo);
 
-		return "admin/contract/conPop/adminContractRefundDetail";
 	}
+	
+	// 차트
+	@RequestMapping(value = "/chart")
+	public String adminContractChart(Model model) {
+		
+		
+		
+		List<AdminChartVO> lineChartList = adminContractService.lineChart();
+		List<AdminChartVO> doughnutChartList = adminContractService.doughnutChart();
+		
+		model.addAttribute("lineChart", lineChartList);
+		model.addAttribute("doughnutChart", doughnutChartList);
+		
+		return "admin/contract/adminChart";
+	}
+	
 
 }

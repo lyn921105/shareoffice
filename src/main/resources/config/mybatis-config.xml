@@ -15,5 +15,6 @@
 		<typeAlias type="com.wt.admin.room.vo.AdminRoomVO" alias="adminRoom"/>
 		<typeAlias type="com.wt.admin.login.vo.AdminLoginVO" alias="adminLogin"/>
 		<typeAlias type="com.wt.admin.member.vo.AdminMemberVO" alias="adminMember" />
+		<typeAlias type="com.wt.admin.chart.vo.AdminChartVO" alias="adminChart" />
 	</typeAliases>
 </configuration>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wt.admin.chart.vo.AdminChartVO;
 import com.wt.admin.contract.dao.AdminContractDao;
 import com.wt.admin.contract.vo.AdminContractVO;
 import com.wt.admin.member.vo.AdminMemberVO;
@@ -80,6 +81,20 @@ public class AdminContractServiceImpl implements AdminContractService {
 		List<AdminContractVO> refundList = null;
 		refundList = adminContractDao.refundList(avo);
 		return refundList;
+	}
+
+	@Override
+	public List<AdminChartVO> lineChart() {
+		List<AdminChartVO> lineChart = null;
+		lineChart = adminContractDao.lineChart();
+		return lineChart;
+	}
+
+	@Override
+	public List<AdminChartVO> doughnutChart() {
+		List<AdminChartVO> doughnutChart = null;
+		doughnutChart = adminContractDao.doughnutChart();
+		return doughnutChart;
 	}
 
 }
