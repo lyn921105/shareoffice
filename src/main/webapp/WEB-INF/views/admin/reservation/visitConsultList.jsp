@@ -32,7 +32,7 @@
 		//행 클릭 시 상세 페이지 이동을 위한 처리 이벤트
 		$(".goDetail").click(function() {
 			var v_num = $(this).data("num");
-			
+
 			$("#v_num").val(v_num);
 
 			$("#detailForm").attr({
@@ -47,6 +47,21 @@
 		$("#search").change(function() {
 			goPage(1);
 		});
+
+		//방문 순서 정렬
+		$(".order").click(function() {
+			var order_by = $(this).data("value");
+
+			$("#order_by").val(order_by);
+
+			if ($("#order_sc").val() == 'DESC') {
+				$("#order_sc").val('ASC')
+			} else {
+				$("#order_sc").val('DESC');
+			}
+
+			goPage(1);
+		})
 	})
 
 	function goPage(page) {
@@ -65,8 +80,6 @@
 	<form id="detailForm" name="detailForm">
 		<input type="hidden" name="v_num" id="v_num"> <input
 			type="hidden" name="page" value="${data.page }">
-		<!--  <input
-			type="hidden" name="pageSize" value="5"> -->
 	</form>
 
 	<div class="container">
@@ -75,8 +88,10 @@
 		<!-- 방문 날짜에 따른 조회 옵션 -->
 		<form id="listOption">
 			<input type="hidden" id="page" name="page" value="${data.page }">
-
-			<select id="search">
+			<input type="hidden" id="order_by" name="order_by"
+				value="${data.order_by }"> <input type="hidden"
+				id="order_sc" name="order_sc" value="${data.order_sc }"> <select
+				id="search" name="search">
 				<option id="viewAll" value="viewAll">전체</option>
 				<option id="today" value="today">오늘</option>
 				<option id="3day" value="3day">3일</option>
@@ -84,12 +99,12 @@
 			</select>
 		</form>
 		<!-- 리스트 출력 -->
-		<div id="qnaList">
-			<table class="qnaList table table-striped table-bordered">
+		<div id="visitList">
+			<table class="visitList table table-striped table-bordered">
 				<colgroup>
 					<!-- 번호 -->
-					<col width="10%">
-					<!-- 이름 -->
+					<col width="8%">
+					<!-- 아이디 -->
 					<col width="15%">
 					<!-- 연락처 -->
 					<col width="20%">
@@ -105,7 +120,13 @@
 						<th>이름</th>
 						<th>연락처</th>
 						<th>방문예정일</th>
-						<th>방문예정시간</th>
+						<th class="order" data-value="v_time">방문예정시간 <c:choose>
+								<c:when
+									test="${data.order_by=='v_time' and data.order_sc=='ASC'}">▲</c:when>
+								<c:when
+									test="${data.order_by=='v_time' and data.order_sc=='DESC'}">▼</c:when>
+								<c:otherwise>▲</c:otherwise>
+							</c:choose></th>
 						<th>상담상태</th>
 					</tr>
 				</thead>
@@ -120,7 +141,7 @@
 									<td>${list.v_name }</td>
 									<td>${list.v_phone }</td>
 									<td>${list.v_date }</td>
-									<td>${list.v_time }</td>
+									<td>${list.v_time }:00~${list.v_time +1}:00</td>
 									<c:choose>
 										<c:when test="${list.v_status eq 1}">
 											<td>상담전</td>

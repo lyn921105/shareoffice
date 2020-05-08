@@ -45,8 +45,8 @@ $(function(){
 	
 	<form id="v_data">
 			<input type="hidden" id="v_num" name="v_num" value="${detail.v_num }" />
-			<input type="hidden" name="page" id="page" value="${param.page }" />
-			<input type="hidden" name="pageSize" id="pageSize" value="10" />
+			<%-- <input type="hidden" name="page" id="page" value="${param.page }" /> --%>
+			
 		</form>
 		
 		<h1>방문 상담 상세</h1>
@@ -67,7 +67,7 @@ $(function(){
 					<td>방문예정일</td>
 					<td>${detail.v_date }</td>
 					<td>방문예정시간</td>
-					<td>${detail.v_time }</td>
+					<td>${detail.v_time }:00~${detail.v_time +1}:00</td>
 				</tr>
 				<tr>
 					<td>상담상태</td>

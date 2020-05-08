@@ -15,43 +15,88 @@
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
-$(function(){
-	//이름 클릭 시 상세 페이지 이동을 위한 처리 이벤트
-	$(".goDetail").click(function(){
-		var r_num=$(this).data("num");
-		
-		$("#r_num").val(r_num);
-		
-		$("#detailForm").attr({
-			"method":"get",
-			"action":"/adminReservation/moveInDetail"
+	$(function() {
+		//페이지 로드 시 셀렉트 박스 설정
+		$("#search").val("<c:out value='${data.search}'/>");
+
+		if ($("#search").val() == 'wait') {
+			$('#wait').attr('selected', 'selected');
+		} else if ($("#search").val() == 'cancle') {
+			$('#cancle').attr('selected', 'selected');
+		} else {
+			$('#viewAll').attr('selected', 'selected');
+		}
+
+		//행 클릭 시 상세 페이지 이동을 위한 처리 이벤트
+		$(".goDetail").click(function() {
+			var r_num = $(this).data("num");
+
+			$("#r_num").val(r_num);
+
+			$("#detailForm").attr({
+				"method" : "get",
+				"action" : "/adminReservation/moveInDetail"
+			})
+
+			$("#detailForm").submit();
 		})
-		
-		$("#detailForm").submit();
+
+		//선택한 옵션에 따라 테이블 내용 변경
+		$("#search").change(function() {
+			goPage(1);
+		});
+
+		//방문 순서 정렬
+		$(".order").click(function() {
+			var order_by = $(this).data("value");
+
+			$("#order_by").val(order_by);
+
+			if ($("#order_sc").val() == 'DESC') {
+				$("#order_sc").val('ASC')
+			} else {
+				$("#order_sc").val('DESC');
+			}
+
+			goPage(1);
+		})
 	})
-})
+
+	function goPage(page) {
+		$("#page").val(page);
+		$("#listOption").attr({
+			"method" : "get",
+			"action" : "/adminReservation/moveInList"
+		});
+		$("#listOption").submit();
+	}
 </script>
 </head>
 <body>
 
-
-
 	<!-- 상세 페이지 이동을 위한 Form -->
 	<form id="detailForm" name="detailForm">
 		<input type="hidden" name="r_num" id="r_num"> <input
-			type="hidden" name="page" value="${data.page }"><!--  <input
-			type="hidden" name="pageSize" value="5"> -->
+			type="hidden" name="page" value="${data.page }">
 	</form>
 
 	<div class="container">
 
-		<h1>입주 예약 현황</h1> <p>(신규요청: ${newRequest } 건)</p>
+		<div>
+			<h1>입주 예약 현황</h1>
+			<p>(신규요청: ${newRequest } 건)</p>
+		</div>
+
 		<!-- 입주 상태에 따른 조회 옵션 -->
 		<form id="listOption">
-			<select id="search">
-				<option value="viewAll">전체</option>
-				<option value="wait">승인대기</option>
-				<option value="cancle">취소</option>
+			<input type="hidden" id="order_by" name="order_by"
+				value="${data.order_by }"> <input type="hidden"
+				id="order_sc" name="order_sc" value="${data.order_sc }"> <input
+				type="hidden" id="page" name="page" value="${data.page }"> <select
+				id="search" name="search">
+				<option value="viewAll" id="viewAll">전체</option>
+				<option value="wait" id="wait">승인대기</option>
+				<option value="cancle" id="cancle">취소</option>
 			</select>
 		</form>
 		<!-- 리스트 출력 -->
@@ -75,10 +120,17 @@ $(function(){
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>이름</th>
+						<th>아이디</th>
 						<th>연락처</th>
 						<th>인원</th>
-						<th>입주예정일</th>
+						<th class="order" data-value="r_reservedate">입주예정일 <c:choose>
+								<c:when
+									test="${data.order_by=='v_time' and data.order_sc=='ASC'}">▲</c:when>
+								<c:when
+									test="${data.order_by=='v_time' and data.order_sc=='DESC'}">▼</c:when>
+								<c:otherwise>▲</c:otherwise>
+							</c:choose>
+						</th>
 						<th>신청일</th>
 						<th>승인상태</th>
 					</tr>
