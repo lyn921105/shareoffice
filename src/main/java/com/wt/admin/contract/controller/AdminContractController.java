@@ -122,7 +122,8 @@ public class AdminContractController {
 	public String adminContractRefundUpdate(Model model, AdminContractVO avo) {
 
 		adminContractService.refundUpdate(avo);
-
+		
+		return "admin/contract/conPop/adminContractRefundDetail";
 	}
 	
 	// 차트
