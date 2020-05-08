@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wt.admin.reservation.dao.AdminVisitConsultDAO;
+import com.wt.admin.reservation.vo.MoveInVO;
 import com.wt.admin.reservation.vo.VisitConsultVO;
 
 @Service
@@ -15,10 +16,18 @@ public class AdminVisitConsultServiceImpl implements AdminVisitConsultService {
 
 	@Autowired
 	private AdminVisitConsultDAO vDao;
-	
+
 	@Override
 	public List<VisitConsultVO> adminVisitList(VisitConsultVO vvo) {
-		List<VisitConsultVO> visitList=vDao.adminVisitList(vvo);
+		// 정렬에 대한 기본 값 설정
+		if (vvo.getOrder_by() == null) {
+			vvo.setOrder_by("v_time");
+		}
+		if (vvo.getOrder_sc() == null) {
+			vvo.setOrder_sc("DESC");
+		}
+
+		List<VisitConsultVO> visitList = vDao.adminVisitList(vvo);
 		return visitList;
 	}
 

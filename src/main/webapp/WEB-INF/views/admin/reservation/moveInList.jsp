@@ -125,9 +125,9 @@
 						<th>인원</th>
 						<th class="order" data-value="r_reservedate">입주예정일 <c:choose>
 								<c:when
-									test="${data.order_by=='v_time' and data.order_sc=='ASC'}">▲</c:when>
+									test="${data.order_by=='r_reservedate' and data.order_sc=='ASC'}">▲</c:when>
 								<c:when
-									test="${data.order_by=='v_time' and data.order_sc=='DESC'}">▼</c:when>
+									test="${data.order_by=='r_reservedate' and data.order_sc=='DESC'}">▼</c:when>
 								<c:otherwise>▲</c:otherwise>
 							</c:choose>
 						</th>
