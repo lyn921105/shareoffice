@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>개인정보처리방침</title>
+<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/jquery.form.min.js"></script>
 </head>
 <body>
 	<div class="policy_wrap">
@@ -12,11 +15,10 @@
 		<div class="tit_area">
 			<h2 class="sub_tit">워크트리 개인정보처리방침</h2>
 		</div>
-		<ul class="lnb">
-			<li id="i1" class="i1"><a href="/policy/policyService">이용약관</a></li>
-			<li id="i2" class="i2 on"><a href="/policy/policyPrivacy">개인정보처리방침</a></li>
-		</ul>
-
+		<div class="btn-group">
+			<a href="/policy/policyPrivacy" class="btn btn-info">개인정보처리방침</a>
+			<a href="/policy/policyService" class="btn btn-info">이용약관</a>
+		</div>
 		<!-- 개인정보처리방침 내용 -->
 		<div class="section">
 			<h3>워크트리 개인정보처리방침</h3>
@@ -78,25 +80,23 @@
 						</ul>
 					</li>
 					<li>
-						<p>
-							<strong><a href="#tg12-1" class="tgl_more">"회원가입시
-									수집하는 개인정보에 대한 추가 설명 " <i class="sp ico_tgl on">내용 더보기/닫기</i>
-							</a></strong>
-						<dl class="tgl_cont" id="tg12-1">
-							<dt>(1) 필수항목과 선택항목의 차이</dt>
-							<dd>"필수항목이란 서비스의 본질적 기능을 수행하기 위해 필요한 정보이며, 선택항목이란 서비스 이용 자체에
+						<p><strong>"회원가입시 수집하는 개인정보에 대한 추가 설명 "</strong>
+						<a href="#mem_plus" class="btn btn-default" data-toggle="collapse">내용 더보기/닫기</a></p>
+						<div class="collapse" id="mem_plus">
+							<h3>(1) 필수항목과 선택항목의 차이</h3>
+							<p>"필수항목이란 서비스의 본질적 기능을 수행하기 위해 필요한 정보이며, 선택항목이란 서비스 이용 자체에
 								영향을 미치지는 않으나 이용자에게 부가적인 가치를 제공하기 위해 추가로 수집하는 정보입니다. 회원가입 시에 수집하는
 								아이디, 비밀번호는 로그인을 위하여 필요한 정보이며 이름, 생년월일, 성별은 회원제 서비스 운영에 따르는 이용자
 								구분을 위하여 사용됩니다. 가입인증 휴대폰번호는 불법 광고 게시 등 부정한 목적으로 회원가입을 시도하는 경우,
 								이용제한 조치 등을 적용하기 위하여 수집합니다. 선택항목은 입력을 하지 않아도 회원 가입이나 서비스 이용에 제한이
-								없으며, 필요할 경우 ‘NAVER 내정보 > 회원정보 > 연락처’에서 사후에 언제든지 직접 입력하실 수 있습니다."</dd>
-							<dt>(2) 단체정보의 개인정보 인정 여부</dt>
-							<dd>"정보통신망법, 개인정보보호법 등에서 정의하는 개인정보는 ‘살아있는 자연인에 대한 정보’를 말합니다.
+								없으며, 필요할 경우 ‘NAVER 내정보 > 회원정보 > 연락처’에서 사후에 언제든지 직접 입력하실 수 있습니다."</p>
+							<h3>(2) 단체정보의 개인정보 인정 여부</h3>
+							<p>"정보통신망법, 개인정보보호법 등에서 정의하는 개인정보는 ‘살아있는 자연인에 대한 정보’를 말합니다.
 								따라서 단체명, 영업소 주소 및 전화번호, 대표자 성명 등과 같은 법인이나 단체에 관한 정보는 원칙적으로 개인정보에
 								해당하지 않습니다. 네이버 단체아이디로 회원 가입 시에 수집하는 대부분의 정보는 개인정보에 해당하지 않습니다.
 								하지만 개인 사업자 등의 경우 이를 단체정보로만 처리하기 모호한 측면이 있고, 관리자/담당자의 연락처 정보 등을
-								수집하기 때문에 본 개인정보처리방침에서는 단체정보의 수집 관련 내용을 기재하여 이용자의 이해를 돕고 있습니다."</dd>
-						</dl>
+								수집하기 때문에 본 개인정보처리방침에서는 단체정보의 수집 관련 내용을 기재하여 이용자의 이해를 돕고 있습니다."</p>
+						</div>
 					</li>
 				</ul>
 			</div>
