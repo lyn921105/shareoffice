@@ -33,7 +33,7 @@
 			$.ajax({
 				url: "/visit/visitList",
 				type: "get",
-				data: ({input_vDate : aj_date}),
+				data: ({input_Vdate : aj_date}),
 				success: function(data){
 					// 시간 선택 가능, 시간 선택부분 초기화
 					$("#v_time").prop("disabled", false);
@@ -64,6 +64,9 @@
 		
 		/* 예약하기 버튼 클릭 시 처리 이벤트 */
 		$("#visitInsertBtn").click(function(){
+			var dt = new Date(); // 현재시간 생성, 당일 날짜 변수
+			var c_time = dt.getHours(); // 당일 상담 예약에 비교할 현재시간 변수
+			
 			// 입력값 체크
 			if (!chkSubmit($('#v_name'),"방문자 명을")) {
 				return;
@@ -71,9 +74,8 @@
 				return;
 			} else if (!chkSubmit($('#datePicker'),"방문 날짜를")) {
 				return;
-			} else if (!chkSubmit($('#v_time'),"방문 시간을")) {
-				return;
 			} else {
+				alert($("#v_name").val() + "님의 방문상담이 " + $("#datePicker").val() + " " + $("#v_time option").val() + "시에 신청 되었습니다.");
 				$("#visit_form").attr({
 					"method":"POST",
 					"action":"/visit/visitReservation"
@@ -84,7 +86,9 @@
 		
 		/* 돌아가기 버튼 클릭 시 처리 이벤트 */
 		$("#homePageBtn").click(function(){
-			location.href="/";
+			if (confirm("메인 페이지로 돌아갑니까?")) {
+				location.href="/";
+			}
 		});
 	});
 </script>
@@ -92,31 +96,33 @@
 <body>
 	<div class="container">
 		
-		<form id="visit_form" name="visit_form">
-			<div class="form_group">
-				<label for="v_name">방문자명 : </label>			
-				<input type="text" class="form-control" id="v_name" name="v_name">
+		<form class="form-horizontal" id="visit_form" name="visit_form">
+			<div class="row">
+			<div class="form-group">
+				<label for="v_name">방문자명</label>			
+				<input type="text" class="form-control" style="display:inline-block" id="v_name" name="v_name">
 			</div>
-			<div class="form_group">
-				<label for="v_phone">방문자연락처 : </label>			
+			<div class="form-group">
+				<label for="v_phone">방문자연락처</label>			
 				<input type="text" class="form-control" id="v_phone" name="v_phone">
 			</div>
-			<div class="form_group">
-				<label for="v_date">방문날짜 : </label>			
+			<div class="form-group">
+				<label for="v_date">방문날짜</label>			
 				<input type="text" class="form-control" id="datePicker" name="v_date">
 			</div>
-			<div class="form_group">
-				<label for="v_time">방문시간 : </label>			
+			<div class="form-group">
+				<label for="v_time">방문시간</label>			
 				<select class="form-control" id="v_time" name="v_time" disabled>
-					<option value="10">10:00 ~ 11:00</option>
-					<option value="11">11:00 ~ 12:00</option>
+					<option value="10" disabled>10:00 ~ 11:00</option>
+					<option value="11" disabled>11:00 ~ 12:00</option>
 					<option hidden value="점심시간"></option>
-					<option value="13">13:00 ~ 14:00</option>
-					<option value="14">14:00 ~ 15:00</option>
-					<option value="15">15:00 ~ 16:00</option>
-					<option value="16">16:00 ~ 17:00</option>
-					<option value="17">17:00 ~ 18:00</option>
+					<option value="13" disabled>13:00 ~ 14:00</option>
+					<option value="14" disabled>14:00 ~ 15:00</option>
+					<option value="15" disabled>15:00 ~ 16:00</option>
+					<option value="16" disabled>16:00 ~ 17:00</option>
+					<option value="17" disabled>17:00 ~ 18:00</option>
 				</select>
+			</div>
 			</div>
 		</form>
 		<div class="text-center">

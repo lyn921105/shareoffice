@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.client.faq.dao.FaqDao">
+
+	<select id="faqList" resultType="faq">
+		SELECT *
+		FROM faq_tbl
+		ORDER BY f_num DESC
+	</select>
+
+</mapper>

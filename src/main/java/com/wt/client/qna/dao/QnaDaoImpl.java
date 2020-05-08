@@ -32,12 +32,6 @@ public class QnaDaoImpl implements QnaDao {
 		return (QnaVO)session.selectOne("qnaDetail", qvo);
 	}
 
-	// Q&A 아이디 확인 구현
-	@Override
-	public int idConfirm(QnaVO qvo) {
-		return (Integer)session.selectOne("idConfirm", qvo);
-	}
-
 	// Q&A 글수정 구현
 	@Override
 	public int qnaUpdate(QnaVO qvo) {
@@ -54,6 +48,11 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	public int qnaListCnt(QnaVO qvo) {
 		return (Integer)session.selectOne("qnaListCnt");
+	}
+
+	@Override
+	public QnaVO qnaDownload(int q_num) {
+		return session.selectOne("qnaDownload", q_num);
 	}
 
 }

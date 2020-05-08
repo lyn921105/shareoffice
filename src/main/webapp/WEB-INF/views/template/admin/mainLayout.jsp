@@ -34,7 +34,7 @@
 
 	<div class="container-fluid" style="min-height: 730px;">
 		<div class="row">
-			<div class="col-sm-3 sidenav" style="position:static; bottom:61px;">
+			<div class="col-sm-3 sidenav" style="position:static; width: 210px; bottom:61px;">
 				<tiles:insertAttribute name="aside" />
 			</div>
 			<div class="col-sm-9 main">

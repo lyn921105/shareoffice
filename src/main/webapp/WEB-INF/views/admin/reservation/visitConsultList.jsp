@@ -31,9 +31,8 @@
 
 		//행 클릭 시 상세 페이지 이동을 위한 처리 이벤트
 		$(".goDetail").click(function() {
-			var v_row = $(this).parents("tr");
-			var v_num = v_row.data("num");
-
+			var v_num = $(this).data("num");
+			
 			$("#v_num").val(v_num);
 
 			$("#detailForm").attr({

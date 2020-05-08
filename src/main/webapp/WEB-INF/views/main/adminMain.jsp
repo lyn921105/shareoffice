@@ -26,13 +26,15 @@
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</nav>
-	<div class="container">
-		<a class="title-menu" href="/adminMember/list" role="button">회원
-			관리</a> <a class="title-menu" href="/adminContract/list" role="button">계약
-			관리</a> <a class="title-menu" href="/adminReservation/ConsultList"
-			role="button">예약 관리</a> <a class="title-menu"
-			href="/adminRoom/main" role="button">호실 관리</a> <a
-			class="title-menu" href="/adminQuestion/qnaList" role="button">
-			문의 관리</a>
+		
+	<div class="container-fluid" style="min-height: 730px;">
+		<a class="title-menu" href="/adminMember/list" role="button">회원 관리</a>
+		<a class="title-menu" href="/adminReservation/consultList" role="button">예약 관리</a>
+		<a class="title-menu" href="/adminContract/main" role="button">계약 관리</a>
+		<a class="title-menu" href="/adminRoom/main" role="button">호실 관리</a>
+		<a class="title-menu" href="/adminQuestion/qnaList" role="button">문의 관리</a>
+	</div>
+	<div class="footer">
+		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
 </body>

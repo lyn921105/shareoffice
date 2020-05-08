@@ -1,6 +1,5 @@
 package com.wt.client.login.controller;
 
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,44 +15,26 @@ import org.springframework.web.servlet.ModelAndView;
 import com.wt.client.login.service.LoginService;
 import com.wt.client.login.vo.LoginVO;
 import com.wt.client.member.vo.MemberVO;
-=======
-
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 	private Logger log = LoggerFactory.getLogger(LoginController.class);
-<<<<<<< HEAD
+
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-=======
 	@RequestMapping(value="/login", method = RequestMethod.GET)
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 	public String login() {
 		log.info("login get 호출 성공");
 		return "login/login";
 	}
-<<<<<<< HEAD
 
-	@RequestMapping(value = "/join", method = RequestMethod.GET)
-=======
 	@RequestMapping(value="/join", method = RequestMethod.GET)
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 	public String join() {
 		log.info("login get 호출 성공");
 		return "member/join";
 	}
-<<<<<<< HEAD
 
 	// 아이디 찾기 입력창
 	@RequestMapping(value = "/serchId", method = RequestMethod.GET)
@@ -127,28 +108,5 @@ public class LoginController {
 		}
 
 	}
-=======
-	@RequestMapping(value="/serchId", method = RequestMethod.GET)
-	public String serchId() {
-		log.info("login get 호출 성공");
-		return "login/serchId";
-	}
-	@RequestMapping(value="/serchPw", method = RequestMethod.GET)
-	public String serchPw() {
-		log.info("login get 호출 성공");
-		return "login/serchPw";
-	}
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logout() {
-		log.info("login get 호출 성공");
-		return "index";
-	}
-	@RequestMapping(value="/loginSuccess", method = RequestMethod.GET)
-	public String loginSuccess() {
-		log.info("login get 호출 성공");
-		return "index";
-	}
-	
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 
 }

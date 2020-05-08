@@ -42,7 +42,7 @@ public class AdminContractController {
 		model.addAttribute("total", total);
 		model.addAttribute("data", avo);
 
-		return "/contract/adminContractList";
+		return "admin/contract/adminContractList";
 	}
 
 	// 계약 상세 정보
@@ -55,7 +55,7 @@ public class AdminContractController {
 
 		model.addAttribute("avo", avo);
 
-		return "contract/adminContractDetail";
+		return "admin/contract/conPop/adminContractDetail";
 	}
 
 	// 퇴실 내역 리스트
@@ -77,7 +77,7 @@ public class AdminContractController {
 		model.addAttribute("total", total);
 		model.addAttribute("data", avo);
 
-		return "/contract/adminLeaveList";
+		return "admin/contract/adminLeaveList";
 	}
 
 	// 환불 리스트
@@ -100,7 +100,7 @@ public class AdminContractController {
 		model.addAttribute("total", total);
 		model.addAttribute("data", avo);
 
-		return "/contract/adminContractRefundList";
+		return "admin/contract/adminContractRefundList";
 	}
 
 	// 환불 상세 팝업창
@@ -113,7 +113,7 @@ public class AdminContractController {
 
 		model.addAttribute("avo", avo);
 
-		return "contract/adminContractRefundDetail";
+		return "admin/contract/conPop/adminContractRefundDetail";
 	}
 
 	// 환불 요청 승인 메소드
@@ -122,7 +122,7 @@ public class AdminContractController {
 
 		adminContractService.refundUpdate(avo);
 
-		return "contract/adminContractRefundDetail";
+		return "admin/contract/conPop/adminContractRefundDetail";
 	}
 
 }

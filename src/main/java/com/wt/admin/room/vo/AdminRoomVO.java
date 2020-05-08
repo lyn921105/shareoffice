@@ -18,6 +18,8 @@ public class AdminRoomVO {
 	private MultipartFile file3; // 첨부파일
 	private String o_image3; // 이미지3
 	private String o_status; // 현재 상태(사용 가능/불가능)
+	
+	private String r_endDate; // 사용자페이지 만기날짜 구현
 
 	public AdminRoomVO() {
 		super();
@@ -162,6 +164,14 @@ public class AdminRoomVO {
 
 	public void setO_status(String o_status) {
 		this.o_status = o_status;
+	}
+
+	public String getR_endDate() {
+		return r_endDate;
+	}
+
+	public void setR_endDate(String r_endDate) {
+		this.r_endDate = r_endDate;
 	}
 
 }

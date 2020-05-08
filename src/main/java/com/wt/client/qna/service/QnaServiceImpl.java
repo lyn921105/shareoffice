@@ -46,14 +46,6 @@ public class QnaServiceImpl implements QnaService {
 		return detail;
 	}
 
-	// Q&A에서 자신의 글만 읽을 수 있는 아이디 확인	
-	@Override
-	public int idConfirm(QnaVO qvo) {
-		int result = 0;
-		result = qnaDao.idConfirm(qvo);
-		return result;
-	}
-
 	// Q&A 글수정 구현
 	@Override
 	public int qnaUpdate(QnaVO qvo) {
@@ -85,5 +77,11 @@ public class QnaServiceImpl implements QnaService {
 	public int qnaListCnt(QnaVO qvo) {
 		return qnaDao.qnaListCnt(qvo);
 	}
+
+	@Override
+	public QnaVO qnaDownload(int q_num) {
+		return qnaDao.qnaDownload(q_num);
+	}
+
 
 }

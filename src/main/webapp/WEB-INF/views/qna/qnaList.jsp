@@ -22,19 +22,16 @@
 
 			if ($("#search").val() != 'q_content') {
 				//:contains()는 특정 텍스트를 포함한 요소반환
-				if ($("#search").val() == 'q_title')
+				if ($("#search").val() == 'q_title') {
 					value = "#list tr td.goDetail";
-				else if ($("#search").val() == 'c_id')
+				}
+				else if ($("#search").val() == 'c_id') {
 					value = "#list tr td.name";
-				$(value + ":contains('" + word + "')").each(
-						function() {
-							var regex = new RegExp(word, 'gi');
-							$(this).html(
-									$(this).text().replace(
-											regex,
-											"<span class='required'>" + word
-													+ "</span>"));
-						});
+				}
+				$(value + ":contains('" + word + "')").each(function() {
+					var regex = new RegExp(word, 'gi');
+					$(this).html($(this).text().replace(regex, "<span class='required'>" + word	+ "</span>"));
+				});
 			}
 		}
 
@@ -45,48 +42,41 @@
 
 		/* 검색 대상이 변경될 때마다 처리 이벤트 */
 		$("#search").change(function() {
-			if ($("#search").val() == "all") {
-				$("#keyword").val("전체 데이터 조회합니다.");
-			} else if ($("#search").val() != "all") {
-				$("#keyword").val("");
-				$("#keyword").focus();
-			}
+			$("#keyword").val("");
+			$("#keyword").focus();
 		});
 
 		/* 검색 버튼 클릭 시 처리 이벤트 */
 		$("#searchData").click(function() {
-			if ($("#search").val() != "all") {
-				if (!chkSubmit($('#keyword'), "검색어를"))
-					return;
+			if (!chkSubmit($('#keyword'), "검색어를")) {
+				return;
 			}
-			goPage(1);
-		});
-
-		// 한 페이지에 보여줄 레코드 수 변경될 때마다 처리 이벤트
-		$("#pageSize").change(function() {
 			goPage(1);
 		});
 
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function() {
 			var q_num = $(this).parents("tr").attr("data-num");
+			var write_id = '${loginSuccess}';
+			var login_id = $(this).siblings(".c_id").val();
+			
 			$("#q_num").val(q_num);
-			console.log("글번호 : " + q_num);
-
-			//상세 페이지로 이동하기 위해 form추가
-			$("#detailForm").attr({
-				"method" : "get",
-				"action" : "/qna/qnaDetail"
-			});
-			$("#detailForm").submit();
+			
+			if (write_id == login_id) {
+				$("#detailForm").attr({
+					"method" : "get",
+					"action" : "/qna/qnaDetail"
+				});
+				$("#detailForm").submit();
+			} else {
+				alert("본인이 작성한 글과 답변만 열람할 수 있습니다.");
+				return;
+			}
 		});
 	});
 
 	/* 검색과 한 페이지에 보여줄 레코드 수 처리 및 페이징을위한 실질적인 처리 함수 */
 	function goPage(page) {
-		if ($("#search").val() == "all") {
-			$("#keyword").val("");
-		}
 		$("#page").val(page);
 		$("#f_search").attr({
 			"method" : "get",
@@ -97,15 +87,23 @@
 </script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+	
 	<div class="container">
 		<div>
 			<h3>Q&A 글목록</h3>
 		</div>
 		<!-- 상세 페이지 이동을 위한 FORM -->
 		<form name="detailForm" id="detailForm">
-			<input type="hidden" name="q_num" id="q_num"> <input
-				type="hidden" name="page" value="${data.page}"> <input
-				type="hidden" id="pageSize" name="pageSize" value="10">
+			<input type="hidden" name="q_num" id="q_num">
+			<input type="hidden" name="page" value="${data.page}">
+			<input type="hidden" id="pageSize" name="pageSize" value="10">
 		</form>
 
 		<!-- 검색 기능과 페이징 -->
@@ -152,15 +150,17 @@
 						<c:when test="${not empty qnaList}">
 							<c:forEach var="qna" items="${qnaList}" varStatus="status">
 								<tr data-num="${qna.q_num}">
-									<td>${qna.q_num}</td>
+									<td>${count - status.index}</td>
 									<td class="goDetail tal">${qna.q_title}</td>
 									<td>${qna.q_regdate}</td>
 									<c:choose>
 										<c:when test="${not empty qna.a_id}">
 											<td>${qna.a_id}</td>
+											<input type="hidden" class="c_id" name="c_id" value="${qna.c_id}">
 										</c:when>
 										<c:otherwise>
 											<td>${qna.c_id}</td>
+											<input type="hidden" class="c_id" name="c_id" value="${qna.c_id}">
 										</c:otherwise>
 									</c:choose>
 									<c:choose>

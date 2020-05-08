@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -44,7 +46,7 @@
 			<div class="form-group has-feedback">
 				<label class="control-label" for="c_id">아이디</label> <input
 					class="form-control" type="text" id="c_id" name="c_id"
-					value="${loginSuccess.c_id}" readonly="readonly" />
+					value="${loginSuccess}" readonly="readonly" />
 			</div>
 			<div class="form-group has-feedback">
 				<label class="control-label" for="c_pwd">패스워드</label> <input

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wt.admin.question.service.FaqService;
+import com.wt.admin.question.service.AdminFaqService;
 import com.wt.admin.question.service.QuestionService;
 import com.wt.admin.question.vo.FaqVO;
 import com.wt.client.qna.vo.QnaVO;
@@ -26,7 +26,7 @@ import com.wt.common.util.Util;
 public class QuestionController {
 
 	@Autowired
-	private FaqService faqService;
+	private AdminFaqService faqService;
 
 	@Autowired
 	private QuestionService qnaService;

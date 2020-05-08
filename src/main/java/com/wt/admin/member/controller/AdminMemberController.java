@@ -46,7 +46,7 @@ public class AdminMemberController {
 		model.addAttribute("total", total);
 		model.addAttribute("data", avo);
 
-		return "/member/adminMemberList";
+		return "admin/member/adminMemberList";
 	}
 
 	// 회원 상세 페이지
@@ -59,7 +59,7 @@ public class AdminMemberController {
 
 		model.addAttribute("avo", avo);
 
-		return "/member/adminMemberDetail";
+		return "admin/member/memPop/adminMemberDetail";
 	}
 
 	// 회원 상태 변경 구현
@@ -68,7 +68,7 @@ public class AdminMemberController {
 
 		adminMemberService.memberDisabled(rvo);
 
-		return "/member/adminMemberDetail";
+		return "admin/member/adminMemberDetail";
 	}
 
 }

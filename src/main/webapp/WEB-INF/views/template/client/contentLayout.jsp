@@ -15,6 +15,9 @@
 	    <!-- Bootstrap core CSS -->
 	    <link href="/resources/include/dist/css/bootstrap.min.css" rel="stylesheet">
 	
+		<!-- Bootstrap datePicker -->
+    	<link href="/resources/include/dist/css/bootstrap-datepicker.css" rel="stylesheet">
+		
 	    <!-- Custom styles for this template -->
 	    <link href="/resources/include/dist/css/sticky-footer-navbar.css" rel="stylesheet">
 	
@@ -39,32 +42,39 @@
 	    		});
 	    	});
 	    </script> -->
+	    <style>
+  	.body-height {
+  		min-height: 1000px;
+  	}
+	</style>
   </head>
 
   <body>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-		<tiles:insertAttribute name="header"/>
-    </nav>
+    <div class="container">
+	    <nav class="navbar navbar-default navbar-fixed-top">
+			<tiles:insertAttribute name="header"/>
+    	</nav>
+    </div>
 
     <!-- Begin page content -->
-    <div class="container">
+    <div class="container body-height">
       <div class="page-header">
-        <h1><tiles:getAsString name="title" /></h1>
+        <h2><tiles:getAsString name="title" /></h2>
       </div>
       <tiles:insertAttribute name="body"/>
     </div>
 
-    <footer class="footer">
+    <div class="footer">
 		<tiles:insertAttribute name="footer"/>
-    </footer>
-
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <script src="/resources/include/dist/js/bootstrap.min.js"></script>
+    <script src="/resources/include/dist/js/bootstrap-datepicker.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/resources/include/dist/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>

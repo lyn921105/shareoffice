@@ -35,6 +35,16 @@
  		<put-attribute name="body" value="/WEB-INF/views/visit/{1}.jsp" />
 	</definition>
 	
+	<definition name="reservation/*" extends="content">
+		<put-attribute name="title" value="온라인 예약" />
+ 		<put-attribute name="body" value="/WEB-INF/views/reservation/{1}.jsp" />
+	</definition>
+	
+	<definition name="room/*" extends="content">
+		<put-attribute name="title" value="호실 안내" />
+ 		<put-attribute name="body" value="/WEB-INF/views/room/{1}.jsp" />
+	</definition>
+	
 	<definition name="member/*" extends="content">
 		<put-attribute name="title" value="로그인 및 회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp"/>
@@ -43,6 +53,11 @@
 	<definition name="login/*" extends="content">
 		<put-attribute name="title" value="로그인 및 회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp"/>
+	</definition>
+	
+	<definition name="login/admin/*" extends="content">
+		<put-attribute name="title" value="관리자 로그인"/>
+		<put-attribute name="body" value="/WEB-INF/views/login/admin/{1}.jsp"/>
 	</definition>
 </tiles-definitions>
 

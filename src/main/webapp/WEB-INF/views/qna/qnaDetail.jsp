@@ -12,8 +12,6 @@
 <script type="text/javascript">
 	var butChk = 0; // 수정버튼과 삭제버튼을 구별하기 위한 변수
 	$(function(){
-		$("#idChk").hide();
-		
 		/* 목록 버튼 클릭 시 처리 이벤트 */
 		$("#qnaListBtn").click(function(){
 			location.href="/qna/qnaList";
@@ -36,52 +34,53 @@
 			}
 		});
 		
+		/* 첨부파일 다운로드 */
+		$("#download").click(function(){
+			$("#q_data").attr("action", "/qna/qnaDownload");
+			$("#q_data").submit();
+		});
 	});
 </script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+	
 	<div class="container">
 		<div><h3>Q&A 문의글</h3></div>
 		<form name="q_data" id="q_data" method="POST">
 			<input type="hidden" name="q_num" value="${detail.q_num}"/>
 			<input type="hidden" name="page" id="page" value="${param.page}"/>
 			<input type="hidden" name="pageSize" id="pageSize" value="${param.pageSize}"/>
-			<input type="hidden" name="q_file" id="q_file" value="${detail.q_file}" />
 		</form>
 		
-		<div class="pull-right">
-			<input type="button" class="btn btn-default" value="수정" id="qnaUpdateBtn">
-			<input type="button" class="btn btn-default" value="삭제" id="qnaDeleteBtn">
-		</div>
-		
 		<!-- 상세 정보 시작 -->
-		<div class="container">
-			<table>
-				<tbody class="form-group">
-					<tr>
-						<td>글제목</td>
-						<td class="form-control">${detail.q_title }</td>
-					</tr>
-					
-					<tr>
-						<td>내용</td>
-						<td class="form-control">${detail.q_content}</td>
-					</tr>
-					
-					<c:if test="${detail.q_file != '' }">
-					<tr>
-						<td>첨부파일</td>
-						<td colspan="3">
-						<img id="fileImage"></td>
-					</tr>
-					</c:if>
-				</tbody>
-			</table>
+		<div class="container" style="border: solid black 1px; min-height: 500px; margin-bottom: 8px;">
+			<div style="margin: 0 auto;">
+				<div class="form-group" style="margin: 8px;">
+					<span class="form-static">${detail.q_title}</span>
+					<span class="form-static pull-right">${detail.q_regdate}</span>
+	 			</div>
+				<div class="form-group" style="border-top: dotted black 1px;">
+					<span class="form-static">${login}</span>
+					<input type="button" id="download" class="form-static pull-right" value="${detail.q_file}">
+				</div>
+				<div class="form-group" style="margin-top: 8px;">
+					<span class="form-static">${detail.q_content}</span>
+				</div>
+			</div>
 		</div>
 	</div>
 	
-	<div>
-		<input type="button" class="btn btn-default pull-right" value="목록" id="qnaListBtn">
+	<div class="text-right">
+		<input type="button" class="btn btn-default" value="수정" id="qnaUpdateBtn">
+		<input type="button" class="btn btn-default" value="삭제" id="qnaDeleteBtn">
+		<input type="button" class="btn btn-default" value="목록" id="qnaListBtn">
 	</div>
 </body>
 </html>

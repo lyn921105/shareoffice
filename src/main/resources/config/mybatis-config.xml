@@ -2,12 +2,18 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.wt.admin.room.vo.AdminRoomVO" alias="adminRoom"/>
+		<typeAlias type="com.wt.client.login.vo.LoginVO" alias="lvo"/>
+		<typeAlias type="com.wt.client.member.vo.MemberVO" alias="member"/>
 		<typeAlias type="com.wt.client.qna.vo.QnaVO" alias="qna"/>
+		<typeAlias type="com.wt.client.visit.vo.VisitReservationVO" alias="vvo"/>
+		<typeAlias type="com.wt.client.reservation.vo.ReservationVO" alias="res" />
+		
+		<typeAlias type="com.wt.admin.contract.vo.AdminContractVO" alias="adminContract"/>
 		<typeAlias type="com.wt.admin.question.vo.FaqVO" alias="faq"/>
-
+		<typeAlias type="com.wt.admin.reservation.vo.MoveInVO" alias="moveIn"/>
+		<typeAlias type="com.wt.admin.reservation.vo.VisitConsultVO" alias="visit"/>
+		<typeAlias type="com.wt.admin.room.vo.AdminRoomVO" alias="adminRoom"/>
 		<typeAlias type="com.wt.admin.login.vo.AdminLoginVO" alias="adminLogin"/>
-		<typeAlias type="com.wt.admin.room.vo.AdminRoomVO" alias="adminRoom" />
 		<typeAlias type="com.wt.admin.member.vo.AdminMemberVO" alias="adminMember" />
 	</typeAliases>
 </configuration>

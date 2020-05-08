@@ -1,9 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-	pageEncoding="UTF-8"%>
-=======
-    pageEncoding="UTF-8"%>
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
 	<form class="form-horizontal" role="form" method="POST"
 		action="/login/serchPwChk">
 		<div class="row">
@@ -31,8 +25,5 @@
 			</div>
 		</div>
 	</form>
-=======
-
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 </body>
 </html>

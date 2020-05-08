@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wt.admin.question.vo.FaqVO;
 import com.wt.client.faq.dao.FaqDao;
-import com.wt.client.faq.vo.FaqVO;
 
 @Service
 @Transactional

@@ -39,9 +39,9 @@ public class AdminRoomController {
 		if (!roomMain.isEmpty()) {
 			model.addAttribute("roomMain", roomMain);
 		} else {
-			return "room/adminRoomMain";
+			return "admin/room/adminRoomMain";
 		}
-		return "room/adminRoomMain";
+		return "admin/room/adminRoomMain";
 	}
 
 	// 호실 층별 페이지 변경 구현
@@ -76,9 +76,9 @@ public class AdminRoomController {
 
 		if (rvo != null) {
 			model.addAttribute("rvo", rvo);
-			return "room/adminRoomEdit";
+			return "admin/room/roomPop/adminRoomEdit";
 		} else {
-			return "room/adminRoomResister";
+			return "admin/room/roomPop/adminRoomResister";
 		}
 
 	}
@@ -112,10 +112,10 @@ public class AdminRoomController {
 
 		if (result == 1) {
 			model.addAttribute("code", 0);
-			url = "room/adminRoomResister";
+			url = "admin/room/roomPop/adminRoomResister";
 		} else {
 			model.addAttribute("code", 1);
-			url = "room/adminRoomResister";
+			url = "admin/room/roomPop/adminRoomResister";
 		}
 
 		return url;
@@ -125,7 +125,7 @@ public class AdminRoomController {
 	@RequestMapping(value = "/edit")
 	public String edit() {
 		log.info("edit 호출 성공");
-		return "room/adminRoomEdit";
+		return "admin/room/roomPop/adminRoomEdit";
 	}
 
 	// 호실 변경 구현
@@ -168,7 +168,7 @@ public class AdminRoomController {
 
 		adminRoomService.roomUpdate(avo);
 
-		return "room/adminRoomMain";
+		return "admin/room/adminRoomMain";
 	}
 
 	// 파일 삭제 기능 구현
@@ -225,7 +225,7 @@ public class AdminRoomController {
 
 		adminRoomService.roomDelete(avo);
 
-		return "room/adminRoomMain";
+		return "admin/room/adminRoomMain";
 	}
 	
 	// 차트들

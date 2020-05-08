@@ -19,7 +19,7 @@ import com.wt.common.util.Util;
 
 @Controller
 @RequestMapping(value = "/adminReservation")
-public class ReservationController {
+public class AdminReservationController {
 
 	@Autowired
 	private VisitConsultService conService;

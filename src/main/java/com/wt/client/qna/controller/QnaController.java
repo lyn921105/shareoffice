@@ -1,9 +1,15 @@
 package com.wt.client.qna.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +55,7 @@ public class QnaController {
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("count",count);
 		model.addAttribute("total",total);
-		model.addAttribute("data");
+		model.addAttribute("data", qvo);
 		
 		return "qna/qnaList";
 	}
@@ -64,21 +70,22 @@ public class QnaController {
 	
 	// Q&A 글쓰기 구현하기
 	@RequestMapping(value="/qnaWrite", method=RequestMethod.POST)
-	public String qnaInsert(@ModelAttribute QnaVO qvo, Model model, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String qnaInsert(@ModelAttribute QnaVO qvo, Model model, HttpServletRequest request, HttpSession session) throws IOException {
 		log.info("qnaWrite 호출 성공");
 		
-		System.out.println(qvo.getQ_title());
+		String c_id = (String)session.getAttribute("loginSuccess");
+		qvo.setC_id(c_id);
 		
 		int result = 0;
 		String url = "";
-		
-		result = qnaService.qnaInsert(qvo);
-		
+
 		// 파일 업로드
 		if(qvo.getQ_uploadFile() !=null) {
-			String q_file = FileUploadUtil.fileUpload(qvo.getQ_uploadFile(), request, "board");
+			String q_file = FileUploadUtil.fileUpload(qvo.getQ_uploadFile(), request, "qna");
 			qvo.setQ_file(q_file);
 		}
+		
+		result = qnaService.qnaInsert(qvo);
 		
 		if (result == 1) {
 			url = "/qna/qnaList";
@@ -90,46 +97,25 @@ public class QnaController {
 	
 	// Q&A 글 상세보기 구현
 	@RequestMapping(value="/qnaDetail", method=RequestMethod.GET)
-	public String qnaDetail(@ModelAttribute QnaVO qvo, Model model) {
+	public String qnaDetail(@ModelAttribute QnaVO qvo, Model model, HttpSession session) {
 		log.info("qnaDetail 호출 성공");
-		log.info("q_num = " + qvo.getQ_num());
 		
 		QnaVO detail = new QnaVO();
 		detail = qnaService.qnaDetail(qvo);
-		
+			
 		if (detail != null) {
 			detail.setQ_content(detail.getQ_content().toString().replaceAll("\n", "<br>"));
 		}
-		
+			
 		model.addAttribute("detail", detail);
-		
+			
 		return "qna/qnaDetail";
-	}
-	
-	// Q&A에서 자신의 글만 읽을 수 있는 아이디 확인
-	@ResponseBody
-	@RequestMapping(value="/idConfirm", method=RequestMethod.POST)
-	public String idConfirm(@ModelAttribute QnaVO qvo) {
-		log.info("idConfirm 호출 성공");
-		String value = "";
-		
-		// 아래 변수에는 입력 성공에 대한 상태값 저장(1 or 0)
-		int result = qnaService.idConfirm(qvo);
-		if(result == 1) {
-			value="성공";
-		} else {
-			value="실패";
-		}
-		log.info("result = " + result);
-		
-		return value+"";
 	}
 	
 	// Q&A 글수정 폼 출력하기
 	@RequestMapping(value="/qnaUpdateForm")
 	public String updateForm(@ModelAttribute QnaVO qvo, Model model) {
 		log.info("updateForm 호출 성공");
-		log.info("q_num = " + qvo.getQ_num());
 		
 		QnaVO updateData = new QnaVO();
 		updateData = qnaService.qnaDetail(qvo);
@@ -140,11 +126,17 @@ public class QnaController {
 	
 	// Q&A 글수정 구현하기
 	@RequestMapping(value="/qnaUpdate", method=RequestMethod.POST)
-	public String qnaUpdate(@ModelAttribute QnaVO qvo) {
+	public String qnaUpdate(@ModelAttribute QnaVO qvo, HttpServletRequest request) throws IOException {
 		log.info("qnaUpdate 호출 성공");
 
 		int result = 0;
 		String url="";
+		
+		// 파일 업로드
+		if(qvo.getQ_uploadFile() !=null) {
+			String q_file = FileUploadUtil.fileUpload(qvo.getQ_uploadFile(), request, "qna");
+			qvo.setQ_file(q_file);
+		}
 		
 		result = qnaService.qnaUpdate(qvo);
 		
@@ -176,5 +168,21 @@ public class QnaController {
 			url = "/qna/qnaDetail?q_num="+qvo.getQ_num();
 		}
 		return "redirect:"+url;
+	}
+	
+	// 첨부파일 다운로드
+	@RequestMapping(value="/qnaDownload")
+	public void qnaDownload(@ModelAttribute QnaVO qvo, HttpServletResponse httpServletResponse, HttpServletRequest httpServletRequest) throws IOException {
+		QnaVO down = qnaService.qnaDownload(qvo.getQ_num());
+		String downImage = down.getQ_file();
+		
+		byte[] fileByte = org.apache.commons.io.FileUtils.readFileToByteArray(new File(httpServletRequest.getSession().getServletContext().getRealPath("/uploadStorage/qna/") + downImage));
+		
+		httpServletResponse.setContentType("application/octet-stream");
+		httpServletResponse.setContentLength(fileByte.length);
+		httpServletResponse.setHeader("Content-Disposition","attachment; fileName=\""+URLEncoder.encode(downImage,"UTF-8")+"\";");
+		httpServletResponse.getOutputStream().write(fileByte);
+		httpServletResponse.getOutputStream().flush();
+		httpServletResponse.getOutputStream().close();
 	}
 }

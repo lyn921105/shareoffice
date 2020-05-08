@@ -16,7 +16,7 @@
 	</sql>
 
 
-	<select id="qnaList" resultType="qna" parameterType="qna">
+	<select id="adminQnaList" resultType="qna" parameterType="qna">
 		SELECT
 		q_num, q_title, c_id, a_id, to_char(q_regdate,'YYYY-MM-DD
 		HH24:MI') as
@@ -38,7 +38,7 @@
 		</where>
 	</select>
 
-	<select id="qnaListCnt" parameterType="qna" resultType="int">
+	<select id="adminQnaListCnt" parameterType="qna" resultType="int">
 		select nvl(count(1), 0) from(
 		select list.*, rownum as rnum
 		from(

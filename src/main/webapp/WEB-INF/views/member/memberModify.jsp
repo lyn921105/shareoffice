@@ -10,18 +10,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원수정</title>
+<script type="text/javascript"
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 	<h1>회원정보수정</h1>
 	<hr>
 	<form id="memberModify" action="/member/memberModifySuccess" method="post">
 		<p>
-			<label>PassWord</label> <input class="w3-input" type="text" id="c_pwd"
+			<label>PassWord</label> <input class="w3-input" type="password" id="c_pwd"
 				name="c_pwd" value="${ member.c_pwd }">
 		</p>
 		<p>
-			<label>Name</label> <input class="w3-input" type="text" id="name"
-				name="name" value="${ member.c_name }">
+			<label>Name</label> <input class="w3-input" type="text" id="c_name"
+				name="c_name" value="${ member.c_name }">
 		</p>
 		<p>
 			<label>Email</label> <input class="w3-input" type="text" id="c_email"

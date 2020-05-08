@@ -25,6 +25,7 @@
 			SELECT list.*, ROWNUM AS rnum
 			FROM (
 				<include refid="qnaCommon"></include>
+				ORDER BY q_ref DESC, q_step ASC
 			) list
 		)
 		<where>
@@ -49,7 +50,7 @@
 
 	<!-- Q&A 상세 페이지를 위한 게시물 조회 -->
 	<select id="qnaDetail" parameterType="int" resultType="qna">
-		SELECT q_num, c_id, q_title, q_content, q_file
+		SELECT q_num, c_id, q_title, q_content, q_file, q_regdate
 		FROM question_tbl
 		WHERE q_num = #{q_num}
 	</select>
@@ -60,26 +61,16 @@
 			SELECT question_seq.nextval
 			FROM dual
 		</selectKey>
-		INSERT INTO question_tbl(q_num, c_id, q_regdate, q_title, q_content, q_file, q_ref, q_step, q_level, q_state)
-		VALUES(#{q_num},'test',sysdate,#{q_title},#{q_content},'1',#{q_num},0,0,'1')
+		INSERT INTO question_tbl(q_num, c_id, q_title, q_content, q_file, q_ref, q_step, q_state)
+		VALUES(#{q_num},#{c_id},#{q_title},#{q_content},#{q_file},#{q_num},0,'1')
 	</insert>
-
-	<!-- 해당 글의 아이디 확인 -->
-	<select id="idConfirm" parameterType="qna" resultType="int">
-		SELECT NVL((
-			SELECT 1
-			FROM question_tbl
-			WHERE q_num = #{q_num} AND c_id = #{c_id}
-		), 0) as state
-		FROM DUAL
-	</select>
 	
 	<!-- Q&A 게시물 수정 -->
 	<update id="qnaUpdate" parameterType="qna">
 		UPDATE question_tbl
 		SET	q_title = #{q_title},
 			q_content = #{q_content},
-			q_regdate = sysdate
+			q_file = #{q_file}
 		WHERE q_num = #{q_num}
 	</update>
 
@@ -88,5 +79,11 @@
 		DELETE FROM question_tbl
 		WHERE q_num = #{q_num}
 	</delete>
-
+	
+	<!-- 첨부파일 다운로드 -->
+	<select id="qnaDownload" parameterType="int" resultType="qna">
+		SELECT q_file
+		FROM question_tbl
+		WHERE q_num = #{q_num}
+	</select>
 </mapper>

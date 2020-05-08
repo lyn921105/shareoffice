@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wt.client.room.dao.RoomDao">
+
+	<!-- 호실 메인 페이지에서 만기 날짜 표시 -->
+	<select id="roomStatus" resultType="adminRoom">
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_status, o_floor, o_room
+		FROM office_tbl INNER JOIN reservation_tbl
+		ON o_floor = r_floor AND o_room = r_room
+		WHERE o_floor = '1' AND r_enddate >= sysdate
+	</select>
+
+	<!-- 호실 목록 출력 -->
+	<select id="roomListFloor" parameterType="String"
+		resultType="adminRoom">
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_floor, o_room, o_status
+		FROM office_tbl INNER JOIN reservation_tbl
+		ON o_floor = r_floor AND o_room = r_room
+		WHERE o_floor = #{o_floor} AND r_enddate >= sysdate
+	</select>
+
+	<!-- 호실 목록 출력 -->	
+	<select id="roomView" resultType="adminRoom">
+		SELECT o_room, o_thumb, o_image1, o_image2, o_image3
+		FROM office_tbl
+		WHERE o_floor = '1'
+		ORDER BY o_room ASC
+	</select>
+</mapper>

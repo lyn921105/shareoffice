@@ -157,16 +157,6 @@
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<div class="paging addBd" id="pageListNotice">
-									<!-- disable 일 경우 클래스 disabled  추가 -->
-									<a href="#" class="btnFirst disabled" id="btnFirstNotice">처음으로
-										이동</a> <a href="#" class="btnPrev disabled" id="btnPrevNotice">이전페이지로
-										이동</a> <a href="#" class="btnNext " id="btnNextNotice">다음페이지로
-										이동</a> <a href="#" class="btnLast " id="btnLastNotice">마지막으로
-										이동</a>
-								</div>
-							</c:otherwise>
-							<c:otherwise>
 								<div>
 									<p>이전 계약 현황이 없습니다</p>
 								</div>

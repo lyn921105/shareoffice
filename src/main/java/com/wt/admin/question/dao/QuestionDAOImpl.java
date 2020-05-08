@@ -16,12 +16,12 @@ public class QuestionDAOImpl implements QuestionDAO {
 	@Override
 	public List<QnaVO> adminQnaList(QnaVO avo) {
 		// TODO Auto-generated method stub
-		return session.selectList("qnaList", avo);
+		return session.selectList("adminQnaList", avo);
 	}
 
 	@Override
 	public int adminQnaListCnt(QnaVO avo) {
-		return (Integer) session.selectOne("qnaListCnt", avo);
+		return (Integer) session.selectOne("adminQnaListCnt", avo);
 	}
 
 	@Override

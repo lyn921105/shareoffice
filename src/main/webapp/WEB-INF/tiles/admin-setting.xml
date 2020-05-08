@@ -9,6 +9,8 @@
 		<put-attribute name="title" value="워크트리 관리자 페이지" />
 		<put-attribute name="header"
 			value="/WEB-INF/views/template/admin/header.jsp" />
+			<put-attribute name="footer"
+			value="/WEB-INF/views/template/client/footer.jsp"></put-attribute>
 	</definition>
 
 	<!-- 메인 레이아웃 -->
@@ -22,11 +24,10 @@
 			value="/WEB-INF/views/template/client/footer.jsp"></put-attribute>
 	</definition>
 
-	<!-- <definition name="adminMember/*" extends="mainLayout"> <put-attribute 
-		name="title" value="회원 관리"/> <put-attribute name="content" value="/WEB-INF/views/adminMemberList/{1}.jsp"/> 
-		</definition> <definition name="adminContract/*" extends="mainLayout"> <put-attribute 
-		name="title" value="계약 관리"/> <put-attribute name="content" value="/WEB-INF/views/adminContractList/{1}.jsp"/> 
-		</definition> -->
+	<definition name="main/*" extends="mainLayout">
+		<put-attribute name="title" value="" />
+		<put-attribute name="content" value="/WEB-INF/views/main/{1}.jsp" />
+	</definition>
 
 	<definition name="admin/reservation/*" extends="mainLayout">
 		<put-attribute name="title" value="예약 관리" />
@@ -38,7 +39,7 @@
 	<definition name="admin/room/*" extends="mainLayout">
 		<put-attribute name="title" value="호실 관리" />
 		<put-attribute name="content"
-			value="/WEB-INF/views/adminRoomMain.jsp" />
+			value="/WEB-INF/views/admin/room/{1}.jsp" />
 	</definition>
 
 
@@ -46,6 +47,18 @@
 		<put-attribute name="title" value="문의 관리" />
 		<put-attribute name="content"
 			value="/WEB-INF/views/admin/question/{1}.jsp" />
+	</definition>
+	
+	<definition name="admin/contract/*" extends="mainLayout">
+		<put-attribute name="title" value="계약 관리" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/contract/{1}.jsp" />
+	</definition>
+	
+	<definition name="admin/member/*" extends="mainLayout">
+		<put-attribute name="title" value="회원 관리" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/member/{1}.jsp" />
 	</definition>
 
 </tiles-definitions>

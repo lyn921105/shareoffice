@@ -26,7 +26,7 @@ public class AdminLoginController {
 	// 로그인 화면을 보여주는 메소드
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String adminLogin() {
-		return "login/adminLogin";
+		return "login/admin/adminLogin";
 	}
 
 	// 로그인 처리 메소드
@@ -39,10 +39,10 @@ public class AdminLoginController {
 		
 		if(rvo == null) {
 			model.addAttribute("errCode", 1);
-			url = "login/adminLogin";
+			url = "login/admin/adminLogin";
 		} else {
 			model.addAttribute("rvo", rvo);
-			url = "login/loginSuccess";
+			url = "adminStart";
 		}
 
 		
@@ -50,10 +50,16 @@ public class AdminLoginController {
 	}
 	
 	// 로그아웃 처리 메소드
+	@RequestMapping(value="/logout")
 	public String adminLogout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
 		session = request.getSession(true);
-		return "redirect:/adminLogin/login";
+		return "redirect:/adminLogin/loginForm";
+	}
+	
+	@RequestMapping(value="/admin")
+	public String adminMain() {
+		return "adminStart";
 	}
 
 }

@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript"
+	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
 function checkValue()
@@ -21,7 +22,6 @@ function checkValue()
     }
     
     // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-<<<<<<< HEAD
     if(document.userInfo.password.value != 
     	document.userInfo.passwordcheck.value ){
         alert("비밀번호를 동일하게 입력하세요.");
@@ -29,23 +29,6 @@ function checkValue()
 	}
 }
 
-
-
-
-function goLoginForm() {
-    location.href="login.jsp";
-}
-
-
-</script>
-</head>
-<body>
-=======
-    if(document.userInfo.password.value != document.userInfo.passwordcheck.value ){
-        alert("비밀번호를 동일하게 입력하세요.");
-        return false;
-    }
-}
 
 // 취소 버튼 클릭시 로그인 화면으로 이동
 function goLoginForm() {
@@ -192,7 +175,6 @@ Last name: <input type="text" name="lname"><br><br>
 </form> -->
 
 
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 	<form id="joinform" action="/member/join" method="POST">
 		<!-- 아이디 -->
 		<div class="form-group">
@@ -222,25 +204,16 @@ Last name: <input type="text" name="lname"><br><br>
 				placeholder="한글/영문 2~20자" required>
 			<div class="check_font" id="name_check"></div>
 		</div>
-<<<<<<< HEAD
 		<div class="form-group form-group-sm">
 			<label for="userEmail" class="col-sm-2 control-label">회원이메일</label>
 			<input type="text"
 				class="form-control" name="c_email" id="c_email"
 				placeholder="이메일 을 입력해 주세요" required>
-			<div class="col-sm-2 control-label">
-				<select class="form-control" id="emailDomain">
-=======
-		<!-- 본인확인 이메일 -->
-
-
-		<div class="form-group">
 			<label for="userEmail">이메일</label> <input type="text"
 				class="form-control" name="c_email" id="c_email"
 				placeholder="이메일 을 입력해 주세요" required>
 			<div class="selectemail">
 				<select class="select" id="emailSelect">
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 					<option value="">직접입력</option>
 					<option value="naver.com">naver.com</option>
 					<option value="gmail.com">gmail.com</option>
@@ -248,8 +221,6 @@ Last name: <input type="text" name="lname"><br><br>
 					<option value="nate.com">nate.com</option>
 				</select>
 			</div>
-<<<<<<< HEAD
-=======
 			<!-- <input type="text" style="margin-top: 5px;"class="email_form" name="email_confirm" id="email_confirm" placeholder="인증번호를 입력해주세요!" required>
 						<button type="button" class="btn btn-outline-danger btn-sm px-3" onclick="confirm_email()">
 							<i class="fa fa-envelope"></i>&nbsp;인증
@@ -257,7 +228,6 @@ Last name: <input type="text" name="lname"><br><br>
 						<button type="button" class="btn btn-outline-info btn-sm px-3">
 							<i class="fa fa-envelope"></i>&nbsp;확인
 						</button>&nbsp; -->
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 			<div class="check_font" id="email_check"></div>
 		</div>
 		<!-- 휴대전화 -->
@@ -299,8 +269,6 @@ Last name: <input type="text" name="lname"><br><br>
 				value="가입하기">
 		</div>
 	</form>
-<<<<<<< HEAD
-=======
 
 
 
@@ -312,6 +280,5 @@ Last name: <input type="text" name="lname"><br><br>
 					<span>회원가입</span>
 				</a>
 			</div> -->
->>>>>>> e01f1ba7acd5331861412e59ce7a1c5df6833aa4
 </body>
 </html>

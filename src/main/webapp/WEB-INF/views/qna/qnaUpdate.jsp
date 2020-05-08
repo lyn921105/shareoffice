@@ -19,6 +19,7 @@
 			} else if (!chkSubmit($('#q_content'),"작성할 내용을")) {
 				return;
 			} else {
+				alert("수정이 완료 되었습니다.");
 				$("#f_updateForm").attr({
 					"method":"POST",
 					"action":"/qna/qnaUpdate"
@@ -29,19 +30,28 @@
 		
 		/* 돌아가기 버튼 클릭 시 처리 이벤트 */
 		$("#qnaDetailBtn").click(function(){
-			location.href="/qna/qnaDetail?q_num=${updateData.q_num}";
+			if (confirm("글 상세보기로 돌아갑니까?")) {
+				location.href="/qna/qnaDetail?q_num=${updateData.q_num}";
+			}
 		});
 	});
 </script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+
 	<div class="container">
 		<div><h3>Q&A 글수정</h3></div>
 
 		<div>
-			<form id="f_updateForm" name="f_updateForm">
+			<form id="f_updateForm" name="f_updateForm" enctype="multipart/form-data">
 				<input type="hidden" id="q_num" name="q_num" value="${updateData.q_num}" />
-				<input type="hidden" name="q_file" id="q_file" value="${updateData.q_file}" />
 				<input type="hidden" name="page" id="page" value="${param.page}"/>
 				<input type="hidden" name="pageSize" id="pageSize" value="${param.pageSize}"/>
 			
@@ -58,9 +68,14 @@
 					
 					<tr>
 						<td>파일첨부</td>
-						<td><input type="file" name="file"
-						id="file"></td>
+						<td><input type="file" name="q_uploadFile"
+						id="q_uploadFile"></td>
 					<tr>
+					
+					<tr>
+						<td>첨부한 파일</td>
+						<td>${updateData.q_file}</td>
+					</tr>
 				</table>
 			</form>
 		</div>

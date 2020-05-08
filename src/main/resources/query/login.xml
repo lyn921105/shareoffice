@@ -12,21 +12,21 @@
 	and c_pwd = #{c_pwd}
 	</select>
 	
-	<select id="serchId" parameterType="mvo" resultType="String">
+	<select id="serchId" parameterType="member" resultType="String">
 	select c_id
 	from client_tbl
 	where c_name = #{c_name}
 	and c_email = #{c_email}
 	</select>
 	
-	<select id="serchIdChk" parameterType="mvo" resultType="String">
+	<select id="serchIdChk" parameterType="member" resultType="String">
 	select c_id
 	from client_tbl
 	where c_name = #{c_name}
 	and c_email = #{c_email}
 	</select>
 	
-	<select id="serchPwChk" parameterType="mvo" resultType="String">
+	<select id="serchPwChk" parameterType="member" resultType="String">
 	select c_pwd
 	from client_tbl
 	where c_email = #{c_email}

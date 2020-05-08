@@ -6,7 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.wt.client.faq.vo.FaqVO;
+import com.wt.admin.question.vo.FaqVO;
+
 
 @Repository
 public class FaqDaoImpl implements FaqDao {

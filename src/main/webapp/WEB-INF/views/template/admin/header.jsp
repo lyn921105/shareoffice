@@ -11,11 +11,11 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/">Work Tree 관리자</a>
+		<a class="navbar-brand" href="/adminLogin/admin">Work Tree 관리자</a>
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="/logout.do">로그아웃</a></li>
+			<li><a href="/adminLogin/logout">로그아웃</a></li>
 		</ul>
 	</div>
 </div>

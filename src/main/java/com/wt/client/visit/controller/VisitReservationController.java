@@ -68,7 +68,7 @@ public class VisitReservationController {
 	public List<VisitReservationVO> visitList(HttpServletRequest httpServletRequest) {
 		log.info("visitList 호출 성공");
 		
-		String date = httpServletRequest.getParameter("input_vDate");
+		String date = httpServletRequest.getParameter("input_Vdate");
 		
 		List<VisitReservationVO> visitList = visitReservationService.visitList(date);
 		

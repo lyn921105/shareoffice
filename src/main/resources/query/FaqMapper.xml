@@ -4,7 +4,7 @@
 
 <mapper namespace="com.wt.admin.question.dao.FaqDao">
 
-	<select id="faqList" resultType="faq">
+	<select id="adminFaqList" resultType="faq">
 		select *
 		from faq_tbl order by f_num desc
 	</select>
