@@ -27,6 +27,14 @@ $(function() {
 </script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+	
 	<div class="container">
 		<form id="pwd_info">
 			<h4>비밀번호 확인이 필요합니다</h4>

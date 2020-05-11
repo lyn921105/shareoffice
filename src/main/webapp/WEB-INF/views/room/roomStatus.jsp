@@ -85,7 +85,7 @@
 					id="o_room3" class="o_room">03</span>
 				<span>호</span><p id="o_status3" class="o_status"></p></td>
 
-				<td colspan="2" rowspan="3">원하는 호실을 선택해주세요</td>
+				<td colspan="2" rowspan="3">층을 변경하셔서 볼 수 있습니다</td>
 
 				<td id="rn8" class="td_hover"><span id="o_floor8" class="o_floor">1</span><span
 					id="o_room8" class="o_room">08</span>

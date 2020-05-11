@@ -59,6 +59,12 @@ $(function(){
 			}),
 			success : function(data) {
 				$("#r_price").val(data.o_price * month);
+				
+				// 선택호실 변경시 초기화
+				$("#r_member").prop('disabled', true);
+				$("#r_member option").prop('disabled', true);
+				$("#r_member option").css("background-color", "white");
+				
 				$("#r_member").attr('disabled', false);
 				for (let i = 1; i <= data.o_member; i++) {
 					$('#r_member option[value="' + i + '"]').prop('disabled', false);

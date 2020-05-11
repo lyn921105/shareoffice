@@ -74,8 +74,11 @@
 				return;
 			} else if (!chkSubmit($('#datePicker'),"방문 날짜를")) {
 				return;
+			} else if ($('#v_time').val() == '점심시간') {
+				alert("시간을 선택해주세요");
+				return;
 			} else {
-				alert($("#v_name").val() + "님의 방문상담이 " + $("#datePicker").val() + " " + $("#v_time option").val() + "시에 신청 되었습니다.");
+				alert($("#v_name").val() + "님의 방문상담이 " + $("#datePicker").val() + " " + $("#v_time").val() + "시에 신청 되었습니다.");
 				$("#visit_form").attr({
 					"method":"POST",
 					"action":"/visit/visitReservation"

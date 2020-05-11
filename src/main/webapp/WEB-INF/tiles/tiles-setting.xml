@@ -46,12 +46,10 @@
 	</definition>
 	
 	<definition name="member/*" extends="content">
-		<put-attribute name="title" value="로그인 및 회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp"/>
 	</definition>
 	
 	<definition name="login/*" extends="content">
-		<put-attribute name="title" value="로그인 및 회원가입"/>
 		<put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp"/>
 	</definition>
 	

@@ -206,21 +206,9 @@ Last name: <input type="text" name="lname"><br><br>
 		</div>
 		<div class="form-group form-group-sm">
 			<label for="userEmail" class="col-sm-2 control-label">회원이메일</label>
-			<input type="text"
+			<input type="email"
 				class="form-control" name="c_email" id="c_email"
 				placeholder="이메일 을 입력해 주세요" required>
-			<label for="userEmail">이메일</label> <input type="text"
-				class="form-control" name="c_email" id="c_email"
-				placeholder="이메일 을 입력해 주세요" required>
-			<div class="selectemail">
-				<select class="select" id="emailSelect">
-					<option value="">직접입력</option>
-					<option value="naver.com">naver.com</option>
-					<option value="gmail.com">gmail.com</option>
-					<option value="daum.net">daum.net</option>
-					<option value="nate.com">nate.com</option>
-				</select>
-			</div>
 			<!-- <input type="text" style="margin-top: 5px;"class="email_form" name="email_confirm" id="email_confirm" placeholder="인증번호를 입력해주세요!" required>
 						<button type="button" class="btn btn-outline-danger btn-sm px-3" onclick="confirm_email()">
 							<i class="fa fa-envelope"></i>&nbsp;인증

@@ -27,6 +27,14 @@
 </script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+
 	<!-- 상세 페이지 이동을 위한 FORM -->
 	<form name="detailForm" id="detailForm">
 		<input type="hidden" name="r_num" id="r_num">

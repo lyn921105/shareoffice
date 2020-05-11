@@ -50,7 +50,7 @@
 
 	<!-- Q&A 상세 페이지를 위한 게시물 조회 -->
 	<select id="qnaDetail" parameterType="int" resultType="qna">
-		SELECT q_num, c_id, q_title, q_content, q_file, q_regdate
+		SELECT q_num, c_id, a_id, q_title, q_content, q_file, q_regdate
 		FROM question_tbl
 		WHERE q_num = #{q_num}
 	</select>

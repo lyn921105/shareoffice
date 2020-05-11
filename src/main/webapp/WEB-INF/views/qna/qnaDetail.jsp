@@ -68,7 +68,7 @@
 	 			</div>
 				<div class="form-group" style="border-top: dotted black 1px;">
 					<span class="form-static">${login}</span>
-					<input type="button" id="download" class="form-static pull-right" value="${detail.q_file}">
+					<a id="download" class="pull-right">${detail.q_file}</a>
 				</div>
 				<div class="form-group" style="margin-top: 8px;">
 					<span class="form-static">${detail.q_content}</span>
@@ -78,9 +78,16 @@
 	</div>
 	
 	<div class="text-right">
-		<input type="button" class="btn btn-default" value="수정" id="qnaUpdateBtn">
-		<input type="button" class="btn btn-default" value="삭제" id="qnaDeleteBtn">
-		<input type="button" class="btn btn-default" value="목록" id="qnaListBtn">
+		<c:choose>
+			<c:when test="${detail.a_id eq admin}">
+				<input type="button" class="btn btn-default" value="수정" id="qnaUpdateBtn">
+				<input type="button" class="btn btn-default" value="삭제" id="qnaDeleteBtn">
+				<input type="button" class="btn btn-default" value="목록" id="qnaListBtn">
+			</c:when>
+			<c:otherwise>
+				<input type="button" class="btn btn-default" value="목록" id="qnaListBtn">
+			</c:otherwise>
+		</c:choose>
 	</div>
 </body>
 </html>
