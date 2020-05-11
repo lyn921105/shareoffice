@@ -47,7 +47,7 @@ $(function(){
 	</script>
 
 	<form id="res_form" name="res_form">
-		<div class=container style="background: #FFFAF0; margin-bottom: 10px;">
+		<div class=container style="background: #F0FFFF; margin-bottom: 10px;">
 			<input type="hidden" id="c_id" name="c_id" value="${result.c_id}">
 			<input type="hidden" id="r_company" name="r_company" value="${result.r_company}">
 			<input type="hidden" id="r_phone" name="r_phone" value="${result.r_phone}">
@@ -58,7 +58,8 @@ $(function(){
 			<input type="hidden" id="r_floor" name="r_floor" value="${result.r_floor}">
 			<input type="hidden" id="r_endDate" name="r_endDate" value="${send_endDate}">
 			<div class="text-center">
-				<p>입력하신 정보를 확인해 주세요</p>
+				<h3>입력하신 정보를 확인해 주세요</h3>
+				<br>
 			</div>
 			<div class="form-group">
 				<label>아이디</label>			
@@ -93,9 +94,9 @@ $(function(){
 				<p>${result.r_price}</p>
 			</div>
 		</div>
-		<div class="container" style="background: #FFFAF0;">
+		<div class="container" style="background: #F0FFFF;">
 			<div class="text-center">
-				<p>계좌정보를 입력해주세요 (아직 미구현, 단순입력용)</p>
+				<h3>계좌정보를 입력해주세요 (단순입력용)</h3>
 			</div>
 			<div class="form-group">
 				<label>입금자명</label>

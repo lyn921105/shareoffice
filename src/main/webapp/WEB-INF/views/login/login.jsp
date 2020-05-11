@@ -107,6 +107,13 @@
 			});
 
 		});
+		
+		/* 돌아가기 버튼 클릭 시 처리 이벤트 */
+		$("#homePageBtn").click(function(){
+			if (confirm("메인 페이지로 돌아갑니까?")) {
+				location.href="/";
+			}
+		});
 	});
 </script>
 </head>
@@ -115,35 +122,28 @@
 		<input type="hidden" id="rsaPublicKeyModulus"
 			value="">
 		<input type="hidden" id="rsaPublicKeyExponent" >
-		<div class="login">
-			<h2 class="pageTitle02">로그인</h2>
-			<ul class="inputBox">
-				<li><input type="text" class="inpText" id="membId"
+		<div class="container">
+			<div class="form-group" style="margin-bottom: 8px;">
+				<label>아이디</label>
+				<input type="text" class="form-control" id="membId"
 					title="아이디 입력" maxlength="20" placeholder="아이디"
-					style="width: 370px" name="c_id"></li>
-				<li><input type="password" class="inpText" id="pw"
+					style="width: 370px" name="c_id">
+				<label>비밀번호</label>
+				<input type="password" class="form-control" id="pw"
 					title="비밀번호 입력" placeholder="비밀번호" style="width: 370px" name="c_pwd"
-					></li>
-				<li><input type="submit" class="btns btnBlack solo bFont17"
-					id="btnLogin" value="로그인">
-				</li>
-				<li><a href="login/loginSuccess" class="btns btnBlack solo bFont17"
-					id="btnLogin"> <span>로그인</span>
-				</a></li>
-			</ul>
-				<div class="link">
-					<a href="/login/serchId" class="btnLink">아이디 찾기</a> 
-					<a href="/login/serchPw" class="btnLink">비밀번호 찾기</a>
-				</div>
-				<!-- link : e -->
+					>
 			</div>
-			<!-- find : e -->
-			<p class="btmMsg">
-				회원가입을 하시면 라운지 멤버십 신청, 이벤트 신청, 미팅룸 <br>예약 등 다양한 서비스를 이용할 수 있습니다.
-			</p>
-			<a href="/login/join" class="btns btnLineBlack solo bFont17"
-				id="btnJoin"> <span>회원가입</span>
-			</a>
+			<div style="margin-bottom: 8px;">
+				<input type="submit" class="btn btn-success"
+					id="btnLogin" value="로그인">
+			</div>
+			<div>
+				<a href="/login/serchId" class="btn btn-default">아이디 찾기</a> 
+				<a href="/login/serchPw" class="btn btn-default">비밀번호 찾기</a>
+				<a href="/login/join" class="btn btn-info"
+				id="btnJoin">회원가입</a>
+			</div>
+		</div>
 	</form>
 </body>
 </html>

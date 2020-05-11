@@ -25,23 +25,34 @@
 	<h1>회원정보수정</h1>
 	<hr>
 	<form id="memberModify" action="/member/memberModifySuccess" method="post">
-		<p>
-			<label>PassWord</label> <input class="w3-input" type="password" id="c_pwd"
+		<div class="form-group">
+			<label for="c_id">아이디</label>			
+			<input type="text" class="form-control" id="c_id" name="c_id" value="${loginSuccess}" readonly>
+		</div>
+		<div class="form-group">
+			<label>비밀번호</label>
+			<input class="form-control" type="password" id="c_pwd"
 				name="c_pwd" value="${ member.c_pwd }">
-		</p>
-		<p>
-			<label>Name</label> <input class="w3-input" type="text" id="c_name"
+		</div>
+		<div class="form-group">
+			<label>이름</label>
+			<input class="form-control" type="text" id="c_name"
 				name="c_name" value="${ member.c_name }">
-		</p>
-		<p>
-			<label>Email</label> <input class="w3-input" type="text" id="c_email"
+		</div>
+		<div class="form-group">
+			<label>이메일</label>
+			<input class="form-control" type="text" id="c_email"
 				name="c_email" value="${ member.c_email }" required>
-		</p>
-		<p>
-			<label>Phone</label> <input class="w3-input" type="text" id="c_phone"
+		</div>
+		<div class="form-group">
+			<label>연락처</label>
+			<input class="form-control" type="text" id="c_phone"
 				name="c_phone" value="${ member.c_phone }" required>
-		</p>
-			<input type="submit" value="회원수정">
+		</div>
+		<div class="text-center">
+			<input type="submit" class="btn btn-primary" value="회원수정">
+			<button class="cencle btn btn-danger" type="button">취소</button>
+		</div>
 	</form>
 </body>
 </html>

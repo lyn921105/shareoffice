@@ -45,12 +45,6 @@ public class MemberController {
 	public String postjoin(MemberVO vo) throws Exception {
 		logger.info("post join");
 
-		System.out.println(vo.getC_id());
-		System.out.println(vo.getC_email());
-		System.out.println(vo.getC_name());
-		System.out.println(vo.getC_phone());
-		System.out.println(vo.getC_pwd());
-
 		service.join(vo);
 
 		// 요기에서~ 입력된 아이디가 존재한다면 -> 다시 회원가입 페이지로 돌아가기

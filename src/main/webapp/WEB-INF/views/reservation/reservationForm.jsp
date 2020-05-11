@@ -159,14 +159,18 @@ $(function(){
 			<div class="form-group">
 				<label for="r_fr">호실 선택</label>
 				<input type="button" class="btn btn-primary" id="room_select" value="호실 보기">		
-				<input type="text" class="form-control" id="r_fr" name="r_fr" placeholder="호실 보기에서 선택 가능합니다" readonly>
+				<input type="text" class="form-control" id="r_fr" name="r_fr" placeholder="호실 보기에서 선택 가능합니다" readonly style="margin-top: 8px;">
 			</div>
-			<div class="form-group col-xs-6">
+			<div class="form-group col-xs-3">
 				<label for="r_reserveDate">입주희망날짜</label>			
 				<input type="text" class="form-control" id="r_reserveDate" name="r_reserveDate" placeholder="호실 보기에서 선택 가능합니다" readonly>
 			</div>
+			<div class="form-group col-xs-3">
+				<label for="set_endDate">만기날짜</label>
+				<input type="text" class="form-control" id="send_endDate" name="send_endDate" placeholder="만기날짜를 선택해주세요" readonly>
+			</div>
 			<div class="form-group col-xs-6">
-				<label for="set_endDate">만기날짜 (월/30일)</label>			
+				<label for="set_endDate">만기날짜 (월/30일) 선택</label>		
 				<select class="form-control" id="set_endDate" disabled>
 					<option value="3">3개월</option>
 					<option value="4">4개월</option>
@@ -179,7 +183,6 @@ $(function(){
 					<option value="11">11개월</option>
 					<option value="12">12개월</option>
 				</select>
-				<input type="text" class="form-control" id="send_endDate" name="send_endDate" readonly>
 			</div>
 			<div class="form-group">
 				<label for="r_member">인원수</label>			

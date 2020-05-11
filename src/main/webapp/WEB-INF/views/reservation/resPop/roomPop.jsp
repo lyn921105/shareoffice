@@ -215,12 +215,10 @@ $(function(){
 			<input type="text" class="form-control" id="send_date" readonly>
 		</div>
 		<div class="form-group">
-			<label>선택한 층</label>
-			<input type="text" class="form-control" id="send_floor" readonly>
+			<input type="hidden" class="form-control" id="send_floor" readonly>
 		</div>
 		<div class="form-group">
-			<label>선택한 룸</label>
-			<input type="text" class="form-control" id="send_room" readonly>
+			<input type="hidden" class="form-control" id="send_room" readonly>
 		</div>
 		<div class="form-group">
 			<label>선택한 호실</label>
@@ -228,7 +226,7 @@ $(function(){
 		</div>
 	</div>
 	<div class="text-center">
-		<input type="button" id="send_all" class="btn btn-primary" value="완료">
+		<input type="button" id="send_all" class="btn btn-primary" value="전송">
 		<input type="button" id="close" class="btn btn-default" value="닫기">
 	</div>
 	<script src="/resources/include/dist/js/bootstrap.min.js"></script>

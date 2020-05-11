@@ -226,42 +226,31 @@ Last name: <input type="text" name="lname"><br><br>
 			<div class="check_font" id="phone_check"></div>
 		</div>
 		<div class="agreeList">
-			<ul class="labelHorizental">
-				<li class="w838">
-					<div class="checkboxWrap">
-						<span class="checkStyle on"><input type="checkbox"
-							id="ck01" name="ck01" class="inputCheckbox" checked="checked"></span>
-						<label for="ck01">회원 이용약관(필수)</label> <a href="#" class="btnLink"
-							id="ck01Detail">내용보기</a>
-					</div>
-				</li>
-				<li class="w838">
-					<div class="checkboxWrap">
-						<span class="checkStyle on"><input type="checkbox"
-							id="ck02" name="ck02" class="inputCheckbox" checked="checked"></span>
-						<label for="ck02">회원가입 개인 정보 수집 이용 및 제공 동의(필수)</label> <a href="#"
-							class="btnLink" id="ck02Detail">내용보기</a>
-					</div>
-				</li>
-			</ul>
+			<div class="checkboxWrap">
+				<span class="checkStyle on"><input type="checkbox"
+					id="ck01" name="ck01" class="inputCheckbox" checked="checked"></span>
+				<label for="ck01">회원 이용약관(필수)</label> <a href="#" class="btnLink"
+					id="ck01Detail">내용보기</a>
+			</div>
+			<div class="checkboxWrap">
+				<span class="checkStyle on"><input type="checkbox"
+					id="ck02" name="ck02" class="inputCheckbox" checked="checked"></span>
+				<label for="ck02">회원가입 개인 정보 수집 이용 및 제공 동의(필수)</label> <a href="#"
+					class="btnLink" id="ck02Detail">내용보기</a>
+			</div>
 		</div>
 
-		<div class="reg_button">
+		<div class="text-center">
+			<input type="submit" class="btn btn-primary px-3" id="reg_submit"
+				value="가입하기">
 			<a class="btn btn-danger px-3" href="http://localhost:8080/"> <i
 				class="fa fa-rotate-right pr-2" aria-hidden="true"></i>취소하기
 			</a>&emsp;&emsp;
 			<!-- <button class="btn btn-primary px-3" id="reg_submit" >
 				<i class="fa fa-heart pr-2" aria-hidden="true"></i>가입하기
 			</button> -->
-			<input type="submit" class="btn btn-primary px-3" id="reg_submit"
-				value="가입하기">
 		</div>
 	</form>
-
-
-
-
-
 
 	<!-- <div class="btnArea space40">
 				<a href="/member/join" class="btns btnBlack bFont17" id="submit">

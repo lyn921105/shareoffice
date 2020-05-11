@@ -79,9 +79,9 @@
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<div>
-									<p>예약정보가 없습니다</p>
-								</div>
+								<tr class="text-center">
+									<td colspan="6">예약정보가 없습니다</td>
+								</tr>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
@@ -122,9 +122,9 @@
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<div>
-									<p>이용중인 호실이 없습니다</p>
-								</div>
+								<tr class="text-center">
+									<td colspan="6">이용중인 호실이 없습니다</td>
+								</tr>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
@@ -165,9 +165,9 @@
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<div>
-									<p>이전 계약 현황이 없습니다</p>
-								</div>
+								<tr class="text-center">
+									<td colspan="6">이전 계약현황이 없습니다</td>
+								</tr>
 							</c:otherwise>
 						</c:choose>
 					</tbody>
