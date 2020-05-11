@@ -208,6 +208,16 @@
 		WHERE
 		r_num = #{r_num}
 	</update>
+	
+	<update id="officeRefundUpdate" parameterType="adminContract">
+		UPDATE office_tbl
+		SET
+		o_reserve = 0
+		WHERE
+		o_floor = (SELECT r_floor FROM reservation_tbl WHERE r_num = #{r_num})
+		AND
+		o_room = (SELECT r_room FROM reservation_tbl WHERE r_num = #{r_num})
+	</update>
 
 	<!-- 라인 차트 -->
 	<select id="lineChart" resultType="adminChart">

@@ -35,6 +35,8 @@
 
 			$(".o_status").empty();
 			$(".o_floor").html(fn);
+			$(".o_floor").parent("td").css("background-color", "white");
+			$(".o_reserve").val("");
 
 			$.ajax({ 
 				url : "/adminRoom/change",
@@ -46,15 +48,18 @@
 				success : function(data) {
 
 					for (i = 0; i < data.length; i++) {
-						for (m = 1; m < 11; m++) {
-
+						for (m = 0; m < 10; m++) {
+							
 							if ($("#o_room" + m).html() == data[i].o_room) {
-
 								$("#o_status" + m).html(data[i].o_status);
+								$("#o_reserve" + m).val(data[i].o_reserve);
+								if(data[i].o_reserve == 1){
+									$("#o_status" + m).parent("td").css("background-color", "rgb(125, 140, 255, 0.4)");
+								}
 							}
 						}
 					}
-					for (var i = 1; i < 11; i++) {
+					for (var i = 0; i < 10; i++) {
 						if (i < 10) {
 							var x = "0" + i;
 						} else {
@@ -64,7 +69,6 @@
 							$("#o_status" + i).html("사용가능")
 						} else if ($("#o_status" + i).html() == 2) {
 							$("#o_status" + i).html("사용불가능")
-
 						}
 					}
 				}

@@ -17,7 +17,7 @@
 	<!-- 호실 목록 출력 -->
 	<select id="roomList" parameterType="String"
 		resultType="adminRoom">
-		SELECT o_floor, o_room, o_status
+		SELECT o_floor, o_room, o_status, o_reserve
 		FROM office_tbl
 		WHERE
 		o_floor = #{o}
