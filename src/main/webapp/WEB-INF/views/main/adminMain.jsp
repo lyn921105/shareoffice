@@ -20,20 +20,60 @@
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
+<style type="text/css">
+#adminmenubox {
+position : absolute;
+top : 20%;
+left : 721px;
+}
+.menu {
+height : 140px;
+width : 140px;
+border-radius : 20%;
+background-color : #888888;
+opacity : 1;
+transition : 0.3s;
+}
+.menu:hover {
+opacity : 0.6;
+}
+.title-menu {
+text-align : center;
+line-height : 140px;
+color : black;
+font-size : large;
+font-weight : bold;
+}
+.title-menu:hover {
+text-decoration : none;
+color : black;
+}
+</style>
 </head>
 
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</nav>
-		
-	<div class="container-fluid" style="min-height: 730px;">
-		<a class="title-menu" href="/adminMember/list" role="button">회원 관리</a>
-		<a class="title-menu" href="/adminReservation/consultList" role="button">예약 관리</a>
-		<a class="title-menu" href="/adminContract/main" role="button">계약 관리</a>
-		<a class="title-menu" href="/adminRoom/main" role="button">호실 관리</a>
-		<a class="title-menu" href="/adminQuestion/qnaList" role="button">문의 관리</a>
+	
+	<div class="text-center">
+	
+	<div class="container-fluid" style="min-height: 730px; float:none; margin:0 auto">
+	<div id="adminmenubox">
+		<div>
+		<a class="title-menu" href="/adminMember/list"><div class="menu" style="float:left">회원<span class="glyphicon glyphicon-user"></span></div></a>
+		<a class="title-menu" href="/adminReservation/consultList"><div class="menu" style="float:left; margin-left:20px">예약<span class="glyphicon glyphicon-pencil"></span></div></a>
+		<a class="title-menu" href="/adminContract/main"><div class="menu" style="float:left; margin-left:20px">계약<span class="glyphicon glyphicon-ok"></span></div></a>
+		</div>
+		<div>
+		<a class="title-menu" href="/adminRoom/main"><div class="menu" style="float:left; margin-left:80px; margin-top:20px">호실<span class="glyphicon glyphicon-home"></span></div></a>
+		<a class="title-menu" href="/adminQuestion/qnaList"><div class="menu" style="float:left; margin-left:20px; margin-top:20px"">문의<span class="glyphicon glyphicon-question-sign"></span></div></a>
+		</div>
 	</div>
+	</div>
+	</div>
+	
+	
 	<div class="footer">
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>

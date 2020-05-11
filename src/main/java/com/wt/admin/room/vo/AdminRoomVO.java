@@ -18,8 +18,8 @@ public class AdminRoomVO {
 	private MultipartFile file3; // 첨부파일
 	private String o_image3; // 이미지3
 	private String o_status; // 현재 상태(사용 가능/불가능)
-	
 	private String r_endDate; // 사용자페이지 만기날짜 구현
+	private String o_reserve;
 
 	public AdminRoomVO() {
 		super();
@@ -27,7 +27,8 @@ public class AdminRoomVO {
 
 	public AdminRoomVO(int o_no, String o_floor, String o_room, int o_price, int o_member, String o_info,
 			MultipartFile thumbfile, String o_thumb, MultipartFile file1, String o_image1, MultipartFile file2,
-			String o_image2, MultipartFile file3, String o_image3, String o_status) {
+			String o_image2, MultipartFile file3, String o_image3, String o_status, String r_endDate,
+			String o_reserve) {
 		super();
 		this.o_no = o_no;
 		this.o_floor = o_floor;
@@ -44,6 +45,8 @@ public class AdminRoomVO {
 		this.file3 = file3;
 		this.o_image3 = o_image3;
 		this.o_status = o_status;
+		this.r_endDate = r_endDate;
+		this.o_reserve = o_reserve;
 	}
 
 	public int getO_no() {
@@ -172,6 +175,14 @@ public class AdminRoomVO {
 
 	public void setR_endDate(String r_endDate) {
 		this.r_endDate = r_endDate;
+	}
+
+	public String getO_reserve() {
+		return o_reserve;
+	}
+
+	public void setO_reserve(String o_reserve) {
+		this.o_reserve = o_reserve;
 	}
 
 }

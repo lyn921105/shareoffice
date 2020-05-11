@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wt.admin.room.service.AdminRoomService;
 import com.wt.admin.room.vo.AdminRoomVO;
+import com.wt.client.reservation.service.ReservationService;
+import com.wt.client.reservation.vo.ReservationVO;
 import com.wt.common.file.FileUploadUtil;
 
 @Controller
@@ -28,14 +30,26 @@ public class AdminRoomController {
 
 	@Autowired
 	private AdminRoomService adminRoomService;
+	
+	@Autowired
+	private ReservationService reservationService;
 
 	// 호실 현황 페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String roomMain(Model model) {
 
+		// 계약 만료시 예약 상태 '예약 가능'으로 변경, 예약 상태 '계약 만료'로 변경
+		List<ReservationVO> rvo = reservationService.resPopEndSelect();
+		
+		for (int i = 0; i < rvo.size(); i++) {
+			ReservationVO res = new ReservationVO(rvo.get(i).getR_endDate(), rvo.get(i).getR_floor(),
+					rvo.get(i).getR_room(), rvo.get(i).getR_status());
+			reservationService.resPopStatusUpdate(res);
+			reservationService.resPopUsableUpdate(res);
+		}
+
 		List<AdminRoomVO> roomMain = adminRoomService.roomMain();
 
-		
 		if (!roomMain.isEmpty()) {
 			model.addAttribute("roomMain", roomMain);
 		} else {
@@ -182,12 +196,12 @@ public class AdminRoomController {
 		String o_image1 = request.getParameter("o_image1");
 		String o_image2 = request.getParameter("o_image2");
 		String o_image3 = request.getParameter("o_image3");
-		
+
 		AdminRoomVO avo = new AdminRoomVO();
-		
+
 		avo.setO_floor(o_floor);
 		avo.setO_room(o_room);
-		
+
 		if (o_image1 != null && o_image1 != "") {
 			FileUploadUtil.fileDelete(o_image1, request);
 			avo.setO_image1(o_image1);
@@ -200,7 +214,6 @@ public class AdminRoomController {
 			FileUploadUtil.fileDelete(o_image3, request);
 			avo.setO_image3(o_image3);
 		}
-
 
 		adminRoomService.fileDelete(avo);
 
@@ -227,6 +240,6 @@ public class AdminRoomController {
 
 		return "admin/room/adminRoomMain";
 	}
-	
+
 	// 차트들
 }
