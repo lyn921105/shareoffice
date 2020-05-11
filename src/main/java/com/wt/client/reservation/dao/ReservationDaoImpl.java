@@ -40,5 +40,27 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int reservationInsert(ReservationVO rvo) {
 		return session.insert("reservationInsert", rvo);
 	}
+	
+	@Override
+	public int roomUsable(ReservationVO rvo) {
+		return session.update("roomUsable", rvo);
+	}
+
+	@Override
+	public List<ReservationVO> resPopEndSelect() {
+		return session.selectList("resPopEndSelect");
+	}
+
+	@Override
+	public int resPopStatusUpdate(ReservationVO rvo) {
+		return session.update("resPopStatusUpdate", rvo);
+	}
+
+	@Override
+	public int resPopUsableUpdate(ReservationVO rvo) {
+		return session.update("resPopUsableUpdate", rvo);
+	}
+
+
 
 }

@@ -52,4 +52,26 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservationDao.reservationInsert(rvo);
 	}
 
+	@Override
+	public int roomUsable(ReservationVO rvo) {
+		return reservationDao.roomUsable(rvo);
+	}
+	
+	@Override
+	public List<ReservationVO> resPopEndSelect() {
+		return reservationDao.resPopEndSelect();
+	}
+
+	@Override
+	public int resPopStatusUpdate(ReservationVO rvo) {
+		return reservationDao.resPopStatusUpdate(rvo);
+	}
+
+	@Override
+	public int resPopUsableUpdate(ReservationVO rvo) {
+		return reservationDao.resPopUsableUpdate(rvo);
+	}
+
+
+
 }
