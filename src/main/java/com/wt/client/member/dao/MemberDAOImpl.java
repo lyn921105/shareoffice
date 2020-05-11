@@ -88,6 +88,16 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne("memberListPwd", mvo);
 	}
 
+	@Override
+	public ReservationVO memberDetailForm(int r_num) {
+		return sql.selectOne("memberDetailForm", r_num);
+	}
+
+	@Override
+	public int memberRefund(ReservationVO rvo) {
+		return sql.update("memberRefund", rvo);
+	}
+
 	/*
 	 * @Override public int serchId(String name, String email) throws Exception {
 	 * try { String id = null; String sql="select member_id" + "grom member_info" +

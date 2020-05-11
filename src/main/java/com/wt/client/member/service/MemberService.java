@@ -44,4 +44,7 @@ public interface MemberService {
 
 	public MemberVO memberListPwd(MemberVO mvo);
 
+	public ReservationVO memberDetailForm(int r_num);
+	
+	public int memberRefund(ReservationVO rvo);
 }

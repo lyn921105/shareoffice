@@ -140,7 +140,7 @@ $(function(){
 			<input type="hidden" id="r_endDate" name="r_endDate">
 			<div class="form-group">
 				<label for="c_id">아이디</label>			
-				<input type="text" class="form-control" id="c_id" name="c_id" value="${c_id}" readonly>
+				<input type="text" class="form-control" id="c_id" name="c_id" value="${loginSuccess}" readonly>
 			</div>
 			<div class="form-group">
 				<label for="r_company">입주사명</label>			
