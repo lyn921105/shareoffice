@@ -1,10 +1,12 @@
 package com.wt.admin.question.control;
 
-
+import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -136,6 +138,7 @@ public class QuestionController {
 		String url = "";
 		int num = Integer.parseInt(request.getParameter("q_num"));
 
+		// 파일 업로드
 		if (avo.getQ_uploadFile() != null) {
 			String q_file = FileUploadUtil.fileUpload(avo.getQ_uploadFile(), request, "file");
 			avo.setQ_file(q_file);
@@ -202,7 +205,7 @@ public class QuestionController {
 				FileUploadUtil.fileDelete(avo.getQ_file(), request);
 			}
 
-			q_file = FileUploadUtil.fileUpload(avo.getQ_uploadFile(), request, "file");
+			q_file = FileUploadUtil.fileUpload(avo.getQ_uploadFile(), request, "qna");
 			avo.setQ_file(q_file);
 
 		} else {
@@ -217,6 +220,26 @@ public class QuestionController {
 		}
 
 		return "redirect:" + url;
+	}
+
+	// 첨부파일 다운로드
+
+	@RequestMapping("/fileDownload")
+	public void fileDownload(@ModelAttribute QnaVO avo, HttpServletResponse response, HttpServletRequest request)
+			throws IOException {
+		QnaVO download = qnaService.fileDownload(avo.getQ_num());
+		String downFile = download.getQ_file();
+
+		byte[] fileByte = org.apache.commons.io.FileUtils.readFileToByteArray(
+				new File(request.getSession().getServletContext().getRealPath("/uploadStorage/qna/") + downFile));
+
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition",
+				"attachment; fileName=\"" + URLEncoder.encode(downFile, "UTF-8") + "\";");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
 	}
 
 }

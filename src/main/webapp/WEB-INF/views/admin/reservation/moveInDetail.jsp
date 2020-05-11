@@ -46,6 +46,8 @@
 		<form id="r_data">
 			<input type="hidden" id="r_num" name="r_num" value="${detail.r_num }" />
 			<input type="hidden" name="page" id="page" value="${param.page }" />
+			<input type="hidden" name="r_floor" id="r_floor" value="${detail.r_floor }">
+			<input type="hidden" name="r_room" id="r_room" value="${detail.r_room }">
 		</form>
 
 		<h1>입주 예약 상세</h1>

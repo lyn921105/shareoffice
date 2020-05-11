@@ -2,6 +2,8 @@ package com.wt.admin.reservation.control;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import com.wt.admin.reservation.service.AdminMoveInService;
 import com.wt.admin.reservation.service.AdminVisitConsultService;
 import com.wt.admin.reservation.vo.MoveInVO;
 import com.wt.admin.reservation.vo.VisitConsultVO;
+import com.wt.admin.room.vo.AdminRoomVO;
 import com.wt.client.qna.vo.QnaVO;
 import com.wt.common.page.Paging;
 import com.wt.common.util.Util;
@@ -104,9 +107,16 @@ public class AdminReservationController {
 	}
 
 	@RequestMapping(value = "/updateReqState")
-	public String updateReqState(@ModelAttribute MoveInVO mvo) {
+	public String updateReqState(@ModelAttribute MoveInVO mvo, AdminRoomVO rvo, HttpServletRequest request) {
 		moService.updateReqState(mvo.getR_num());
-
+		String o_floor= request.getParameter("r_floor");
+		String o_room=request.getParameter("r_room");
+		
+		rvo.setO_floor(o_floor);
+		rvo.setO_room(o_room);
+		
+		moService.updateReserve(rvo);
+		
 		return "redirect:/adminReservation/moveInList";
 
 	}
