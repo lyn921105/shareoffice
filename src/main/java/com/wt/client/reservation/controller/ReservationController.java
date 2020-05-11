@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wt.admin.room.vo.AdminRoomVO;
 import com.wt.client.reservation.service.ReservationService;
 import com.wt.client.reservation.vo.ReservationVO;
+import com.wt.client.room.service.RoomService;
 
 @Controller
 @RequestMapping(value="/reservation")
@@ -26,6 +27,9 @@ public class ReservationController {
 	
 	@Autowired
 	private ReservationService reservationService;
+	
+	@Autowired
+	private RoomService roomService;
 	
 	// 예약 폼 출력하기
 	@RequestMapping(value="/reservationForm")
@@ -44,12 +48,21 @@ public class ReservationController {
 		log.info("roomChange 호출 성공");
 		
 		// 계약 만료시 예약 상태 '예약 가능'으로 변경, 예약 상태 '계약 만료'로 변경
-		List<ReservationVO> rvo = reservationService.resPopEndSelect();
-
-		for (int i = 0; i < rvo.size(); i++) {
-			ReservationVO res = new ReservationVO(rvo.get(i).getR_endDate(), rvo.get(i).getR_floor(), rvo.get(i).getR_room(), rvo.get(i).getR_status());
-			reservationService.resPopStatusUpdate(res);
-			reservationService.resPopUsableUpdate(res);
+		List<ReservationVO> rvo1 = roomService.roomEndSelect();
+		
+		for (int i = 0; i < rvo1.size(); i++) {
+			ReservationVO res1 = new ReservationVO(rvo1.get(i).getR_endDate(), rvo1.get(i).getR_floor(), rvo1.get(i).getR_room(), rvo1.get(i).getR_status());
+			roomService.roomStatusUpdate(res1);
+			roomService.roomUsableUpdate(res1);
+		}
+		
+		// 예약 후 24시간 이내에 관리자가 승인을 해주지 않는 경우 예약 상태 '취소'로 변경
+		List<ReservationVO> rvo2 = roomService.roomCancel();
+				
+		for (int i = 0; i < rvo2.size(); i++) {
+			ReservationVO res2 = new ReservationVO(rvo2.get(i).getR_num(), rvo2.get(i).getR_floor(), rvo2.get(i).getR_room(), rvo2.get(i).getR_status());
+			roomService.roomCancelUpdate(res2);
+			roomService.roomUsableUpdate(res2);
 		}
 		
 		// 호실 현황 리스트

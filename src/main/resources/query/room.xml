@@ -40,13 +40,27 @@
 	<update id="roomStatusUpdate" parameterType="res">
 		UPDATE reservation_tbl
 		SET r_status = '4'
-		WHERE r_floor = #{r_floor} AND r_room = #{r_room}
+		WHERE r_num = #{r_num}
 	</update>
 	
-	<!-- 만기날짜 지난 경우 예약 가능 상태 변경  -->
+	<!-- 예약 가능 상태 변경  -->
 	<update id="roomUsableUpdate" parameterType="res">
 		UPDATE office_tbl
 		SET o_reserve = '0'
 		WHERE o_floor = #{r_floor} AND o_room = #{r_room}
+	</update>
+	
+	<!-- 예약 후 24시간 이내에 예약 승인 해주지 않은 경우 로우 -->
+	<select id="roomCancel" resultType="res">
+		SELECT *
+		FROM reservation_tbl
+		WHERE ROUND((sysdate-r_regdate)*24) <![CDATA[>]]> 24 AND r_status = '0'
+	</select>
+	
+	<!-- 예약 후 24시간 이내에 예약 승인 해주지 않은 경우 처리 -->
+	<update id="roomCancelUpdate" parameterType="res">
+		UPDATE reservation_tbl
+		SET r_status = '5'
+		WHERE r_num = #{r_num}
 	</update>
 </mapper>

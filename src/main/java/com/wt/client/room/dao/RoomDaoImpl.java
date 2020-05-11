@@ -45,5 +45,15 @@ public class RoomDaoImpl implements RoomDao {
 		return session.update("roomUsableUpdate", rvo);
 	}
 
+	@Override
+	public List<ReservationVO> roomCancel() {
+		return session.selectList("roomCancel");
+	}
+
+	@Override
+	public int roomCancelUpdate(ReservationVO rvo) {
+		return session.update("roomCancelUpdate", rvo);
+	}
+
 
 }

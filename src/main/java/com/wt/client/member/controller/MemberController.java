@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wt.client.member.service.MemberService;
 import com.wt.client.member.vo.MemberVO;
 import com.wt.client.reservation.vo.ReservationVO;
+import com.wt.client.room.service.RoomService;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -27,6 +29,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private RoomService roomService;
 
 	@RequestMapping(value = "/injoin", method = RequestMethod.GET)
 	public String getjoin(MemberVO vo) throws Exception {
@@ -204,8 +209,17 @@ public class MemberController {
 	// 마이페이지 예약 현황 폼
 	@RequestMapping(value = "/memberListForm")
 	public String memberListForm(HttpSession session, Model model) {
+		// 예약 후 24시간 이내에 관리자가 승인을 해주지 않는 경우 예약 상태 '취소'로 변경
+		List<ReservationVO> rvo = roomService.roomCancel();
+								
+		for (int i = 0; i < rvo.size(); i++) {
+			ReservationVO res = new ReservationVO(rvo.get(i).getR_num(), rvo.get(i).getR_floor(), rvo.get(i).getR_room(), rvo.get(i).getR_status());
+			roomService.roomCancelUpdate(res);
+			roomService.roomUsableUpdate(res);
+		}
+		
 		String c_id = (String) session.getAttribute("loginSuccess");
-
+		
 		List<ReservationVO> rvo1 = service.memberReserve(c_id);
 		List<ReservationVO> rvo2 = service.memberUse(c_id);
 		List<ReservationVO> rvo3 = service.memberDone(c_id);

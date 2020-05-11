@@ -1,7 +1,6 @@
 package com.wt.client.room.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,12 +31,21 @@ public class RoomController {
 		log.info("roomStatus 호출 성공");
 		
 		// 계약 만료시 예약 상태 '예약 가능'으로 변경, 예약 상태 '계약 만료'로 변경
-		List<ReservationVO> rvo = roomService.roomEndSelect();
+		List<ReservationVO> rvo1 = roomService.roomEndSelect();
 		
-		for (int i = 0; i < rvo.size(); i++) {
-			ReservationVO res = new ReservationVO(rvo.get(i).getR_endDate(), rvo.get(i).getR_floor(), rvo.get(i).getR_room(), rvo.get(i).getR_status());
-			roomService.roomStatusUpdate(res);
-			roomService.roomUsableUpdate(res);
+		for (int i = 0; i < rvo1.size(); i++) {
+			ReservationVO res1 = new ReservationVO(rvo1.get(i).getR_endDate(), rvo1.get(i).getR_floor(), rvo1.get(i).getR_room(), rvo1.get(i).getR_status());
+			roomService.roomStatusUpdate(res1);
+			roomService.roomUsableUpdate(res1);
+		}
+		
+		// 예약 후 24시간 이내에 관리자가 승인을 해주지 않는 경우 예약 상태 '취소'로 변경
+		List<ReservationVO> rvo2 = roomService.roomCancel();
+		
+		for (int i = 0; i < rvo2.size(); i++) {
+			ReservationVO res2 = new ReservationVO(rvo2.get(i).getR_num(), rvo2.get(i).getR_floor(), rvo2.get(i).getR_room(), rvo2.get(i).getR_status());
+			roomService.roomCancelUpdate(res2);
+			roomService.roomUsableUpdate(res2);
 		}
 		
 		// 호실 현황 리스트
