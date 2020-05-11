@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wt.admin.reservation.vo.MoveInVO;
+import com.wt.admin.room.vo.AdminRoomVO;
 
 @Repository
 public class AdminMoveInDAOImpl implements AdminMoveInDAO {
@@ -42,5 +43,12 @@ public class AdminMoveInDAOImpl implements AdminMoveInDAO {
 		// TODO Auto-generated method stub
 		return (Integer) session.update("updateReqState", r_num);
 	}
+
+	@Override
+	public int updateReserve(AdminRoomVO rvo) {
+		// TODO Auto-generated method stub
+		return session.update("updateReserve", rvo);
+	}
+
 
 }

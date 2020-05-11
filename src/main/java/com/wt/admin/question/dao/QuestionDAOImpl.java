@@ -38,17 +38,17 @@ public class QuestionDAOImpl implements QuestionDAO {
 	public int insertAnswer(QnaVO avo) {
 		return session.insert("insertAnswer", avo);
 	}
-	
+
 	@Override
 	public int updateState(int num) {
 		return session.update("updateState", num);
 	}
-	
+
 	@Override
 	public int deleteAnswer(int q_num) {
 		return session.delete("deleteAnswer", q_num);
 	}
-	
+
 	@Override
 	public int deleteState(int q_ref) {
 		return session.update("deleteState", q_ref);
@@ -60,6 +60,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 		return session.update("updateAnswer", avo);
 	}
 
-
+	@Override
+	public QnaVO fileDownload(int q_num) {
+		return session.selectOne("fileDownload", q_num);
+	}
 
 }

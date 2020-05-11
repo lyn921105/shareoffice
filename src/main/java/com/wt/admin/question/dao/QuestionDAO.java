@@ -23,8 +23,6 @@ public interface QuestionDAO {
 
 	public int updateAnswer(QnaVO avo);
 
-	/*
-	 * public int answerUpdate(QnaVO avo); public int answerDelete(int q_num);
-	 */
+	public QnaVO fileDownload(int q_num);
 
 }

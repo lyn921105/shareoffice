@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.wt.admin.reservation.dao.AdminMoveInDAO;
 import com.wt.admin.reservation.vo.MoveInVO;
+import com.wt.admin.room.vo.AdminRoomVO;
 
 @Service
 public class AdminMoveInserviceImpl implements AdminMoveInService {
@@ -50,5 +51,12 @@ public class AdminMoveInserviceImpl implements AdminMoveInService {
 		// TODO Auto-generated method stub
 		return mDao.updateReqState(r_num);
 	}
+
+	@Override
+	public int updateReserve(AdminRoomVO rvo) {
+		// TODO Auto-generated method stub
+		return mDao.updateReserve(rvo);
+	}
+
 
 }

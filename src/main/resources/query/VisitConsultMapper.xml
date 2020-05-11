@@ -6,23 +6,19 @@
 	<sql id="visitCommon">
 		select v_num, v_name, v_phone, v_date, v_time, v_status
 		from visit_tbl
-		group by v_num, v_name, v_phone, v_date, v_time, v_status
+		
 		<if test="search=='today'">
 			<where>to_char(v_date, 'yyyy/mm/dd')= to_char(sysdate, 'yyyy/mm/dd')
 			</where>
 		</if>
+		
 		<if test="search=='3day'">
-			<where>to_char(sysdate,
-				'yy/mm/dd') <![CDATA[ <=]]>v_date
-				and v_date<![CDATA[ <=]]>to_char(sysdate+2,
-				'yy/mm/dd')
+			<where>to_char(sysdate, 'yy/mm/dd') <![CDATA[ <=]]>v_date and v_date<![CDATA[ <=]]>to_char(sysdate+2, 'yy/mm/dd')
 			</where>
 		</if>
+		
 		<if test="search=='week'">
-			<where>to_char(sysdate,
-				'yy/mm/dd') <![CDATA[ <=]]>v_date
-				and v_date<![CDATA[ <=]]>to_char(sysdate+6,
-				'yy/mm/dd')
+			<where>to_char(sysdate, 'yy/mm/dd') <![CDATA[ <=]]>v_date and v_date<![CDATA[ <=]]>to_char(sysdate+6, 'yy/mm/dd')
 			</where>
 		</if>
 
@@ -56,7 +52,8 @@
 
 	<select id="adminVisitListCnt" parameterType="visit"
 		resultType="int">
-		select nvl(count(1), 0) from(
+		select nvl(count(1), 0)
+		from(
 		select list.*, rownum as rnum
 		from(
 		<include refid="visitCommon"></include>
