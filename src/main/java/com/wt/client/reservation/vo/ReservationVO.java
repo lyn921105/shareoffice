@@ -14,6 +14,14 @@ public class ReservationVO {
 	private String r_room; // 호실
 	private String r_status; // 예약 상태
 
+	public ReservationVO(String r_endDate, String r_floor, String r_room, String r_status) {
+		super();
+		this.r_endDate = r_endDate;
+		this.r_floor = r_floor;
+		this.r_room = r_room;
+		this.r_status = r_status;
+	}
+
 	public int getR_num() {
 		return r_num;
 	}

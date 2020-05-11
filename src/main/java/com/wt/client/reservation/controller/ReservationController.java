@@ -43,6 +43,16 @@ public class ReservationController {
 	public String roomPopMain(Model model) {
 		log.info("roomChange 호출 성공");
 		
+		// 계약 만료시 예약 상태 '예약 가능'으로 변경, 예약 상태 '계약 만료'로 변경
+		List<ReservationVO> rvo = reservationService.resPopEndSelect();
+
+		for (int i = 0; i < rvo.size(); i++) {
+			ReservationVO res = new ReservationVO(rvo.get(i).getR_endDate(), rvo.get(i).getR_floor(), rvo.get(i).getR_room(), rvo.get(i).getR_status());
+			reservationService.resPopStatusUpdate(res);
+			reservationService.resPopUsableUpdate(res);
+		}
+		
+		// 호실 현황 리스트
 		List<AdminRoomVO> roomMain = reservationService.roomPopMain();
 		
 		if (!roomMain.isEmpty()) {
@@ -102,7 +112,12 @@ public class ReservationController {
 	// 예약 정보 DB에 저장
 	@RequestMapping(value="/reservationInsert")
 	public String reservationInsert(@ModelAttribute ReservationVO rvo) {
+		// 예약 정보 저장
 		reservationService.reservationInsert(rvo);
+		
+		// 호실 상태 변경
+		reservationService.roomUsable(rvo);
+		
 		return "index";
 	}
 	

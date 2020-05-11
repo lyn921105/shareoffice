@@ -28,4 +28,25 @@
 		WHERE o_floor = '1'
 		ORDER BY o_room ASC
 	</select>
+	
+	<!-- 만기날짜가 지난 로우 -->
+	<select id="roomEndSelect" resultType="res">
+		SELECT *
+		FROM reservation_tbl
+		WHERE r_enddate <![CDATA[<]]> sysdate AND r_status = '1'
+	</select>
+	
+	<!-- 만기날짜 지난 경우 예약 상태 변경 -->
+	<update id="roomStatusUpdate" parameterType="res">
+		UPDATE reservation_tbl
+		SET r_status = '4'
+		WHERE r_floor = #{r_floor} AND r_room = #{r_room}
+	</update>
+	
+	<!-- 만기날짜 지난 경우 예약 가능 상태 변경  -->
+	<update id="roomUsableUpdate" parameterType="res">
+		UPDATE office_tbl
+		SET o_reserve = '0'
+		WHERE o_floor = #{r_floor} AND o_room = #{r_room}
+	</update>
 </mapper>
