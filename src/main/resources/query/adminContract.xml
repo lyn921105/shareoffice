@@ -208,15 +208,17 @@
 		WHERE
 		r_num = #{r_num}
 	</update>
-	
+
 	<update id="officeRefundUpdate" parameterType="adminContract">
 		UPDATE office_tbl
 		SET
 		o_reserve = 0
 		WHERE
-		o_floor = (SELECT r_floor FROM reservation_tbl WHERE r_num = #{r_num})
+		o_floor = (SELECT r_floor FROM reservation_tbl
+		WHERE r_num = #{r_num})
 		AND
-		o_room = (SELECT r_room FROM reservation_tbl WHERE r_num = #{r_num})
+		o_room = (SELECT r_room FROM reservation_tbl
+		WHERE r_num = #{r_num})
 	</update>
 
 	<!-- 라인 차트 -->
@@ -238,8 +240,13 @@
 		r_count,
 		r_member
 		FROM reservation_tbl
-		WHERE SYSDATE > r_reservedate and
-		r_enddate > SYSDATE and r_status = 1
+		WHERE
+		to_char(add_months(sysdate,-1), 'yyyymm') >
+		to_char(r_reservedate,
+		'yyyymm') and
+		to_char(r_enddate,
+		'yyyymm') >
+		to_char(add_months(sysdate,-1), 'yyyymm')
 		GROUP BY r_member
 	</select>
 

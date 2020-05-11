@@ -89,9 +89,15 @@
 			<input type="hidden" id="search" name="search"
 				value="${data.search }"> <input type="hidden" id="page"
 				name="page" value="${data.page }"> <input type="hidden"
-				id="pageSize" name="pageSize" value="10"> <input type="text"
-				name="keyword" id="keyword" placeholder="이름을 입력하세요"> <input
-				type="button" id="memberSearch" value="검색" />
+				id="pageSize" name="pageSize" value="10">
+				<div class="input-group" style="width : 200px">
+				<input type="text" name="keyword" id="keyword" class="form-control" placeholder="이름을 입력하세요">
+				<div class="input-group-btn">
+				<button type="button" class="btn btn-default" id="memberSearch">
+				<i class="glyphicon glyphicon-search"></i>
+				</button>
+				</div>
+				</div>
 		</form>
 	</div>
 	<!-- 검색 기능 종료 -->
