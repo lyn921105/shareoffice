@@ -52,5 +52,15 @@ public class RoomServiceImpl implements RoomService {
 		return roomDao.roomUsableUpdate(rvo);
 	}
 
+	@Override
+	public List<ReservationVO> roomCancel() {
+		return roomDao.roomCancel();
+	}
+
+	@Override
+	public int roomCancelUpdate(ReservationVO rvo) {
+		return roomDao.roomCancelUpdate(rvo);
+	}
+
 
 }

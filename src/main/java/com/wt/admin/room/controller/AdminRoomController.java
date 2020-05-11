@@ -3,7 +3,6 @@ package com.wt.admin.room.controller;
 import java.io.IOException;
 import java.util.List;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wt.admin.room.service.AdminRoomService;
 import com.wt.admin.room.vo.AdminRoomVO;
-import com.wt.client.reservation.service.ReservationService;
 import com.wt.client.reservation.vo.ReservationVO;
+import com.wt.client.room.service.RoomService;
 import com.wt.common.file.FileUploadUtil;
 
 @Controller
@@ -32,20 +31,20 @@ public class AdminRoomController {
 	private AdminRoomService adminRoomService;
 	
 	@Autowired
-	private ReservationService reservationService;
+	private RoomService roomService;
 
 	// 호실 현황 페이지
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String roomMain(Model model) {
 
 		// 계약 만료시 예약 상태 '예약 가능'으로 변경, 예약 상태 '계약 만료'로 변경
-		List<ReservationVO> rvo = reservationService.resPopEndSelect();
+		List<ReservationVO> rvo = roomService.roomEndSelect();
 		
 		for (int i = 0; i < rvo.size(); i++) {
 			ReservationVO res = new ReservationVO(rvo.get(i).getR_endDate(), rvo.get(i).getR_floor(),
 					rvo.get(i).getR_room(), rvo.get(i).getR_status());
-			reservationService.resPopStatusUpdate(res);
-			reservationService.resPopUsableUpdate(res);
+			roomService.roomStatusUpdate(res);
+			roomService.roomUsableUpdate(res);
 		}
 
 		List<AdminRoomVO> roomMain = adminRoomService.roomMain();

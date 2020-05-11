@@ -13,4 +13,6 @@ public interface RoomDao {
 	public List<ReservationVO> roomEndSelect();
 	public int roomStatusUpdate(ReservationVO rvo);
 	public int roomUsableUpdate(ReservationVO rvo);
+	public List<ReservationVO> roomCancel();
+	public int roomCancelUpdate(ReservationVO rvo);
 }

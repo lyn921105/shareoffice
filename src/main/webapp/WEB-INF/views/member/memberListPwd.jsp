@@ -37,14 +37,17 @@ $(function() {
 	
 	<div class="container">
 		<form id="pwd_info">
-			<h4>비밀번호 확인이 필요합니다</h4>
+			<div class="form-group">
+				<label for="c_id">아이디</label>			
+				<input type="text" class="form-control" id="c_id" name="c_id" value="${loginSuccess}" readonly>
+			</div>
 			<div class="form-group">
 				<label>비밀번호</label>
 				<input type="password" id="c_pwd" name="c_pwd" class="form-control">
 			</div>
 		</form>
 		<input type="button" id="pwd_success" class="btn btn-success" value="예약현황으로 이동">
-		<input type="button" id="home_page" class="btn btn-default" value="돌아가기">
+		<input type="button" id="home_page" class="cencle btn btn-danger" value="취소">
 	</div>
 </body>
 </html>
