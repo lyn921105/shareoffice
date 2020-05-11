@@ -14,6 +14,14 @@
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+	
 	<h1>회원정보수정</h1>
 	<hr>
 	<form id="memberModify" action="/member/memberModifySuccess" method="post">

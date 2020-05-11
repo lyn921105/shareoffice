@@ -64,6 +64,7 @@ function goPage(page) {
 </head>
 <body>
 	<h2>환불 요청</h2>
+	<hr/>
 	<select id="division">
 		<option id="d0" value="0">전체</option>
 		<option id="d1" value="1">환불 대기</option>

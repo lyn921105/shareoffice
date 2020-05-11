@@ -37,6 +37,7 @@ public class AdminContractDaoImpl implements AdminContractDao {
 
 	@Override
 	public int refundUpdate(AdminContractVO avo) {
+		session.update("officeRefundUpdate", avo);
 		return session.update("refundUpdate", avo);
 	}
 

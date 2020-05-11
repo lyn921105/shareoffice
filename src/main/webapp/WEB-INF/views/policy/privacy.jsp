@@ -29,11 +29,11 @@
 			<div class="btn_area">
 				<a
 					href="http://www.law.go.kr/lsInfoP.do?lsiSeq=167388&amp;efYd=20150421#0000"
-					class="sp btn0_1">‘정보통신망법’ 바로가기</a> <a
+					class="btn btn-success">‘정보통신망법’ 바로가기</a> <a
 					href="http://www.law.go.kr/lsInfoP.do?lsiSeq=173223&amp;efYd=20150724#0000"
-					class="sp btn0_2">‘개인정보보호법’ 바로가기</a> <a
+					class="btn btn-success">‘개인정보보호법’ 바로가기</a> <a
 					href="http://www.oecd.org/sti/ieconomy/oecdguidelinesontheprotectionofprivacyandtransborderflowsofpersonaldata.htm"
-					class="sp btn0_3">‘OECD Guidelines(영문)’ 바로가기</a>
+					class="btn btn-success">‘OECD Guidelines(영문)’ 바로가기</a>
 			</div>
 
 			<div class="shortcut">
@@ -41,9 +41,9 @@
 					"본 개인정보처리방침의 목차는 아래와 같습니다." <br> "일부는 관계법령이 개인정보처리방침의 작성에 있어
 					요구하는 필수 사항을 포함하였고, 나머지는 네이버가 자체적으로 이용자의 개인정보 보호에 있어 중요하다 판단하는 내용을
 					추가하였습니다."
-				<ol class="sc1">
-					<li><i>1.</i> <a href="#a1">개인정보처리방침의 의의</a></li>
-					<li><i>2.</i> <a href="#a2">수집하는 개인정보 (필수 안내사항)</a>
+				<ol class="alert alert-success">
+					<li><a href="#a1">개인정보처리방침의 의의</a></li>
+					<li><a href="#a2">수집하는 개인정보 (필수 안내사항)</a>
 				</ol>
 			</div>
 
