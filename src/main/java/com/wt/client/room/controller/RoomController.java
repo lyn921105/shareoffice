@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wt.admin.room.vo.AdminRoomVO;
+import com.wt.client.reservation.vo.ReservationVO;
 import com.wt.client.room.service.RoomService;
 
 @Controller
@@ -30,6 +31,16 @@ public class RoomController {
 	public String roomStatus(Model model) {
 		log.info("roomStatus 호출 성공");
 		
+		// 계약 만료시 예약 상태 '예약 가능'으로 변경, 예약 상태 '계약 만료'로 변경
+		List<ReservationVO> rvo = roomService.roomEndSelect();
+		
+		for (int i = 0; i < rvo.size(); i++) {
+			ReservationVO res = new ReservationVO(rvo.get(i).getR_endDate(), rvo.get(i).getR_floor(), rvo.get(i).getR_room(), rvo.get(i).getR_status());
+			roomService.roomStatusUpdate(res);
+			roomService.roomUsableUpdate(res);
+		}
+		
+		// 호실 현황 리스트
 		List<AdminRoomVO> roomMain = roomService.roomStatus();
 		
 		if (!roomMain.isEmpty()) {
@@ -69,4 +80,5 @@ public class RoomController {
 
 		return "room/roomView";
 	}
+	
 }

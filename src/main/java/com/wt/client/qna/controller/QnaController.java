@@ -1,6 +1,5 @@
 package com.wt.client.qna.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wt.client.qna.service.QnaService;
 import com.wt.client.qna.vo.QnaVO;

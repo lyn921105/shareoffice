@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wt.admin.room.vo.AdminRoomVO;
+import com.wt.client.reservation.vo.ReservationVO;
 import com.wt.client.room.dao.RoomDao;
 
 @Service
@@ -35,5 +36,21 @@ public class RoomServiceImpl implements RoomService {
 		roomView = roomDao.roomView();
 		return roomView;
 	}
+
+	@Override
+	public List<ReservationVO> roomEndSelect() {
+		return roomDao.roomEndSelect();
+	}
+	
+	@Override
+	public int roomStatusUpdate(ReservationVO rvo) {
+		return roomDao.roomStatusUpdate(rvo);
+	}
+
+	@Override
+	public int roomUsableUpdate(ReservationVO rvo) {
+		return roomDao.roomUsableUpdate(rvo);
+	}
+
 
 }

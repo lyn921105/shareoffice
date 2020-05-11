@@ -20,7 +20,7 @@
 	<ul class="list-group">
 		<li><a class="list-group-item menuList" href="/adminRoom/main">호실 관리</a></li>
 		<li><a class="list-group-item menuList" href="/adminRoom/main">&nbsp;&nbsp;&nbsp;&nbsp;호실 등록/변경</a></li>
-		<li><a class="list-group-item menuList" href="/adminRoom/usestatus">&nbsp;&nbsp;&nbsp;&nbsp;상담/이용률 통계</a></li>
+		<li><a class="list-group-item menuList" href="/adminContract/chart">&nbsp;&nbsp;&nbsp;&nbsp;상담/이용률 통계</a></li>
 	</ul>
 	<ul class="list-group">	
 		<li><a class="list-group-item menuList" href="/adminQuestion/qnaList">문의 관리</a></li>

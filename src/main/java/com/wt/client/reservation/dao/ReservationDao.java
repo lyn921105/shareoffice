@@ -11,4 +11,8 @@ public interface ReservationDao {
 	public List<AdminRoomVO> roomPopEnd(String date);
 	public AdminRoomVO totalMoney(AdminRoomVO rvo);
 	public int reservationInsert(ReservationVO rvo);
+	public int roomUsable(ReservationVO rvo);
+	public List<ReservationVO> resPopEndSelect();
+	public int resPopStatusUpdate(ReservationVO rvo);
+	public int resPopUsableUpdate(ReservationVO rvo);
 }

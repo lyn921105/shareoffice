@@ -45,4 +45,32 @@
 		INSERT INTO reservation_tbl(r_num, c_id, r_company, r_phone, r_member, r_regdate, r_price, r_enddate, r_reservedate, r_floor, r_room, r_status)
 		VALUES(#{r_num}, #{c_id}, #{r_company}, #{r_phone}, #{r_member}, sysdate, #{r_price}, #{r_endDate}, #{r_reserveDate}, #{r_floor}, #{r_room}, '1')
 	</insert>
+	
+	<!-- 방 이용가능 상태 변경 -->
+	<update id="roomUsable" parameterType="res">
+		UPDATE office_tbl
+		SET o_reserve = '1'
+		WHERE o_floor = #{r_floor} AND o_room = #{r_room}
+	</update>
+	
+	<!-- 만기날짜가 지난 로우 -->
+	<select id="resPopEndSelect" resultType="res">
+		SELECT *
+		FROM reservation_tbl
+		WHERE r_enddate <![CDATA[<]]> sysdate AND r_status = '1'
+	</select>
+	
+	<!-- 만기날짜 지난 경우 예약 상태 변경 -->
+	<update id="resPopStatusUpdate" parameterType="res">
+		UPDATE reservation_tbl
+		SET r_status = '4'
+		WHERE r_floor = #{r_floor} AND r_room = #{r_room}
+	</update>
+	
+	<!-- 만기날짜 지난 경우 예약 가능 상태 변경  -->
+	<update id="resPopUsableUpdate" parameterType="res">
+		UPDATE office_tbl
+		SET o_reserve = '0'
+		WHERE o_floor = #{r_floor} AND o_room = #{r_room}
+	</update>
 </mapper>

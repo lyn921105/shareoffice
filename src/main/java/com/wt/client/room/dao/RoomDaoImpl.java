@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wt.admin.room.vo.AdminRoomVO;
+import com.wt.client.reservation.vo.ReservationVO;
 
 
 @Repository
@@ -28,5 +29,21 @@ public class RoomDaoImpl implements RoomDao {
 	public List<AdminRoomVO> roomView() {
 		return session.selectList("roomView");
 	}
+
+	@Override
+	public List<ReservationVO> roomEndSelect() {
+		return session.selectList("roomEndSelect");
+	}
+	
+	@Override
+	public int roomStatusUpdate(ReservationVO rvo) {
+		return session.update("roomStatusUpdate", rvo);
+	}
+
+	@Override
+	public int roomUsableUpdate(ReservationVO rvo) {
+		return session.update("roomUsableUpdate", rvo);
+	}
+
 
 }
