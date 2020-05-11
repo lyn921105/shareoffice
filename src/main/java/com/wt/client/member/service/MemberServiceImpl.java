@@ -115,4 +115,14 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO memberModifyPwChk(MemberVO vo) throws Exception {
 		return dao.memberModifyPwChk(vo);
 	}
+
+	@Override
+	public ReservationVO memberDetailForm(int r_num) {
+		return dao.memberDetailForm(r_num);
+	}
+
+	@Override
+	public int memberRefund(ReservationVO rvo) {
+		return dao.memberRefund(rvo);
+	}
 }

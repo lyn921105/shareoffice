@@ -19,7 +19,7 @@
 			//상세 페이지로 이동하기 위해 form추가
 			$("#detailForm").attr({
 				"method" : "get",
-				"action" : "/member/memberDetail"
+				"action" : "/member/memberDetailForm"
 			});
 			$("#detailForm").submit();
 		});
@@ -27,6 +27,14 @@
 </script>
 </head>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+
 	<!-- 상세 페이지 이동을 위한 FORM -->
 	<form name="detailForm" id="detailForm">
 		<input type="hidden" name="r_num" id="r_num">
@@ -63,7 +71,7 @@
 										<th>${res.r_price}</th>
 										<th>${res.r_company}</th>
 										<c:choose>
-											<c:when test="${res.r_status eq 1}">
+											<c:when test="${res.r_status eq 0}">
 												<th>예약</th>
 											</c:when>
 										</c:choose>
@@ -103,10 +111,10 @@
 										<th>${res.r_price}</th>
 										<th>${res.r_company}</th>
 										<c:choose>
-											<c:when test="${res.r_status eq 2}">
+											<c:when test="${res.r_status eq 1}">
 												<th>이용중</th>
 											</c:when>
-											<c:when test="${res.r_status eq 3}">
+											<c:when test="${res.r_status eq 2}">
 												<th>환불요청</th>
 											</c:when>
 										</c:choose>
@@ -139,19 +147,19 @@
 						<c:choose>
 							<c:when test="${not empty res_list3}">
 								<c:forEach var="res" items="${res_list3}" varStatus="status">
-									<tr data-num="${res.r_num}" class="goDetail">
+									<tr data-num="${res.r_num}">
 										<th>${res.r_num}</th>
 										<th>${res.r_reserveDate}~${res.r_endDate}</th>
 										<th>${res.r_floor}${res.r_room}호</th>
 										<th>${res.r_price}</th>
 										<th>${res.r_company}</th>
 										<c:choose>
+											<c:when test="${res.r_status eq 3}">
+												<th>환불완료</th>
+											</c:when>
 											<c:when test="${res.r_status eq 4}">
 												<th>계약만료</th>
 											</c:when>
-											<c:otherwise>
-												<th>환불완료</th>
-											</c:otherwise>
 										</c:choose>
 									</tr>
 								</c:forEach>

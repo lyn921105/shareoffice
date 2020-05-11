@@ -85,7 +85,7 @@ public class QuestionServiceImpl implements QuestionService {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public int deleteState(int q_ref) {
 		int result = 0;
@@ -99,19 +99,24 @@ public class QuestionServiceImpl implements QuestionService {
 
 		return result;
 	}
-	
+
 	@Override
 	public int updateAnswer(QnaVO avo) {
-		int result=0;
-		
+		int result = 0;
+
 		try {
-			result=qDao.updateAnswer(avo);
+			result = qDao.updateAnswer(avo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			result=0;
+			result = 0;
 		}
-		
+
 		return result;
+	}
+
+	@Override
+	public QnaVO fileDownload(int q_num) {
+		return qDao.fileDownload(q_num);
 	}
 
 }

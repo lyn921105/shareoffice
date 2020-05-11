@@ -41,6 +41,14 @@
 	})
 </script>
 <body>
+	<!-- 비로그인시 처리 -->
+	<script type="text/javascript">
+		<c:if test="${empty loginSuccess}">
+			alert("로그인이 필요합니다");
+			location.href="/login/login";
+		</c:if>
+	</script>
+	
 	<section id="container">
 		<form action="/member/memberDelete" method="POST">
 			<div class="form-group has-feedback">

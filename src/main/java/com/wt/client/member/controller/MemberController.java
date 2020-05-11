@@ -219,8 +219,23 @@ public class MemberController {
 
 	// 마이페이지 예약 현황 상세페이지 폼
 	@RequestMapping(value = "/memberDetailForm")
-	public String memberDetailForm() {
+	public String memberDetailForm(HttpServletRequest request, Model model) {
+		int r_num = Integer.parseInt(request.getParameter("r_num"));
+		
+		
+		ReservationVO rvo = service.memberDetailForm(r_num);
+		
+		model.addAttribute("res", rvo);
+		
 		return "member/memberDetail";
+	}
+	
+	// 마이페이지 환불 요청
+	@RequestMapping(value="/memberRefund")
+	public String memberRefund(@ModelAttribute ReservationVO rvo) {
+		service.memberRefund(rvo);
+		
+		return "index";
 	}
 
 }

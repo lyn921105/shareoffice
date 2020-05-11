@@ -6,7 +6,7 @@
 
 	<sql id="qnaCommon">
 		select q_num, q_title, c_id, a_id, q_regdate, q_state, q_ref, q_step
-		
+
 		from question_tbl
 		<if test="search=='notAnswer'">
 			<where>
@@ -38,7 +38,8 @@
 		</where>
 	</select>
 
-	<select id="adminQnaListCnt" parameterType="qna" resultType="int">
+	<select id="adminQnaListCnt" parameterType="qna"
+		resultType="int">
 		select nvl(count(1), 0) from(
 		select list.*, rownum as rnum
 		from(
@@ -51,10 +52,12 @@
 	<select id="questionDetail" parameterType="int" resultType="qna">
 
 		select
-		q_num, q_title, c_id, a_id, to_char(q_regdate, 'yyyy-mm-dd hh24:mi')
+		q_num, q_title, c_id, a_id, to_char(q_regdate, 'yyyy-mm-dd
+		hh24:mi')
 		as q_regdate,
 		q_file, q_ref, q_file,
-		q_content, q_state from Question_tbl where q_num=#{q_num}
+		q_content, q_state from
+		Question_tbl where q_num=#{q_num}
 	</select>
 
 	<select id="getAdminAccount" parameterType="qna"
@@ -68,25 +71,41 @@
 			select question_seq.nextval from dual
 		</selectKey>
 		INSERT INTO Question_tbl
-		(q_num, q_title, q_content, q_ref, q_step, a_id, q_state, c_id <if test="q_file!=null and q_file!=''">, q_file</if>)
+		(q_num, q_title, q_content, q_ref, q_step,
+		a_id, q_state, c_id
+		<if test="q_file!=null and q_file!=''">, q_file</if>
+		)
 		VALUES
-		(#{q_num},#{q_title},#{q_content},#{q_ref},'1', #{a_id}, '3', #{c_id} <if test="q_file !=null and q_file!=''">, #{q_file}</if> )
+		(#{q_num},#{q_title},#{q_content},#{q_ref},'1', #{a_id}, '3',
+		#{c_id}
+		<if test="q_file !=null and q_file!=''">, #{q_file}</if>
+		)
 	</insert>
-	
+
 	<update id="updateState" parameterType="int">
-	update question_tbl set q_state='2' where q_num=#{num}
+		update question_tbl set
+		q_state='2' where q_num=#{num}
 	</update>
-	
+
 	<delete id="deleteAnswer" parameterType="qna">
-	DELETE FROM question_tbl WHERE q_num= #{q_num} </delete>
-	
+		DELETE FROM question_tbl
+		WHERE q_num= #{q_num}
+	</delete>
+
 	<update id="deleteState" parameterType="int">
-	update question_tbl set q_state='1' where q_num=#{q_ref}
+		update question_tbl set
+		q_state='1' where q_num=#{q_ref}
 	</update>
-	
+
 	<update id="updateAnswer" parameterType="qna">
-	update question_tbl set q_content=#{q_content}<if test="q_file !=null and q_file!=''">, q_file=#{q_file}</if> where q_num=#{q_num}
-	
+		update question_tbl set q_content=#{q_content}
+		<if test="q_file !=null and q_file!=''">, q_file=#{q_file}</if>
+		where q_num=#{q_num}
 	</update>
+
+	<select id="fileDownload" parameterType="qna" resultType="qna">
+		select
+		q_file from question_tbl where q_num=#{q_num}
+	</select>
 
 </mapper>

@@ -59,6 +59,12 @@ $(function(){
 			}),
 			success : function(data) {
 				$("#r_price").val(data.o_price * month);
+				
+				// 선택호실 변경시 초기화
+				$("#r_member").prop('disabled', true);
+				$("#r_member option").prop('disabled', true);
+				$("#r_member option").css("background-color", "white");
+				
 				$("#r_member").attr('disabled', false);
 				for (let i = 1; i <= data.o_member; i++) {
 					$('#r_member option[value="' + i + '"]').prop('disabled', false);
@@ -140,7 +146,7 @@ $(function(){
 			<input type="hidden" id="r_endDate" name="r_endDate">
 			<div class="form-group">
 				<label for="c_id">아이디</label>			
-				<input type="text" class="form-control" id="c_id" name="c_id" value="${c_id}" readonly>
+				<input type="text" class="form-control" id="c_id" name="c_id" value="${loginSuccess}" readonly>
 			</div>
 			<div class="form-group">
 				<label for="r_company">입주사명</label>			

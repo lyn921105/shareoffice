@@ -75,9 +75,19 @@
 	</select>
 
 	<update id="updateReqState" parameterType="int">
-		update reservation_tbl
-		set r_status='1', r_regdate=sysdate where
+		update
+		reservation_tbl
+		set
+		r_status='1', r_regdate=sysdate
+		where
 		r_num=#{r_num}
 	</update>
-
+	
+	<update id="updateReserve" parameterType="adminRoom">
+	update
+	office_tbl
+	set
+	o_reserve='1'
+	where o_floor=#{o_floor} and o_room=#{o_room}
+	</update>
 </mapper>

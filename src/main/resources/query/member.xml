@@ -64,21 +64,21 @@
 	<select id="memberReserve" parameterType="String" resultType="res">
 		SELECT r_num, TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reserveDate, TO_CHAR(r_enddate, 'yyyy-mm-dd') r_endDate, r_floor, r_room, r_price, r_company, r_status
 		FROM reservation_tbl
-		WHERE c_id = #{c_id} AND r_status = '1'
+		WHERE c_id = #{c_id} AND r_status = '0'
 		ORDER BY r_num DESC
 	</select>
 	
 	<select id="memberUse" parameterType="String" resultType="res">
 		SELECT r_num, TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reserveDate, TO_CHAR(r_enddate, 'yyyy-mm-dd') r_endDate, r_floor, r_room, r_price, r_company, r_status
 		FROM reservation_tbl
-		WHERE c_id = #{c_id} AND r_status IN ('2', '3')
+		WHERE c_id = #{c_id} AND r_status IN ('1', '2')
 		ORDER BY r_num DESC
 	</select>
 	
 	<select id="memberDone" parameterType="String" resultType="res">
 		SELECT r_num, TO_CHAR(r_reservedate, 'yyyy-mm-dd') r_reserveDate, TO_CHAR(r_enddate, 'yyyy-mm-dd') r_endDate, r_floor, r_room, r_price, r_company, r_status
 		FROM reservation_tbl
-		WHERE c_id = #{c_id} AND NOT r_status IN ('1', '2', '3')
+		WHERE c_id = #{c_id} AND NOT r_status IN ('0', '1', '2')
 		ORDER BY r_num DESC
 	</select>
 	
@@ -88,5 +88,19 @@
 		WHERE c_id = #{c_id}
 		AND c_pwd = #{c_pwd}
 	</delete>
+	
+	<!-- 회원 상세정보(환불 요청 가능) -->
+	<select id="memberDetailForm" parameterType="int" resultType="res">
+		SELECT *
+		FROM reservation_tbl
+		WHERE r_num = #{value}
+	</select>
+	
+	<!-- 환불 요청 -->
+	<update id="memberRefund" parameterType="res">
+		UPDATE reservation_tbl
+		SET r_status = '2'
+		WHERE r_num = #{r_num}
+	</update>
 
 </mapper>
