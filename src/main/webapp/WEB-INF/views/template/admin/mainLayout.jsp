@@ -26,6 +26,11 @@
 <script src="/resources/include/dist/assets/js/docs.min.js"></script>
 <script
 	src="/resources/include/dist/assets/js/ie10-viewport-bug-workaround.js"></script>
+<style type="text/css">
+th {
+text-align : center;
+}
+</style>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">

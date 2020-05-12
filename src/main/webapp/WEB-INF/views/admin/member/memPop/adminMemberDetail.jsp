@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
@@ -42,7 +44,7 @@ text-align:left;
 	<hr/>
 	<form id="form">
 		<input type="hidden" value="${avo.c_id }" name="c_id">
-		<table>
+		<table class="table table-striped table-hover">
 			<tr>
 				<th>ID</th>
 				<td>${avo.c_id }</td>
@@ -83,10 +85,12 @@ text-align:left;
 							</c:if>
 						</c:forEach>
 				</select></td>
-
 			</tr>
 		</table>
 	</form>
-	<input type="submit" id="memberSubmitBtn" value="확인">
+	<div class="text-center">
+	<input type="submit" id="memberSubmitBtn" value="확인" class="btn">
+	</div>
+	<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

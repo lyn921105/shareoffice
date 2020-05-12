@@ -184,7 +184,9 @@ th {
 			<th colspan="5" id="refundprice"></th>
 		</tr>
 	</table>
-	<input type="button" id="outBtn" value="확인" />
+	<div class="text-center">
+	<input type="button" id="outBtn" value="확인" class="btn" />
+	</div>
 	<c:if test="${avo.r_status eq 2 }">
 		<input type="button" id="refundUpdateBtn" value="승인" />
 	</c:if>

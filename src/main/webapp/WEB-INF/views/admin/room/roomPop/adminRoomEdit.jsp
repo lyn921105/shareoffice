@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
@@ -124,10 +126,16 @@
 		})
 	})
 </script>
+<style type="text/css">
+h2 {
+font-weight : bold;
+}
+</style>
 </head>
-
 <body>
-	<h1>${o_floor }${o_room }호정보변경및삭제</h1>
+	<h2>${o_floor }${o_room }호<span> 정보변경 및 삭제</span>
+	</h2>
+	<hr />
 	<div>
 		<form id="form" enctype="multipart/form-data">
 			<%-- 층과 호실 번호는 hidden으로 보냄 --%>
@@ -172,7 +180,7 @@
 			<input type="text" id="o_price" name="o_price"
 				value="${rvo.o_price }" />
 			<h3>사진 첨부</h3>
-			<h2>(1개 이상 첨부해주세요!)</h2>
+			<h5 style="color: red;">(1개 이상 첨부해주세요!)</h5>
 			<br />
 
 			<!-- 첨부파일 유무 확인 -->
@@ -250,10 +258,11 @@
 			</select> <br />
 		</form>
 	</div>
-	<div>
-		<input type="button" value="수정" id="roomUpdateBtn"> <input
-			type="button" value="삭제" id="roomDeleteBtn"> <input
-			type="button" value="닫기" onClick="window.close()">
+	<div class="text-center">
+		<input type="button" value="수정" id="roomUpdateBtn" class="btn">
+		<input type="button" value="삭제" id="roomDeleteBtn" class="btn">
+		<input type="button" value="닫기" onClick="window.close()" class="btn">
 	</div>
+	<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

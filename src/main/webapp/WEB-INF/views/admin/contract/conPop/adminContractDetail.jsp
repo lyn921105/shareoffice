@@ -113,7 +113,9 @@ text-align : center;
 		<td colspan="2">${avo.r_regdate }</td>
 	</tr>
 </table>
-<input type="button" value="확인" id="commitBtn">
+<div class="text-center">
+<input type="button" value="확인" id="commitBtn" class="btn">
+</div>
 	<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </body>
 
