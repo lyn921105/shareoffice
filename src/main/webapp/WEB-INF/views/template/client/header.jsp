@@ -3,26 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page trimDirectiveWhitespaces="true"%>
 <div class="container">
-	<ul class="nav navbar-nav navbar-right">
-		<c:if test="${loginSuccess == null or loginSuccess == ''}">
-			<li><a href="/login/login">로그인</a></li>
-			<li><a href="/member/injoin">회원가입</a>
-		</c:if>
-		<c:if test="${loginSuccess != null and loginSuccess != ''}">
-			<li class="form-control-static">[ ${loginSuccess} ]님 반갑습니다</li>
-			<li><a href="/login/logout">로그아웃</a></li>
-		</c:if>
-	</ul>
-</div>
-<div class="container">
-	<div class="navbar-header">
+	<div class="col-xs-2">
+		<a class="img-thumbnail" href="/"><img src="../../../../../resources/images/logo.png" alt="logo" width="97px" height="97px"></a>
+	</div>
+	<div class="col-xs-10">
+		<ul class="nav navbar-nav navbar-right">
+			<c:if test="${loginSuccess == null or loginSuccess == ''}">
+				<li><a href="/login/login">로그인</a></li>
+				<li><a href="/member/injoin">회원가입</a>
+			</c:if>
+			<c:if test="${loginSuccess != null and loginSuccess != ''}">
+				<li class="form-control-static">[ ${loginSuccess} ]님 반갑습니다</li>
+				<li><a href="/login/logout">로그아웃</a></li>
+			</c:if>
+		</ul>
+	</div>
+	<div class="col-xs-10">
 		<button type="button" class="navbar-toggle collapsed"
 			data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 			aria-controls="navbar">
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/">Work Tree</a>
 	</div>
 	<div id="navbar" class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-right">
