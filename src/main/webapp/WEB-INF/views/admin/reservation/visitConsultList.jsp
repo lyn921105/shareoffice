@@ -84,7 +84,8 @@
 
 	<div class="container">
 
-		<h1>방문상담 예약</h1>
+		<h2>방문상담 예약</h2>
+		<hr>
 		<!-- 방문 날짜에 따른 조회 옵션 -->
 		<form id="listOption">
 			<input type="hidden" id="page" name="page" value="${data.page }">
@@ -165,7 +166,7 @@
 		</div>
 		<!-- 페이지 네비게이션 -->
 		<br> <br>
-		<div id="qnaPage">
+		<div id="qnaPage" align="center">
 			<tag:paging page="${param.page }" total="${total }" list_size="10"></tag:paging>
 		</div>
 	</div>

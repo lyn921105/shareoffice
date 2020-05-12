@@ -76,9 +76,14 @@
 
 </head>
 <body>
+
 	<div class="container">
+
+		<h2>문의 상세</h2>
+		<hr>
 		<!-- 답변 작성페이지 이동 및 삭제를 위한 정보 -->
-		<form name="q_data" id="q_data" method="post" enctype="multipart/form-data">
+		<form name="q_data" id="q_data" method="post"
+			enctype="multipart/form-data">
 			<input type="hidden" id="q_num" name="q_num" value="${detail.q_num }" />
 			<input type="hidden" name="page" id="page" value="${param.page }" />
 			<input type="hidden" name="pageSize" id="pageSize" value="10" /> <input
@@ -89,7 +94,7 @@
 		</form>
 
 		<div id="detail">
-			<table id="detailQuestion" border="1">
+			<table id="detailQuestion" border="1" class="table table-bordered">
 				<tbody>
 					<tr>
 						<td colspan="4">${detail.q_title }</td>
@@ -124,7 +129,7 @@
 				</tbody>
 			</table>
 
-			<div id="button">
+			<div id="button" align="center">
 				<c:choose>
 					<c:when test="${not empty detail.a_id}">
 						<input type="button" name="goList" id="goList" value="목록">
