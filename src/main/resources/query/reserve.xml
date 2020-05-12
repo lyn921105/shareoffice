@@ -43,7 +43,7 @@
 			FROM dual
 		</selectKey>
 		INSERT INTO reservation_tbl(r_num, c_id, r_company, r_phone, r_member, r_regdate, r_price, r_enddate, r_reservedate, r_floor, r_room, r_status)
-		VALUES(#{r_num}, #{c_id}, #{r_company}, #{r_phone}, #{r_member}, sysdate, #{r_price}, #{r_endDate}, #{r_reserveDate}, #{r_floor}, #{r_room}, '1')
+		VALUES(#{r_num}, #{c_id}, #{r_company}, #{r_phone}, #{r_member}, sysdate, #{r_price}, #{r_endDate}, #{r_reserveDate}, #{r_floor}, #{r_room}, '0')
 	</insert>
 	
 	<!-- 방 이용가능 상태 변경 -->
