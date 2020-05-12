@@ -5,42 +5,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>FAQ 등록/수정</title>
 <!-- CSS -->
 <style type="text/css">
-
-#f_question{
+#f_question {
 	width: 630px;
 	height: 30px;
 }
 
-#f_answer, #faqBtn, input[type=text], textarea{
+#f_answer, #faqBtn, input[type=text], textarea {
 	width: 630px;
 }
 
-.question{
-width:630px;
-height: 30px;
-background-color: #C3C3C3;
-border-radius: 5px;
-padding: 5px;
+.question {
+	width: 630px;
+	height: 30px;
+	background-color: #C3C3C3;
+	border-radius: 5px;
+	padding: 5px;
 }
 
-.answer{
-width: 630px;
-margin: 10px;
+.answer {
+	width: 630px;
+	margin: 10px;
 }
 
-.button_group{
-float: right;
+.button_group {
+	float: right;
 }
 
-.faqUpdate, .faqDelete{
-background-color: rgba(0,0,0,0);
-border-color: rgba(0,0,0,0);
+.faqUpdate, .faqDelete {
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
 }
-
 </style>
 
 <!-- js -->
@@ -144,49 +144,52 @@ border-color: rgba(0,0,0,0);
 
 </script>
 <body>
-	<div class="container">
-		<div id="faqBtn" align="right">
-			<input type="button" id="faq_ok" value="등록" class="btn">
+	<h2>FAQ</h2>
+	<hr />
+	<div id="faqBtn" align="right">
+		<input type="button" id="faq_ok" value="등록" class="btn">
+	</div>
+	<form id="faqWriteForm" name="faqWriteForm">
+		<div id="faqwrite">
+			<span class="fq"><input type="text" name="f_question"
+				id="f_question" maxlength="100"><br> <textarea
+					name="f_answer" id="f_answer" maxlength="1000" rows="5"></textarea>
+			</span>
 		</div>
-		<form id="faqWriteForm" name="faqWriteForm">
-			<div id="faqwrite">
-				<span class="fq"><input type="text" name="f_question"
-					id="f_question" maxlength="100"><br> <textarea
-						name="f_answer" id="f_answer" maxlength="1000" rows="5"></textarea>
-				</span>
-			</div>
-		</form>
-
-
-			<div id="faqList">
-				<br> <br>
-				<div id="list">
-					<table>
-						<tbody>
-							<c:choose>
-								<c:when test="${not empty faqList }">
-									<c:forEach var="faq" items="${faqList }" varStatus="status">
-										<tr class="faqList" data-num="${faq.f_num }">
-											<td class="faqRow_${faq.f_num }">
-												<div class="question" data-fq="${faq.f_question }"><p class="ft" >${faq.f_question }
-												<span class="button_group"><input type="button" value="수정" class="faqUpdate">
-												<input type="button" value="삭제" class="faqDelete" onclick="faqDelete(${faq.f_num})"></span>
-												</div>
-												<div class="answer" data-fa="${faq.f_answer }">${faq.f_answer }</div><br></td>
-										</tr>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<div>
-										<span>등록된 faq가 없습니다. faq를 작성해주세요.</span>
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</tbody>
-					</table>
-				</div>
-			</div>
-	
+	</form>
+	<div id="faqList">
+		<br> <br>
+		<div id="list">
+			<table>
+				<tbody>
+					<c:choose>
+						<c:when test="${not empty faqList }">
+							<c:forEach var="faq" items="${faqList }" varStatus="status">
+								<tr class="faqList" data-num="${faq.f_num }">
+									<td class="faqRow_${faq.f_num }">
+										<div class="question" data-fq="${faq.f_question }">
+											<p class="ft">${faq.f_question }
+												<span class="button_group"><input type="button"
+													value="수정" class="faqUpdate"> <input type="button"
+													value="삭제" class="faqDelete"
+													onclick="faqDelete(${faq.f_num})"></span>
+										</div>
+										<div class="answer" data-fa="${faq.f_answer }">${faq.f_answer }</div>
+										<br>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div>
+								<span>등록된 faq가 없습니다. faq를 작성해주세요.</span>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
+<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </html>
