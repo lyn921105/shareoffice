@@ -72,7 +72,8 @@
 
 	<div class="container">
 
-		<h1>문의 관리</h1>
+		<h2>문의 관리</h2>
+		<hr>
 		<!-- 문의 글 상태에 따른 조회 옵션 -->
 		<form id="listOption">
 			<input type="hidden" id="page" name="page" value="${data.page }">
@@ -149,7 +150,7 @@
 		</div>
 		<!-- 페이지 네비게이션 -->
 		<br> <br>
-		<div id="qnaPage">
+		<div id="qnaPage" align="center">
 			<tag:paging page="${param.page }" total="${total }" list_size="10"></tag:paging>
 		</div>
 	</div>

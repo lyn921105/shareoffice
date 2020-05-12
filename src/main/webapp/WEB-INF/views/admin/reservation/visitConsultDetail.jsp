@@ -81,7 +81,7 @@ $(function(){
 						</c:when>
 					</c:choose>
 		</table>
-		<div class="button">
+		<div class="button" align="center">
 			<input type="button" value="목록" id="backList" name="backList">
 		</div>
 

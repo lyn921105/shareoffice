@@ -8,7 +8,40 @@
 <meta charset="UTF-8">
 <title>FAQ 등록/수정</title>
 <!-- CSS -->
-<link href="/resources/include/admin.css" rel="stylesheet">
+<style type="text/css">
+
+#f_question{
+	width: 630px;
+	height: 30px;
+}
+
+#f_answer, #faqBtn, input[type=text], textarea{
+	width: 630px;
+}
+
+.question{
+width:630px;
+height: 30px;
+background-color: #C3C3C3;
+border-radius: 5px;
+padding: 5px;
+}
+
+.answer{
+width: 630px;
+margin: 10px;
+}
+
+.button_group{
+float: right;
+}
+
+.faqUpdate, .faqDelete{
+background-color: rgba(0,0,0,0);
+border-color: rgba(0,0,0,0);
+}
+
+</style>
 
 <!-- js -->
 <script type="text/javascript"
@@ -53,16 +86,22 @@
 			
 			var htmls="";
 			htmls+='<td class="faqRow_'+f_num+'">';
+			htmls+='<div id="faqBtn"><span class="button_group">';
 			htmls+='<input type="button" value="저장" id="edit_ok" onclick=faqUpdate()>';
-			htmls+='<input type="button" value="취소" id="edit_cancle" onclick="cancle()"><br>';
+			htmls+='<input type="button" value="취소" id="edit_cancle" onclick="cancle()"></span><br>';
 			htmls+='<form id="faqEditForm">';
 			htmls+='<input type="hidden" value='+f_num+' name="f_num" id="f_num">';
 			htmls+='<input type="text" maxlength="100" id="f_question" name="f_question" value="'+f_question+'"><br>';
 			htmls+='<textarea maxlength="1000" id="f_answer" name="f_answer">'+f_answer+'</textarea>';
-			htmls+='</form></td>';
+			htmls+='</form><br></td>';
 			
-			//기존 입력 창 없애기
+			//기존 입력영역 닫기
 			$("#faqwrite").html("");
+			
+			//다른 수정버튼과 삭제 버튼 감추기
+			$(".faqUpdate").hide();
+			$(".faqDelete").hide();
+			$("#faq_ok").hide();
 			
 			$('.faqRow_'+f_num).replaceWith(htmls);
 			
@@ -106,7 +145,7 @@
 </script>
 <body>
 	<div class="container">
-		<div id="button" align="right">
+		<div id="faqBtn" align="right">
 			<input type="button" id="faq_ok" value="등록" class="btn">
 		</div>
 		<form id="faqWriteForm" name="faqWriteForm">
@@ -123,17 +162,17 @@
 				<br> <br>
 				<div id="list">
 					<table>
-						<tbody id="list">
+						<tbody>
 							<c:choose>
 								<c:when test="${not empty faqList }">
 									<c:forEach var="faq" items="${faqList }" varStatus="status">
 										<tr class="faqList" data-num="${faq.f_num }">
-											<td class="faqRow_${faq.f_num }"><input type="button"
-												value="수정" class="faqUpdate"> <input type="button"
-												value="삭제" class="faqDelete"
-												onclick="faqDelete(${faq.f_num})"> <br>
-												<div class="question" data-fq="${faq.f_question }">${faq.f_question }</div>
-												<div class="answer" data-fa="${faq.f_answer }">${faq.f_answer }</div></td>
+											<td class="faqRow_${faq.f_num }">
+												<div class="question" data-fq="${faq.f_question }"><p class="ft" >${faq.f_question }
+												<span class="button_group"><input type="button" value="수정" class="faqUpdate">
+												<input type="button" value="삭제" class="faqDelete" onclick="faqDelete(${faq.f_num})"></span>
+												</div>
+												<div class="answer" data-fa="${faq.f_answer }">${faq.f_answer }</div><br></td>
 										</tr>
 									</c:forEach>
 								</c:when>
