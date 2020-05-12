@@ -49,6 +49,18 @@
 		});
 	});
 </script>
+<style type="text/css">
+table {
+	text-align: center;
+	font-weight : bold;
+}
+
+td {
+width : 120px;
+height : 60px;
+padding : 10px;
+}
+</style>
 </head>
 <body>
 	<form id="form">
