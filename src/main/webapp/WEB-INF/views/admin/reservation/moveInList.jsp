@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>입주 예약 리스트</title>
 <!-- CSS -->
@@ -77,21 +79,16 @@ display: inline-block;
 </script>
 </head>
 <body>
-
 	<!-- 상세 페이지 이동을 위한 Form -->
 	<form id="detailForm" name="detailForm">
 		<input type="hidden" name="r_num" id="r_num"> <input
 			type="hidden" name="page" value="${data.page }">
 	</form>
-
-	<div class="container">
-
 		<div>
 			<h2>입주 예약 현황</h2>
 			<span>(신규요청: ${newRequest } 건)</span>
 			<hr>
 		</div>
-
 		<!-- 입주 상태에 따른 조회 옵션 -->
 		<form id="listOption">
 			<input type="hidden" id="order_by" name="order_by"
@@ -179,10 +176,6 @@ display: inline-block;
 		<div id="qnaPage" align="center">
 			<tag:paging page="${param.page }" total="${total }" list_size="10"></tag:paging>
 		</div>
-	</div>
-
-
-
-
 </body>
+<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </html>
