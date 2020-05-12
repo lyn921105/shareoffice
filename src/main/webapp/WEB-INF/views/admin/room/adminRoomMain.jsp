@@ -121,7 +121,6 @@ table {
 	text-align: center;
 	font-weight : bold;
 }
-
 table, tr, td {
 	border: 1px solid black;
 	border-collapse: collapse;

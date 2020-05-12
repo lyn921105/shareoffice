@@ -21,10 +21,14 @@
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <style type="text/css">
-#adminmenubox {
+#adminmenubox{
 position : absolute;
-top : 20%;
-left : 721px;
+width : 460px;
+height : 300px;
+text-align : center;
+top : 50%;
+left : 50%;
+transform : translate(-50%, -50%);
 }
 .menu {
 height : 140px;
@@ -55,11 +59,8 @@ color : black;
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</nav>
-	
-	<div class="text-center">
-	
 	<div class="container-fluid" style="min-height: 730px; float:none; margin:0 auto">
-	<div id="adminmenubox">
+	<div id="adminmenubox" class="text-center">
 		<div>
 		<a class="title-menu" href="/adminMember/list"><div class="menu" style="float:left">회원 <span class="glyphicon glyphicon-user"></span></div></a>
 		<a class="title-menu" href="/adminReservation/consultList"><div class="menu" style="float:left; margin-left:20px">예약 <span class="glyphicon glyphicon-pencil"></span></div></a>
@@ -71,9 +72,6 @@ color : black;
 		</div>
 	</div>
 	</div>
-	</div>
-	
-	
 	<div class="footer">
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>
