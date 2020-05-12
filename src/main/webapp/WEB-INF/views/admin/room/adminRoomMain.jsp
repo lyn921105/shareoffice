@@ -117,13 +117,19 @@
 </script>
 <style type="text/css">
 table {
-	width: 50%;
+	width: 500px;
 	text-align: center;
+	font-weight : bold;
 }
 
 table, tr, td {
 	border: 1px solid black;
 	border-collapse: collapse;
+}
+td {
+width : 120px;
+height : 60px;
+padding : 10px;
 }
 </style>
 </head>
