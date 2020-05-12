@@ -86,7 +86,7 @@
 			<tr>
 				<td>상태</td>
 				<c:choose>
-					<c:when test="${detail.r_status eq 99}">
+					<c:when test="${detail.r_status eq 5}">
 						<td colspan="3">취소</td>
 					</c:when>
 					<c:when test="${detail.r_status eq 0}">
@@ -96,7 +96,7 @@
 				</c:choose>
 			</tr>
 		</table>
-		<div class="button">
+		<div class="button" align="center">
 			<input type="button" value="목록" id="backList" name="backList">
 		</div>
 

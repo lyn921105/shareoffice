@@ -8,8 +8,12 @@
 <meta charset="UTF-8">
 <title>입주 예약 리스트</title>
 <!-- CSS -->
-<link href="/resources/include/admin.css" rel="stylesheet">
+<style type="text/css">
+h2{
+display: inline-block;
+}
 
+</style>
 <!-- js -->
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
@@ -83,8 +87,9 @@
 	<div class="container">
 
 		<div>
-			<h1>입주 예약 현황</h1>
-			<p>(신규요청: ${newRequest } 건)</p>
+			<h2>입주 예약 현황</h2>
+			<span>(신규요청: ${newRequest } 건)</span>
+			<hr>
 		</div>
 
 		<!-- 입주 상태에 따른 조회 옵션 -->
@@ -149,7 +154,7 @@
 									<td>${list.r_reserveDate }</td>
 									<td>${list.r_regdate }</td>
 									<c:choose>
-										<c:when test="${list.r_status eq 99}">
+										<c:when test="${list.r_status eq 5}">
 											<td>취소</td>
 										</c:when>
 										<c:when test="${list.r_status eq 0}">
@@ -171,7 +176,7 @@
 		</div>
 		<!-- 페이지 네비게이션 -->
 		<br> <br>
-		<div id="qnaPage">
+		<div id="qnaPage" align="center">
 			<tag:paging page="${param.page }" total="${total }" list_size="10"></tag:paging>
 		</div>
 	</div>
