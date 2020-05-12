@@ -48,10 +48,11 @@
 			location.href="/login/login";
 		</c:if>
 	</script>
-	<h1>회원정보수정</h1>
-	<hr>
+	
+	<h2>회원 탈퇴</h2>
+	
 	<section id="container">
-		<form action="/member/memberModify" method="POST">
+		<form action="/member/memberDeleteForm" method="POST">
 			<div class="form-group has-feedback">
 				<label class="control-label" for="c_id">아이디</label> <input
 					class="form-control" type="text" id="c_id" name="c_id"
@@ -62,7 +63,7 @@
 					class="form-control" type="password" id="c_pwd" name="c_pwd" />
 			</div>
 			<div class="form-group has-feedback">
-				<button class="btn btn-success" type="submit" id="submit">회원정보수정</button>
+				<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
 				<button class="cencle btn btn-danger" type="button">취소</button>
 			</div>
 		</form>

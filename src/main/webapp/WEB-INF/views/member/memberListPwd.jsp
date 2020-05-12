@@ -35,6 +35,7 @@ $(function() {
 		</c:if>
 	</script>
 	
+	<h2>예약 현황</h2>
 	<div class="container">
 		<form id="pwd_info">
 			<div class="form-group">

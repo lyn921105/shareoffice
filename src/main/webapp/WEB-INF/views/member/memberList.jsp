@@ -160,6 +160,9 @@
 											<c:when test="${res.r_status eq 4}">
 												<th>계약만료</th>
 											</c:when>
+											<c:otherwise>
+												<th>취소</th>
+											</c:otherwise>
 										</c:choose>
 									</tr>
 								</c:forEach>

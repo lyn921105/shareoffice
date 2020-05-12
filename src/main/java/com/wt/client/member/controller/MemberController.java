@@ -104,15 +104,26 @@ public class MemberController {
 	}
 
 	// 회원 탈퇴 get
-	@RequestMapping(value = "/memberDelete", method = RequestMethod.GET)
-	public String memberDelete() throws Exception {
+	@RequestMapping(value = "/memberDeletePwd", method = RequestMethod.GET)
+	public String memberDeletePwd() throws Exception {
 
-		return "member/memberDelete";
+		return "member/memberDeletePwd";
 	}
 
+	// 회원 탈퇴 Form
+	@RequestMapping(value = "/memberDeleteForm", method = RequestMethod.POST)
+	public String memberDelete(@ModelAttribute MemberVO mvo, HttpSession session, Model model) throws Exception {
+		String c_id = (String)session.getAttribute("loginSuccess");
+		mvo.setC_id(c_id);
+		
+		model.addAttribute("delete", mvo);
+		
+		return "member/memberDelete";
+	}
+	
 	// 회원 탈퇴 post
 	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
-	public String memberDelete(@ModelAttribute MemberVO mvo, HttpSession session) throws Exception {
+	public String memberDeleteDisabled(@ModelAttribute MemberVO mvo, HttpSession session) throws Exception {
 
 		service.memberDelete(mvo);
 		session.invalidate();

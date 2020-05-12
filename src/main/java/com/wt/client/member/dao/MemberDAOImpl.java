@@ -29,7 +29,7 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void memberDelete(MemberVO vo) throws Exception {
-		sql.delete("memberDelete", vo);
+		sql.update("memberDelete", vo);
 	}
 
 	// 아이디 중복 체크
@@ -47,7 +47,6 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public void logout(HttpSession session) {
-		System.out.println("로그아웃");
 		session.invalidate();
 	}
 

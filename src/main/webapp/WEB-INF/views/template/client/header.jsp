@@ -59,7 +59,7 @@
 				</a>
 				<ul class="dropdown-menu dropdown-menu-left" role="menu">
 					<li><a href="/member/memberModifyPwForm">회원 정보 수정</a></li>
-					<li><a href="/member/memberDelete">회원 탈퇴</a></li>
+					<li><a href="/member/memberDeletePwd">회원 탈퇴</a></li>
 					<li><a href="/member/memberListPwdForm">예약 현황</a></li>
 				</ul>
 			</li>
