@@ -67,7 +67,7 @@
 					<span class="form-static pull-right">${detail.q_regdate}</span>
 	 			</div>
 				<div class="form-group" style="border-top: dotted black 1px;">
-					<span class="form-static">${login}</span>
+					<span class="form-static">${loginSuccess}</span>
 					<a id="download" class="pull-right">${detail.q_file}</a>
 				</div>
 				<div class="form-group" style="margin-top: 8px;">

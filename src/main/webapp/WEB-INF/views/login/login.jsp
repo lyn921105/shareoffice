@@ -118,30 +118,36 @@
 </script>
 </head>
 <body>
-	<form name="loginForm" method="POST" action="/login/loginSuccess">
+	<form class="container" name="loginForm" method="POST" action="/login/loginSuccess">
 		<input type="hidden" id="rsaPublicKeyModulus"
 			value="">
 		<input type="hidden" id="rsaPublicKeyExponent" >
-		<div class="container">
+		<div class="text-center">
 			<div class="form-group" style="margin-bottom: 8px;">
-				<label>아이디</label>
-				<input type="text" class="form-control" id="membId"
+				<input type="text" id="membId"
 					title="아이디 입력" maxlength="20" placeholder="아이디"
 					style="width: 370px" name="c_id">
-				<label>비밀번호</label>
-				<input type="password" class="form-control" id="pw"
-					title="비밀번호 입력" placeholder="비밀번호" style="width: 370px" name="c_pwd"
+			</div>
+			<div>
+				<input type="password" id="pw"
+					title="비밀번호 입력" placeholder="비밀번호" style="width: 370px; margin-bottom: 8px;" name="c_pwd"
 					>
 			</div>
 			<div style="margin-bottom: 8px;">
 				<input type="submit" class="btn btn-success"
-					id="btnLogin" value="로그인">
+					id="btnLogin" style="width: 370px;" value="로그인">
 			</div>
 			<div>
-				<a href="/login/serchId" class="btn btn-default">아이디 찾기</a> 
-				<a href="/login/serchPw" class="btn btn-default">비밀번호 찾기</a>
-				<a href="/login/join" class="btn btn-info"
-				id="btnJoin">회원가입</a>
+				<a href="/login/serchId">ID 찾기></a>&nbsp; 
+				<a href="/login/serchPw">PW 찾기></a>
+			</div>
+			<div>
+				<p>회원가입을 하시면 이벤트 신청, 미팅룸 예약 등 다양한</p>
+				<p>서비스를 이용하실 수 있습니다</p>
+			</div>
+			<div>
+				<a href="/login/join" class="btn btn-default"
+				id="btnJoin" style="width: 370px">회원가입</a>
 			</div>
 		</div>
 	</form>

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
@@ -36,9 +38,15 @@
 		})
 	})
 </script>
+<style type="text/css">
+h2 {
+font-weight : bold;
+}
+</style>
 </head>
 <body>
-	<h1>${o_floor }${o_room }호등록</h1>
+	<h2>${o_floor }${o_room }<span>호 등록</span></h2>
+	<hr/>
 	<div>
 		<form id="form" enctype="multipart/form-data">
 			<%-- 층과 호실 번호는 hidden으로 보냄 --%>
@@ -62,11 +70,14 @@
 			<input type="text" id="o_price" name="o_price"
 				placeholder="가격을 입력하세요(단위 : 원)" />
 			<h3>사진 첨부</h3>
-			<h2>(1개 이상 첨부해주세요!)</h2>
-			<input type="file" id="thumbfile" name="thumbfile"><br /> <input
-				type="file" name="file1"><br /> <input type="file"
-				name="file2"><br /> <input type="file" name="file3"><br />
-
+			<h5 style="color : red;">(1개 이상 첨부해주세요!)</h5>
+			<input type="file" id="thumbfile" name="thumbfile">
+					<hr /> <input
+				type="file" name="file1">
+					<hr /> <input type="file"
+				name="file2">
+					<hr /> <input type="file" name="file3">
+					<hr />
 			<h3>호실 상태</h3>
 			<select name="o_status">
 				<option value="1">사용 가능</option>
@@ -74,9 +85,10 @@
 			</select> <br />
 		</form>
 	</div>
-	<div>
-		<input type="button" value="저장" id="roomInsertBtn"> <input
-			type="button" value="닫기" onClick="window.close()">
+	<div class="text-center">
+		<input type="button" value="저장" id="roomInsertBtn" class="btn"> <input
+			type="button" value="닫기" onClick="window.close()" class="btn">
 	</div>
+<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

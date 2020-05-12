@@ -61,13 +61,13 @@ color : black;
 	<div class="container-fluid" style="min-height: 730px; float:none; margin:0 auto">
 	<div id="adminmenubox">
 		<div>
-		<a class="title-menu" href="/adminMember/list"><div class="menu" style="float:left">회원<span class="glyphicon glyphicon-user"></span></div></a>
-		<a class="title-menu" href="/adminReservation/consultList"><div class="menu" style="float:left; margin-left:20px">예약<span class="glyphicon glyphicon-pencil"></span></div></a>
-		<a class="title-menu" href="/adminContract/main"><div class="menu" style="float:left; margin-left:20px">계약<span class="glyphicon glyphicon-ok"></span></div></a>
+		<a class="title-menu" href="/adminMember/list"><div class="menu" style="float:left">회원 <span class="glyphicon glyphicon-user"></span></div></a>
+		<a class="title-menu" href="/adminReservation/consultList"><div class="menu" style="float:left; margin-left:20px">예약 <span class="glyphicon glyphicon-pencil"></span></div></a>
+		<a class="title-menu" href="/adminContract/main"><div class="menu" style="float:left; margin-left:20px">계약 <span class="glyphicon glyphicon-ok"></span></div></a>
 		</div>
 		<div>
-		<a class="title-menu" href="/adminRoom/main"><div class="menu" style="float:left; margin-left:80px; margin-top:20px">호실<span class="glyphicon glyphicon-home"></span></div></a>
-		<a class="title-menu" href="/adminQuestion/qnaList"><div class="menu" style="float:left; margin-left:20px; margin-top:20px"">문의<span class="glyphicon glyphicon-question-sign"></span></div></a>
+		<a class="title-menu" href="/adminRoom/main"><div class="menu" style="float:left; margin-left:80px; margin-top:20px">호실 <span class="glyphicon glyphicon-home"></span></div></a>
+		<a class="title-menu" href="/adminQuestion/qnaList"><div class="menu" style="float:left; margin-left:20px; margin-top:20px"">문의 <span class="glyphicon glyphicon-question-sign"></span></div></a>
 		</div>
 	</div>
 	</div>

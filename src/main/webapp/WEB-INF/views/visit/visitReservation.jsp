@@ -103,7 +103,7 @@
 			<div class="row">
 			<div class="form-group">
 				<label for="v_name">방문자명</label>			
-				<input type="text" class="form-control" style="display:inline-block" id="v_name" name="v_name">
+				<input type="text" class="form-control" id="v_name" name="v_name">
 			</div>
 			<div class="form-group">
 				<label for="v_phone">방문자연락처</label>			

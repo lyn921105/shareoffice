@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
@@ -115,21 +117,25 @@
 </script>
 <style type="text/css">
 table {
-	width: 50%;
+	width: 500px;
 	text-align: center;
+	font-weight : bold;
 }
 
 table, tr, td {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
+td {
+width : 120px;
+height : 60px;
+padding : 10px;
+}
 </style>
 </head>
-
 <body>
-	<div>
-		<h2>호실 현황</h2>
-		<hr />
+	<h2>호실 현황</h2>
+		<hr/>
 		<select id="floor">
 			<option value="1">1층</option>
 			<option value="2">2층</option>
@@ -184,6 +190,6 @@ table, tr, td {
 					class="o_status"></span></td>
 			</tr>
 		</table>
-	</div>
 </body>
+<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </html>

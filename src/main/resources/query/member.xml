@@ -84,7 +84,8 @@
 	
 	<!-- 회원탈퇴 -->
 	<delete id="memberDelete" parameterType="member">
-		DELETE FROM client_tbl
+		UPDATE client_tbl
+		SET c_disabled = '0'
 		WHERE c_id = #{c_id}
 		AND c_pwd = #{c_pwd}
 	</delete>
