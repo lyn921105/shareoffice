@@ -16,7 +16,8 @@ import com.wt.admin.reservation.service.AdminVisitConsultService;
 import com.wt.admin.reservation.vo.MoveInVO;
 import com.wt.admin.reservation.vo.VisitConsultVO;
 import com.wt.admin.room.vo.AdminRoomVO;
-import com.wt.client.qna.vo.QnaVO;
+import com.wt.client.reservation.vo.ReservationVO;
+import com.wt.client.room.service.RoomService;
 import com.wt.common.page.Paging;
 import com.wt.common.util.Util;
 
@@ -29,6 +30,9 @@ public class AdminReservationController {
 
 	@Autowired
 	private AdminMoveInService moService;
+	
+	@Autowired
+	private RoomService roomService;
 
 	// 방문 예약 목록 구현
 	@RequestMapping(value = "/consultList")
@@ -73,6 +77,7 @@ public class AdminReservationController {
 
 	// 입주 예약 관리 컨트롤러
 
+	// 입주 예약 리스트 출력
 	@RequestMapping(value = "/moveInList")
 	public String moveInList(@ModelAttribute MoveInVO mvo, Model model) {
 		// 페이지 세팅
@@ -86,6 +91,16 @@ public class AdminReservationController {
 		// 글 번호 재설정
 		int count = total - (Util.nvl(mvo.getPage()) - 1) * Util.nvl(mvo.getPageSize());
 
+		//24시간 이내에 승인이 안 됐을 경우 취소로 상태 변경
+		List<ReservationVO> rvo = roomService.roomCancel();
+
+		for (int i = 0; i < rvo.size(); i++) {
+			ReservationVO res = new ReservationVO(rvo.get(i).getR_num(), rvo.get(i).getR_floor(),
+					rvo.get(i).getR_room(), rvo.get(i).getR_status());
+			roomService.roomCancelUpdate(res);
+			roomService.roomUsableUpdate(res);
+		}
+
 		List<MoveInVO> moveInList = moService.moveInList(mvo);
 
 		model.addAttribute("moveInList", moveInList);
@@ -97,6 +112,7 @@ public class AdminReservationController {
 		return "admin/reservation/moveInList";
 	}
 
+	// 입주 예약 상세 보기 페이지 출력
 	@RequestMapping(value = "/moveInDetail")
 	public String moveInDetail(@ModelAttribute MoveInVO mvo, Model model) {
 		MoveInVO detail = moService.moveInDetail(mvo);
@@ -106,17 +122,18 @@ public class AdminReservationController {
 		return "admin/reservation/moveInDetail";
 	}
 
+	// 승인 상태 변경
 	@RequestMapping(value = "/updateReqState")
 	public String updateReqState(@ModelAttribute MoveInVO mvo, AdminRoomVO rvo, HttpServletRequest request) {
 		moService.updateReqState(mvo.getR_num());
-		String o_floor= request.getParameter("r_floor");
-		String o_room=request.getParameter("r_room");
-		
+		String o_floor = request.getParameter("r_floor");
+		String o_room = request.getParameter("r_room");
+
 		rvo.setO_floor(o_floor);
 		rvo.setO_room(o_room);
-		
+
 		moService.updateReserve(rvo);
-		
+
 		return "redirect:/adminReservation/moveInList";
 
 	}
