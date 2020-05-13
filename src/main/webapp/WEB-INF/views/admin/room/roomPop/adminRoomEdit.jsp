@@ -53,29 +53,36 @@
 				return;
 			}
 
-			$("#form").attr({
-				"method" : "POST",
-				"action" : "/adminRoom/roomUpdate"
-			})
-			$("#form").submit();
-			alert("호실 수정 성공")
-			window.opener.location.reload();
-			window.close();
-
+			var result = confirm("호실을 수정하시겠습니까?")
+			
+			if(result){
+				$("#form").attr({
+					"method" : "POST",
+					"action" : "/adminRoom/roomUpdate"
+				})
+				$("#form").submit();
+				alert("호실 수정 성공!")
+				window.opener.location.reload();
+				window.close();
+			}
 		})
 
 		// 삭제 버튼 클릭 시 처리 이벤트
 		$("#roomDeleteBtn").click(function() {
 			// 입력값 체크
 
-			$("#form").attr({
-				"method" : "POST",
-				"action" : "/adminRoom/roomDelete"
-			})
-			$("#form").submit();
-			alert("호실 삭제 성공")
-			window.opener.location.reload();
-			window.close();
+			var result = confirm("호실을 삭제하시겠습니까?")
+			
+			if(result){
+				$("#form").attr({
+					"method" : "POST",
+					"action" : "/adminRoom/roomDelete"
+				})
+				$("#form").submit();
+				alert("호실 삭제 성공!")
+				window.opener.location.reload();
+				window.close();
+			}
 		})
 
 		// 파일 삭제 버튼 클릭 시 처리 이벤트

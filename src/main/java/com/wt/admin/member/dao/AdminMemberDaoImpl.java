@@ -40,5 +40,11 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 		return (Integer)session.selectOne("memberListCnt", avo);
 	}
 
+	// 회원 예약 유무 검사
+	@Override
+	public int memberStatusDisabled(String c_id) {
+		return (Integer)session.selectOne("memberStatusDisabled", c_id);
+	}
+
 
 }

@@ -54,7 +54,12 @@ public class AdminMemberController {
 	public String memberDetail(HttpServletRequest request, Model model) {
 
 		String c_id = request.getParameter("c_id");
-
+		
+		int result = adminMemberService.memberStatusDisabled(c_id);
+		if (result == 1) {
+			model.addAttribute("r_status", 1);
+		}
+		
 		AdminMemberVO avo = adminMemberService.memberDetail(c_id);
 
 		model.addAttribute("avo", avo);
@@ -68,7 +73,7 @@ public class AdminMemberController {
 
 		adminMemberService.memberDisabled(rvo);
 
-		return "admin/member/adminMemberDetail";
+		return "";
 	}
 
 }

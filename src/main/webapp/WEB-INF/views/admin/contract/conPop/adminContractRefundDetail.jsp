@@ -75,14 +75,16 @@
 			
 		// 환불 승인 업데이트 메소드
 		$("#refundUpdateBtn").click(function(){
-			$("#form").attr({
-				"method" : "POST",
-				"action" : "/adminContract/refundUpdate"
-			})
-			$("#form").submit();
-			window.opener.location.reload();
-			window.close();
-			
+			var result = confirm("환불 신청을 승인하시겠습니까?");
+			if (result){
+				$("#form").attr({
+					"method" : "POST",
+					"action" : "/adminContract/refundUpdate"
+				})
+				$("#form").submit();
+				window.opener.location.reload();
+				window.close();
+			}
 		})
 		
 		// 창 닫기

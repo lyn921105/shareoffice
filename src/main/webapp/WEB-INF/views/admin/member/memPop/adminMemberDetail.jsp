@@ -12,6 +12,11 @@
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		var r_status = '${r_status}'
+		
+		if (r_status == 1){
+			$("#c_disabled").attr("disabled", true);
+		}
 
 		// 확인 버튼 클릭 시 메소드 실행
 		$("#memberSubmitBtn").click(function() {
@@ -20,16 +25,18 @@
 			var y = '${avo.c_disabled}'
 
 			if (x != y) {
-
-				$("#form").attr({
-					"method" : "GET",
-					"action" : "/adminMember/disabled"
-				})
-				$("#form").submit();
-				alert("성공!")
+				var result = confirm("회원 상태를 변경하시겠습니까?");
+				
+				if (result){
+					$("#form").attr({
+						"method" : "GET",
+						"action" : "/adminMember/disabled"
+					})
+					$("#form").submit();
+					opener.location.reload();
+					window.close();
+				}
 			}
-			opener.location.reload();
-			window.close();
 		})
 	})
 </script>
