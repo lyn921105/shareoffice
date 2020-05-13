@@ -52,11 +52,10 @@ public class AdminLoginController {
 	// 로그아웃 처리 메소드
 	@RequestMapping(value="/logout")
 	public String adminLogout(HttpSession session, HttpServletRequest request) {
-		session.invalidate();
-		session = request.getSession(true);
-		return "redirect:/adminLogin/loginForm";
+		return "index";
 	}
 	
+	// admin 로그인시 admin 메인페이지
 	@RequestMapping(value="/admin")
 	public String adminMain() {
 		return "adminStart";
