@@ -16,6 +16,7 @@
 		
 		if (r_status == 1){
 			$("#c_disabled").attr("disabled", true);
+			$("#c_disabled").attr("style", "cursor:not-allowed");
 		}
 
 		// 확인 버튼 클릭 시 메소드 실행
@@ -33,10 +34,10 @@
 						"action" : "/adminMember/disabled"
 					})
 					$("#form").submit();
-					opener.location.reload();
-					window.close();
 				}
 			}
+			opener.location.reload();
+			window.close();
 		})
 	})
 </script>
