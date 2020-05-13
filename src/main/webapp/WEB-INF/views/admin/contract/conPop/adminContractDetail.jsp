@@ -85,13 +85,13 @@ text-align : center;
 	</tr>
 	<tr>
 		<th>이용호실</th>
-		<td>${avo.r_floor }${avo.r_room }</td>
+		<td>${avo.r_floor }${avo.r_room }<span> 호실</span></td>
 		<th>이용상태</th>
 		<td id="stat"></td>
 	</tr>
 	<tr>
 		<th>이용인원</th>
-		<td>${avo.r_member }</td>
+		<td>${avo.r_member }<span> 명</span></td>
 	</tr>
 	<tr>
 		<th>기간</th>
@@ -109,7 +109,7 @@ text-align : center;
 		<th colspan="2">입금 확인일</th>
 	</tr>
 	<tr>
-		<td colspan="2">${avo.r_price }</td>
+		<td colspan="2">${avo.r_price }<span> 원</span></td>
 		<td colspan="2">${avo.r_regdate }</td>
 	</tr>
 </table>
