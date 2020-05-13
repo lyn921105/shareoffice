@@ -26,7 +26,7 @@ position : absolute;
 width : 460px;
 height : 300px;
 text-align : center;
-top : 50%;
+top : 42%;
 left : 50%;
 transform : translate(-50%, -50%);
 }
@@ -52,6 +52,11 @@ font-weight : bold;
 text-decoration : none;
 color : black;
 }
+.container-fluid img {
+position : absolute; top:0; left:0;
+width : 100%;
+height : 780px;
+}
 </style>
 </head>
 
@@ -59,7 +64,8 @@ color : black;
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</nav>
-	<div class="container-fluid" style="min-height: 730px; float:none; margin:0 auto">
+	<div class="container-fluid" style="min-height: 730px; width:100%; float:none; margin:0 auto">
+	<img src="../../../../../resources/images/admin_main_background.jpg" height="733px" width="100%">
 	<div id="adminmenubox" class="text-center">
 		<div>
 		<a class="title-menu" href="/adminMember/list"><div class="menu" style="float:left">회원 <span class="glyphicon glyphicon-user"></span></div></a>
