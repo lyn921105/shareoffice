@@ -75,14 +75,16 @@
 			
 		// 환불 승인 업데이트 메소드
 		$("#refundUpdateBtn").click(function(){
-			$("#form").attr({
-				"method" : "POST",
-				"action" : "/adminContract/refundUpdate"
-			})
-			$("#form").submit();
-			window.opener.location.reload();
-			window.close();
-			
+			var result = confirm("환불 신청을 승인하시겠습니까?");
+			if (result){
+				$("#form").attr({
+					"method" : "POST",
+					"action" : "/adminContract/refundUpdate"
+				})
+				$("#form").submit();
+				window.opener.location.reload();
+				window.close();
+			}
 		})
 		
 		// 창 닫기
@@ -128,7 +130,7 @@ th {
 		</tr>
 		<tr>
 			<th>이용호실</th>
-			<td>${avo.r_floor }${avo.r_room }</td>
+			<td>${avo.r_floor }${avo.r_room }<span> 호실</span></td>
 			<th>환불 상태</th>
 			<c:choose>
 				<c:when test="${avo.r_status eq 2 }">
@@ -141,7 +143,7 @@ th {
 		</tr>
 		<tr>
 			<th>이용인원</th>
-			<td>${avo.r_member }</td>
+			<td>${avo.r_member }<span> 명</span></td>
 		</tr>
 		<tr>
 			<th>기간</th>
@@ -164,7 +166,7 @@ th {
 		</tr>
 		<tr>
 			<td id="usedate"></td>
-			<td>${avo.r_price }</td>
+			<td>${avo.r_price }<span> 원</span></td>
 			<td>${avo.r_regdate }</td>
 			<c:choose>
 				<c:when test="${avo.r_status eq 2 }">

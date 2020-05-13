@@ -99,7 +99,7 @@ function goPage(page) {
 						<td>-</td>
 					</c:when>
 					<c:otherwise>
-						<td>${item.r_refundprice }</td>
+						<td>${item.r_refundprice }<span> 원</span></td>
 					</c:otherwise>
 				</c:choose>
 				<td class="member">${item.r_regdate }</td>

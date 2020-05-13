@@ -26,14 +26,18 @@
 				if (!chkFile($("#thumbfile"))) {
 					return;
 				}
-				$("#form").attr({
-					"method" : "POST",
-					"action" : "/adminRoom/roomInsert"
-				})
-				$("#form").submit();
-				alert("호실 등록 성공");
-				window.opener.location.reload();
-				window.close();
+				
+				var result = confirm("입력한 정보로 호실을 등록하시겠습니까?");
+				if (result){
+					$("#form").attr({
+						"method" : "POST",
+						"action" : "/adminRoom/roomInsert"
+					})
+					$("#form").submit();
+					alert("호실 등록 성공!");
+					window.opener.location.reload();
+					window.close();
+				}
 			}
 		})
 	})

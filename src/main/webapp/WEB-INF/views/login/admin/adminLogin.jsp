@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/resources/include/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
@@ -11,7 +13,6 @@
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
-		
 		
 		var errCode = '<c:out value="${errCode}"/>';
 		
@@ -35,17 +36,26 @@
 		})
 	})
 </script>
+<style type="text/css">
+.can {
+width : 300px;
+}
+.adminLoginBtn {
+width : 100px;
+}
+</style>
 </head>
 <body>
 	<form id="loginForm">
-		<label for="a_id">관리자 아이디</label> <input type="text" id="a_id"
-			name="a_id" placeholder="관리자 아이디">
+		<label for="a_id">관리자 아이디:</label><br/><input type="text" id="a_id"
+			name="a_id" placeholder="admin" class="form-control can">
 			<br/>
 			<label
-			for="a_passwd">관리자 비밀번호</label> <input type="password"
-			id="a_passwd" name="a_passwd" placeholder="관리자 비밀번호">
-			<br/>
-		<input type="button" value="로그인" id="adminLoginBtn" />
+			for="a_passwd">관리자 비밀번호:</label><br/><input type="password"
+			id="a_passwd" name="a_passwd" placeholder="1234" class="form-control can">
+			<hr/>
+		<input type="button" value="로그인" id="adminLoginBtn" class="btn adminLoginBtn" />
 	</form>
+	<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -118,8 +118,8 @@
 				<td>${count - status.index }</td>
 				<td class="company">${item.r_company }</td>
 				<td class="member">${item.r_phone }</td>
-				<td>${item.r_member }</td>
-				<td>${item.r_floor }${item.r_room }</td>
+				<td>${item.r_member }<span> 명</span></td>
+				<td>${item.r_floor }${item.r_room }<span> 호실</span></td>
 				<td>${item.r_reservedate }</td>
 				<td id="stat${status.index }" class="stat"></td>
 			</tr>

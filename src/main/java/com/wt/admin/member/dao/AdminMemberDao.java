@@ -14,4 +14,6 @@ public interface AdminMemberDao {
 
 	public int memberListCnt(AdminMemberVO avo);
 
+	public int memberStatusDisabled(String c_id);
+
 }

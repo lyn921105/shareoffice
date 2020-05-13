@@ -50,5 +50,11 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return adminMemberDao.memberListCnt(avo);
 	}
 
+	// 회원 예약 유뮤 검사
+	@Override
+	public int memberStatusDisabled(String c_id) {
+		return adminMemberDao.memberStatusDisabled(c_id);
+	}
+
 	
 }
