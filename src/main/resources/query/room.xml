@@ -12,7 +12,7 @@
 		WHERE o_floor = '1' AND r_enddate >= sysdate
 	</select>
 
-	<!-- 호실 목록 출력 -->
+	<!-- 호실 층 변경 출력 -->
 	<select id="roomListFloor" parameterType="String"
 		resultType="adminRoom">
 		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_floor, o_room, o_status
@@ -21,7 +21,7 @@
 		WHERE o_floor = #{o_floor} AND r_enddate >= sysdate
 	</select>
 
-	<!-- 호실 목록 출력 -->	
+	<!-- 호실 사진 출력 -->	
 	<select id="roomView" resultType="adminRoom">
 		SELECT o_room, o_thumb, o_image1, o_image2, o_image3
 		FROM office_tbl
