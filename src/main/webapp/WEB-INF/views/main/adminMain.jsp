@@ -56,6 +56,7 @@ color : black;
 position : absolute; top:0; left:0;
 width : 100%;
 height : 780px;
+opacity : 0.75;
 }
 </style>
 </head>
