@@ -96,7 +96,7 @@ $(function(){
 		</div>
 		<div class="container" style="background: #F8F8F8;">
 			<div class="text-center">
-				<h3>계좌정보를 입력해주세요 (단순입력용)</h3>
+				<h3>계좌정보를 입력해주세요</h3>
 			</div>
 			<div class="form-group">
 				<label>입금자명</label>
