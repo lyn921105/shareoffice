@@ -186,10 +186,11 @@ th {
 	</table>
 	<div class="text-center">
 	<input type="button" id="outBtn" value="확인" class="btn" />
-	</div>
 	<c:if test="${avo.r_status eq 2 }">
-		<input type="button" id="refundUpdateBtn" value="승인" />
+		<input type="button" id="refundUpdateBtn" value="승인" class="btn" />
 	</c:if>
+	</div>
+	
 
 	<script src="/resources/include/dist/js/bootstrap.min.js"></script>
 </body>

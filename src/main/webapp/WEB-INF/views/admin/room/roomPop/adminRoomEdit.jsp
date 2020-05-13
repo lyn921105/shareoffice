@@ -130,6 +130,17 @@
 h2 {
 font-weight : bold;
 }
+th {
+	font-weight: bold;
+}
+
+th, td {
+	text-align: center;
+}
+
+#o_price {
+	width: 200px;
+}
 </style>
 </head>
 <body>
@@ -145,9 +156,10 @@ font-weight : bold;
 				type="hidden" name="o_image1" value="${rvo.o_image1 }"> <input
 				type="hidden" name="o_image2" value="${rvo.o_image2 }"> <input
 				type="hidden" name="o_image3" value="${rvo.o_image3 }">
-			<h3>수용 가능 인원수</h3>
-
-			<select name="o_member" id="o_member">
+				<table class="table table-striped">
+			<tr>
+				<th>수용 가능 인원수</th>
+				<td><select name="o_member" id="o_member">
 				<c:forEach var="i" begin="1" end="7">
 					<c:if test="${i eq rvo.o_member }">
 						<option value=${i } selected>${i }명</option>
@@ -156,9 +168,11 @@ font-weight : bold;
 						<option value=${i }>${i }명</option>
 					</c:if>
 				</c:forEach>
-			</select>
-			<h3>기본 정보(창측/내측)</h3>
-			<select name="o_info">
+			</select></td>
+			</tr>
+			<tr>
+				<th>기본 정보(창측/내측)</th>
+				<td><select name="o_info">
 				<c:forEach var="i" begin="1" end="2">
 					<c:choose>
 						<c:when test="${i eq 1 }">
@@ -175,26 +189,29 @@ font-weight : bold;
 						<option value=${i }>${info }</option>
 					</c:if>
 				</c:forEach>
-			</select>
-			<h3>가격</h3>
-			<input type="text" id="o_price" name="o_price"
-				value="${rvo.o_price }" />
-			<h3>사진 첨부</h3>
-			<h5 style="color: red;">(1개 이상 첨부해주세요!)</h5>
-			<br />
-
-			<!-- 첨부파일 유무 확인 -->
+			</select></td>
+			</tr>
+			<tr>
+				<th>가격</th>
+				<td><input type="text" id="o_price" name="o_price"
+				value="${rvo.o_price }" /></td>
+			</tr>
+			<tr>
+				<th>사진 첨부</th>
+				<td>
+					<!-- 첨부파일 유무 확인 -->
 			<h3>대표 이미지</h3>
 			<img id="thumbImage">
-			<p>파일 변경</p>
+					<hr/>
+					<span>이미지 변경</span>
 			<input type="file" name="thumbfile">
 			<hr />
 			<c:choose>
 				<c:when test="${not empty rvo.o_image1 }">
 					<h3>이미지 1</h3>
 					<img id="Image1">
-					<p>파일 변경</p>
-					<input type="file" name="file1">
+					<hr/>
+					<span>이미지 변경</span><input type="file" name="file1">
 					<input type="button" value="파일 삭제" class="fileDelete">
 					<input type="hidden" value="1">
 					<hr />
@@ -209,7 +226,8 @@ font-weight : bold;
 				<c:when test="${not empty rvo.o_image2 }">
 					<h3>이미지 2</h3>
 					<img id="Image2">
-					<p>파일 변경</p>
+					<hr/>
+					<span>이미지 변경</span>
 					<input type="file" name="file2">
 					<input type="button" value="파일 삭제" class="fileDelete">
 					<input type="hidden" value="2">
@@ -225,7 +243,8 @@ font-weight : bold;
 				<c:when test="${not empty rvo.o_image3 }">
 					<h3>이미지 3</h3>
 					<img id="Image3">
-					<p>파일 변경</p>
+					<hr/>
+					<span>이미지 변경</span>
 					<input type="file" name="file3">
 					<input type="button" value="파일 삭제" class="fileDelete">
 					<input type="hidden" value="3">
@@ -237,8 +256,11 @@ font-weight : bold;
 					<hr />
 				</c:when>
 			</c:choose>
-			<h3>호실 상태</h3>
-			<select name="o_status">
+				</td>
+			</tr>
+			<tr>
+				<th>호실 상태</th>
+				<td><select name="o_status">
 				<c:forEach var="i" begin="1" end="2">
 					<c:choose>
 						<c:when test="${i eq 1 }">
@@ -255,7 +277,9 @@ font-weight : bold;
 						<option value=${i }>${status }</option>
 					</c:if>
 				</c:forEach>
-			</select> <br />
+			</select> <br /></td>
+			</tr>
+		</table>
 		</form>
 	</div>
 	<div class="text-center">
