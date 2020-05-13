@@ -64,7 +64,6 @@ th, td {
 			<%-- 층과 호실 번호는 hidden으로 보냄 --%>
 			<input type="hidden" name="o_floor" value="${o_floor }"> <input
 				type="hidden" name="o_room" value="${o_room }">
-		</form>
 		<table class="table table-striped">
 			<tr>
 				<th>수용 가능 인원수</th>
@@ -108,6 +107,7 @@ th, td {
 				</select> <br /></td>
 			</tr>
 		</table>
+		</form>
 	</div>
 	<div class="text-center">
 		<input type="button" value="저장" id="roomInsertBtn" class="btn">
