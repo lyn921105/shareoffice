@@ -68,7 +68,7 @@
 			</if>
 		</where>
 		ORDER BY
-		r_regdate ASC
+		r_status ASC, r_regdate DESC
 	</sql>
 
 	<!-- 계약 전체 조회 -->
