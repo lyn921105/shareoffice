@@ -103,15 +103,15 @@
 			<div class="row">
 			<div class="form-group">
 				<label for="v_name">방문자명</label>			
-				<input type="text" class="form-control" id="v_name" name="v_name">
+				<input type="text" class="form-control" id="v_name" name="v_name" placeholder="이름">
 			</div>
 			<div class="form-group">
 				<label for="v_phone">방문자연락처</label>			
-				<input type="text" class="form-control" id="v_phone" name="v_phone">
+				<input type="text" class="form-control" id="v_phone" name="v_phone" placeholder="'-'를 제외한 숫자만 입력">
 			</div>
 			<div class="form-group">
 				<label for="v_date">방문날짜</label>			
-				<input type="text" class="form-control" id="datePicker" name="v_date">
+				<input type="text" class="form-control" id="datePicker" name="v_date" placeholder="날짜를 선택해주세요">
 			</div>
 			<div class="form-group">
 				<label for="v_time">방문시간</label>			
