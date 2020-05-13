@@ -47,7 +47,7 @@ $(function(){
 	</script>
 
 	<form id="res_form" name="res_form">
-		<div class=container style="background: #F0FFFF; margin-bottom: 10px;">
+		<div class=container style="background: #F8F8F8; margin-bottom: 10px;">
 			<input type="hidden" id="c_id" name="c_id" value="${result.c_id}">
 			<input type="hidden" id="r_company" name="r_company" value="${result.r_company}">
 			<input type="hidden" id="r_phone" name="r_phone" value="${result.r_phone}">
@@ -94,7 +94,7 @@ $(function(){
 				<p>${result.r_price}</p>
 			</div>
 		</div>
-		<div class="container" style="background: #F0FFFF;">
+		<div class="container" style="background: #F8F8F8;">
 			<div class="text-center">
 				<h3>계좌정보를 입력해주세요 (단순입력용)</h3>
 			</div>
