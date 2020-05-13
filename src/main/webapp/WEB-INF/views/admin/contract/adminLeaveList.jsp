@@ -34,6 +34,15 @@
 	<h2>퇴실 내역</h2>
 	<hr />
 	<br />
+	<!-- 검색 기능 시작 -->
+	<div id="searchfunction">
+		<form id="f_search" name="f_search">
+			<input type="hidden" id="search" name="search"
+				value="${data.search }"> <input type="hidden" id="page"
+				name="page" value="${data.page }"> <input type="hidden"
+				id="pageSize" name="pageSize" value="10">
+		</form>
+	</div>
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>번호</th>
