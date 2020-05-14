@@ -94,9 +94,7 @@ public class ReservationController {
 	@RequestMapping(value="/roomPopDate", method = RequestMethod.GET)
 	@ResponseBody
 	public List<AdminRoomVO> roomPopDate(HttpServletRequest httpServletRequest, Model model) {
-		String date = httpServletRequest.getParameter("input_Rdate");
-		
-		List<AdminRoomVO> roomList = reservationService.roomPopEnd(date);
+		List<AdminRoomVO> roomList = reservationService.roomPopEnd();
 		
 		model.addAttribute("roomList", roomList);
 		

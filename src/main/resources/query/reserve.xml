@@ -6,27 +6,27 @@
 
 	<!-- 호실 메인 페이지에서 만기 날짜 표시 -->
 	<select id="roomPopMain" resultType="adminRoom">
-		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_status, o_floor, o_room
-		FROM office_tbl INNER JOIN reservation_tbl
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, r_status, o_status, o_floor, o_room
+		FROM office_tbl FULL OUTER JOIN reservation_tbl
 		ON o_floor = r_floor AND o_room = r_room
-		WHERE o_floor = '1' AND r_enddate <![CDATA[>=]]> sysdate
+		WHERE o_floor = '1'
 	</select>
 	
 	<!-- 호실 목록 출력 -->
 	<select id="roomPopList" parameterType="adminRoom"
 		resultType="adminRoom">
-		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_floor, o_room, o_status
-		FROM office_tbl INNER JOIN reservation_tbl
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, r_status, o_floor, o_room, o_status
+		FROM office_tbl FULL OUTER JOIN reservation_tbl
 		ON o_floor = r_floor AND o_room = r_room
-		WHERE r_enddate <![CDATA[>=]]> #{r_endDate} AND o_floor = #{o_floor}
+		WHERE o_floor = #{o_floor}
 	</select>
 	
 	<!-- Ajax 호실 선택 중 날짜 변경시 호실 현황 -->
-	<select id="roomPopEnd" parameterType="String" resultType="adminRoom">
-		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_floor, o_room, o_status
-		FROM reservation_tbl INNER JOIN office_tbl
+	<select id="roomPopEnd" resultType="adminRoom">
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, r_status, o_floor, o_room, o_status
+		FROM reservation_tbl FULL OUTER JOIN office_tbl
 		ON r_room = o_room AND r_floor = o_floor
-		WHERE r_enddate <![CDATA[>=]]> #{date} AND o_floor = '1'
+		WHERE o_floor = '1'
 	</select>
 	
 	<!-- Ajax 만기날짜 선택시 최대 인원수와 금액 -->
