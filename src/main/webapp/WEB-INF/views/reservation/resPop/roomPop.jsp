@@ -12,6 +12,8 @@
 <script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 $(function(){
+	var sysdate = new Date();
+	
 	/* 날짜 선택 */
 	$('#datePicker').datepicker({
 		format: "yyyy-mm-dd",
@@ -27,7 +29,7 @@ $(function(){
 		todayHighlight: true, // 당일 날짜 표시
 	}).on("changeDate", function(){
 		/* 날짜 변경시 사용할 변수 */
-		var aj_date = $("#datePicker").val(); // 사용자가 선택한 날짜 변수
+		let aj_date = $("#datePicker").val(); // 사용자가 선택한 날짜 변수
 		
 		/* 상태값 초기화 */
 		$(".td_hover").css("background-color", "white"); // 영역 색 초기화
@@ -43,14 +45,15 @@ $(function(){
 		$.ajax({
 			url: "/reservation/roomPopDate",
 			type: "get",
-			data: ({input_Rdate : aj_date}),
 			success: function(data){
 				$('#send_date').val(aj_date); // 예약창으로 전송할 날짜
 				/* 날짜 변경시 1층의 상태 정보 불러오기 */
 				for (i = 0; i < data.length; i++) {
 					for (m = 1; m < 11; m++) {
-
-						if ($("#o_room" + m).html() == data[i].o_room) {
+						if (($("#o_room" + m).html() == data[i].o_room) && (data[i].o_status == 2)) {
+							$("#o_status" + m).html("(점검중)");
+						} else if (($("#o_room" + m).html() == data[i].o_room) && (data[i].r_endDate >= aj_date)
+								&& (!(data[i].r_status == 3) || (data[i].r_status == 4) || (data[i].r_status == 5))) {
 							$("#o_status" + m).html("~" + data[i].r_endDate);
 							$("#o_status" + m).parent(".td_hover").css("background-color", "rgb(125, 140, 255, 0.4)");
 						}
@@ -65,7 +68,10 @@ $(function(){
 		/* 첫 호실 현황 페이지 진입시 default값인 1층의 상태 정보 불러오기 */
 		<c:forEach items="${roomMain}" var="item">
 			for (let m = 1; m < 11; m++) {
-				if ($("#o_room" + m).html() == "${item.o_room}") {
+				if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.o_status}" == "2")) {
+					$("#o_status" + m).html("(점검중)");
+				} else if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.r_endDate}" >= getDateFormat(sysdate))
+						&& (!("${item.r_status}" == "3") || ("${item.r_status}" == "4") || ("${item.r_status}" == "5"))) {
 					$("#o_status" + m).html("~${item.r_endDate}");
 					$("#o_status" + m).parent(".td_hover").css("background-color", "rgb(125, 140, 255, 0.4)");
 				}
@@ -93,15 +99,16 @@ $(function(){
 				type : "GET",
 				data : ({
 					o_floor : fn,
-					r_endDate : date
 				}),
 				cache : false,
 				success : function(data) {
-
+					console.log(data);
 					for (i = 0; i < data.length; i++) {
 						for (m = 1; m < 11; m++) {
-
-							if ($("#o_room" + m).html() == data[i].o_room) {
+							if (($("#o_room" + m).html() == data[i].o_room) && (data[i].o_status == 2)) {
+								$("#o_status" + m).html("(점검중)");
+							} else if (($("#o_room" + m).html() == data[i].o_room) && (data[i].r_endDate >= date)
+									&& (!(data[i].r_status == 3) || (data[i].r_status == 4) || (data[i].r_status == 5))) {
 								$("#o_status" + m).html("~" + data[i].r_endDate);
 								$("#o_status" + m).parent(".td_hover").css("background-color", "rgb(125, 140, 255, 0.4)");
 							}

@@ -36,8 +36,8 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<AdminRoomVO> roomPopEnd(String date) {
-		List<AdminRoomVO> roomPopEnd = reservationDao.roomPopEnd(date);
+	public List<AdminRoomVO> roomPopEnd() {
+		List<AdminRoomVO> roomPopEnd = reservationDao.roomPopEnd();
 		return roomPopEnd;
 	}
 

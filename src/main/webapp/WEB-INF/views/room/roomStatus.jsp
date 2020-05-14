@@ -8,12 +8,17 @@
 <title>호실 이용 현황</title>
 <script type="text/javascript"
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/include/js/common.js"></script>
 <script type="text/javascript">
 	$(function() {
+		var sysdate = new Date();
 		// 첫 호실 현황 페이지 진입시 default값인 1층의 상태 정보 불러오기
 		<c:forEach items="${roomMain}" var="item">
 			for (let m = 1; m < 11; m++) {
-				if ($("#o_room" + m).html() == "${item.o_room}") {
+				if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.o_status}" == "2")) {
+					$("#o_status" + m).html("(점검중)");
+				} else if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.r_endDate}" >= getDateFormat(sysdate))
+						&& (!("${item.r_status}" == "3") || ("${item.r_status}" == "4") || ("${item.r_status}" == "5"))) {
 					$("#o_status" + m).html("~${item.r_endDate}");
 					$("#o_status" + m).parent(".td_hover").css("background-color", "rgb(125, 140, 255, 0.4)");
 				}
@@ -38,7 +43,10 @@
 				success : function(data) {
 					for (let i = 0; i < data.length; i++) {
 						for (let m = 1; m < 11; m++) {
-							if ($("#o_room" + m).html() == data[i].o_room) {
+							if (($("#o_room" + m).html() == data[i].o_room) && (data[i].o_status == 2)) {
+								$("#o_status" + m).html("(점검중)");
+							} else if (($("#o_room" + m).html() == data[i].o_room) && (data[i].r_endDate >= getDateFormat(sysdate))
+									&& (!(data[i].r_status == 3) || (data[i].r_status == 4) || (data[i].r_status == 5))) {
 								$("#o_status" + m).html("~" + data[i].r_endDate);
 								$("#o_status" + m).parent(".td_hover").css("background-color", "rgb(125, 140, 255, 0.4)");
 							}

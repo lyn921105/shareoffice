@@ -6,19 +6,19 @@
 
 	<!-- 호실 메인 페이지에서 만기 날짜 표시 -->
 	<select id="roomStatus" resultType="adminRoom">
-		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_status, o_floor, o_room
-		FROM office_tbl INNER JOIN reservation_tbl
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, r_status, o_status, o_floor, o_room
+		FROM office_tbl FULL OUTER JOIN reservation_tbl
 		ON o_floor = r_floor AND o_room = r_room
-		WHERE o_floor = '1' AND r_enddate >= sysdate
+		WHERE o_floor = '1'
 	</select>
 
 	<!-- 호실 층 변경 출력 -->
 	<select id="roomListFloor" parameterType="String"
 		resultType="adminRoom">
-		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, o_floor, o_room, o_status
-		FROM office_tbl INNER JOIN reservation_tbl
+		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, r_status, o_floor, o_room, o_status
+		FROM office_tbl FULL OUTER JOIN reservation_tbl
 		ON o_floor = r_floor AND o_room = r_room
-		WHERE o_floor = #{o_floor} AND r_enddate >= sysdate
+		WHERE o_floor = #{o_floor}
 	</select>
 
 	<!-- 호실 사진 출력 -->	

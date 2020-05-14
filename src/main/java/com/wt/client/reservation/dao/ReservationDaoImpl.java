@@ -27,8 +27,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<AdminRoomVO> roomPopEnd(String date) {
-		return session.selectList("roomPopEnd", date);
+	public List<AdminRoomVO> roomPopEnd() {
+		return session.selectList("roomPopEnd");
 	}
 
 	@Override
