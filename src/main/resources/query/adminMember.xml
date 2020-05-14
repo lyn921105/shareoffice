@@ -67,8 +67,8 @@
 	<select id="memberStatusDisabled" parameterType="String" resultType="int">
 		SELECT NVL(count(1), 0)
 		FROM client_tbl
-		WHERE c_id = (SELECT c_id FROM reservation_tbl
-		WHERE r_status = 1 AND c_id
+		WHERE c_id IN (SELECT c_id FROM reservation_tbl
+		WHERE (r_status = 1 OR r_status = 0 OR r_status = 2) AND c_id
 		= #{c_id})
 	</select>
 

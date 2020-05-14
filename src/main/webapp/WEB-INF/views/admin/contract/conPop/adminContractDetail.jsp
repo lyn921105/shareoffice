@@ -27,7 +27,7 @@ text-align : center;
 			var m = str.substr(5, 2);
 			var d = str.substr(8, 2);
 
-			return new Date(y, m, d);
+			return new Date(y, m-1, d);
 		}
 		var resDate = parse(str);
 		var nowDate = new Date();
