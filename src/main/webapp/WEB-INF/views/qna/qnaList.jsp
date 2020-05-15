@@ -56,9 +56,9 @@
 
 		/* 제목 클릭시 상세 페이지 이동을 위한 처리 이벤트 */
 		$(".goDetail").click(function() {
-			var q_num = $(this).parents("tr").attr("data-num");
-			var write_id = '${loginSuccess}';
-			var login_id = $(this).siblings(".c_id").val();
+			var q_num = $(this).parents("tr").attr("data-num"); // 글 번호
+			var login_id = '${loginSuccess}'; // 로그인 아이디
+			var write_id = $(this).siblings(".c_id").val(); // 작성자 아이디
 			
 			$("#q_num").val(q_num);
 			

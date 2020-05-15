@@ -4,7 +4,7 @@
 
 <mapper namespace="com.wt.client.qna.dao.QnaDao">
 
-	<!-- Q&A 게시물 검색 -->
+	<!-- Q&A 게시물 검색 및 리스트 -->
 	<sql id="qnaCommon">
 		SELECT q_num, c_id, a_id, q_title, q_state, q_regdate
 		FROM question_tbl

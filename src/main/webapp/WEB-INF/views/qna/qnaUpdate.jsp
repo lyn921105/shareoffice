@@ -81,7 +81,7 @@
 		</div>
 	</div>
 	
-	<div class="text-center">
+	<div>
 		<input type="button" class="btn btn-primary" value="수정하기" id="qnaUpdateBtn">
 		<input type="button" class="btn btn-default" value="돌아가기" id="qnaDetailBtn">
 	</div>

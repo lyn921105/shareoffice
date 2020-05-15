@@ -4,6 +4,7 @@
 
 <mapper namespace="com.wt.client.faq.dao.FaqDao">
 
+	<!-- FAQ 전체 리스트 -->
 	<select id="faqList" resultType="faq">
 		SELECT *
 		FROM faq_tbl

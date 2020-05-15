@@ -10,6 +10,7 @@
 	src="/resources/include/js/jquery-1.12.4.min.js"></script>
 <script>
 $(function() {
+	/* 방 번호 클릭시 display: none의 이미지값을 넣고 출력 */
 	$(".room").click(function(){
 		var img_thumb = $(this).children(".img_hide1").attr("src");
 		var img_image1 = $(this).children(".img_hide2").attr("src");
@@ -31,6 +32,7 @@ $(function() {
 		<div class="row content">
 			<div class="col-xs-10 text-center">
 				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					<!-- 슬라이드 방식 이미지 순서 -->
 					<ul class="carousel-indicators">
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -38,6 +40,7 @@ $(function() {
 						<li data-target="#myCarousel" data-slide-to="3"></li>
 					</ul>
 					
+					<!-- 최초에 보여줄 이미지 -->
 					<div class="carousel-inner">
 						<div class="item active" style="height: 330px;">
 							<img id="img_thumb" class="img-rounded" src="/uploadStorage/room/${roomImage.o_thumb}">
@@ -53,6 +56,7 @@ $(function() {
 						</div>
 					</div>
 					
+					<!-- 슬라이드 앞/뒤 버튼 -->
 					<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left"></span>
 						<span class="sr-only">Previous</span>
@@ -65,6 +69,7 @@ $(function() {
 			</div>
 			
 			<div class="col-xs-2 text-center">
+				<!-- 전체리스트를 display: none으로 숨김 -->
 				<c:forEach items="${roomView}" var="room">
 					<div class="room">
 						<input type="button" class="btn btn-default report" value="1${room.o_room}호">

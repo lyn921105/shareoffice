@@ -70,8 +70,9 @@ $(function(){
 			for (let m = 1; m < 11; m++) {
 				if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.o_status}" == "2")) {
 					$("#o_status" + m).html("(점검중)");
-				} else if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.r_endDate}" >= getDateFormat(sysdate))
-						&& (!("${item.r_status}" == "3") || ("${item.r_status}" == "4") || ("${item.r_status}" == "5"))) {
+				} else if (($("#o_room" + m).html() == "${item.o_room}") && ("${item.r_endDate}" >=
+					getDateFormat(sysdate)) && (!("${item.r_status}" == "3") || ("${item.r_status}" == "4")
+							|| ("${item.r_status}" == "5"))) {
 					$("#o_status" + m).html("~${item.r_endDate}");
 					$("#o_status" + m).parent(".td_hover").css("background-color", "rgb(125, 140, 255, 0.4)");
 				}

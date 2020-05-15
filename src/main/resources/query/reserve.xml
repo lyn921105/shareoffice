@@ -4,7 +4,7 @@
 
 <mapper namespace="com.wt.client.reservation.dao.ReservationDao">
 
-	<!-- 호실 메인 페이지에서 만기 날짜 표시 -->
+	<!-- 예약 호실 현황 1층 리스트 -->
 	<select id="roomPopMain" resultType="adminRoom">
 		SELECT TO_CHAR(r_enddate, 'yyyy-mm-dd') r_enddate, r_status, o_status, o_floor, o_room
 		FROM office_tbl FULL OUTER JOIN reservation_tbl

@@ -4,6 +4,7 @@
 
 <mapper namespace="com.wt.client.visit.dao.visitReservationDao">
 
+	<!-- 방문 상담 예약시 입력 -->
 	<insert id="visitInsert" parameterType="vvo">
 		<selectKey keyProperty="v_num" resultType="int" order="BEFORE">
 			SELECT visit_seq.nextval
@@ -14,6 +15,7 @@
 		VALUES(#{v_num},#{v_name},#{v_phone},#{v_date},#{v_time},'1')
 	</insert>
 	
+	<!-- 방문 상담 예약시 해당 날짜의 예약 리스트 -->
 	<select id="visitList" parameterType="String" resultType="vvo">
 		SELECT *
 		FROM visit_tbl
