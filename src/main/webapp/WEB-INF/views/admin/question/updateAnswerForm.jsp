@@ -41,7 +41,7 @@
 		<input type="hidden" name="q_file" id="q_file" value="${data.q_file }">
 
 			<!-- 내용 작성 -->
-			<table border="1">
+			<table border="1" class="table table-bordered">
 				<tr>
 					<td colspan="4"><input type="text" name="q_title" id="q_title"
 						value="${data.q_title }"></td>
@@ -62,8 +62,8 @@
 				</tr>
 			</table>
 		</form>
-		<div class="button">
-			<input type="button" id="update_ok" name="update_ok" value="저장"><input
+		<div class="button" align="center">
+			<input type="button" id="update_ok" name="update_ok" value="저장"> <input
 				type="button" id="updateCancle" name="updateCancle" value="취소">
 		</div>
 	</div>

@@ -56,7 +56,7 @@
 				id="q_num" value="${data.q_num }">
 
 			<!-- 내용 작성 -->
-			<table border="1">
+			<table border="1" class="table table-bordered">
 				<tr>
 					<td colspan="4"><input type="text" name="q_title" id="q_title"
 						value="[re] ${data.q_title }"></td>
@@ -73,9 +73,9 @@
 				</tr>
 			</table>
 		</form>
-		<div class="button">
+		<div class="button" align="center">
 			<input type="button" id="insertAnswer" name="insertAnswer" value="등록"
-				data-state="${detail.q_state }"><input type="button"
+				data-state="${detail.q_state }"> <input type="button"
 				id="cancleInsert" name="cancleInsert" value="취소">
 		</div>
 	</div>

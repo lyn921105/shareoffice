@@ -140,7 +140,7 @@ public class QuestionController {
 
 		// 파일 업로드
 		if (avo.getQ_uploadFile() != null) {
-			String q_file = FileUploadUtil.fileUpload(avo.getQ_uploadFile(), request, "file");
+			String q_file = FileUploadUtil.fileUpload(avo.getQ_uploadFile(), request, "qna");
 			avo.setQ_file(q_file);
 		}
 
@@ -223,7 +223,6 @@ public class QuestionController {
 	}
 
 	// 첨부파일 다운로드
-
 	@RequestMapping("/fileDownload")
 	public void fileDownload(@ModelAttribute QnaVO avo, HttpServletResponse response, HttpServletRequest request)
 			throws IOException {
