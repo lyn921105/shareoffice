@@ -227,17 +227,17 @@ Last name: <input type="text" name="lname"><br><br>
 		</div>
 		<div class="agreeList">
 			<div class="checkboxWrap">
-				<span class="checkStyle on"><input type="checkbox"
-					id="ck01" name="ck01" class="inputCheckbox" checked="checked"></span>
-				<label for="ck01">회원 이용약관(필수)</label> <a href="#" class="btnLink"
-					id="ck01Detail">내용보기</a>
-			</div>
-			<div class="checkboxWrap">
-				<span class="checkStyle on"><input type="checkbox"
-					id="ck02" name="ck02" class="inputCheckbox" checked="checked"></span>
-				<label for="ck02">회원가입 개인 정보 수집 이용 및 제공 동의(필수)</label> <a href="#"
-					class="btnLink" id="ck02Detail">내용보기</a>
-			</div>
+                <span class="checkStyle on"><input type="checkbox"
+                    id="ck01" name="ck01" class="inputCheckbox" checked="checked"></span>
+                <label for="ck01">회원 이용약관</label> <a href="/policy/policyService" class="btnLink"
+                    id="ck01Detail">내용보기</a>
+            </div>
+            <div class="checkboxWrap">
+                <span class="checkStyle on"><input type="checkbox"
+                    id="ck02" name="ck02" class="inputCheckbox" checked="checked"></span>
+                <label for="ck02">회원가입 개인 정보 수집 이용 및 제공 동의</label> <a href="/policy/policyPrivacy"
+                    class="btnLink" id="ck02Detail">내용보기</a>
+            </div>
 		</div>
 
 		<div class="text-center">
