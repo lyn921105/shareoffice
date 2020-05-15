@@ -11,16 +11,16 @@
 		from reservation_tbl
 
 		<if test="search=='cancle'">
-			<where>r_status='5'</where>
+			<where>r_status='99'</where>
 		</if>
 		<if test="search=='wait'">
 			<where>r_status='0'</where>
 		</if>
 		<if test="search=='viewAll'">
-			<where>r_status='5' or r_status='0'</where>
+			<where>r_status='99' or r_status='0'</where>
 		</if>
 		<if test="search==''">
-			<where>r_status='5' or r_status='0'</where>
+			<where>r_status='99' or r_status='0'</where>
 		</if>
 		
 		<choose>
