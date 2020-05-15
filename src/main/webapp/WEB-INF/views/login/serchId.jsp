@@ -7,6 +7,7 @@
 </head>
 <body>
 <form class="form-horizontal" role="form" method="POST" action="/login/serchIdChk">
+	<h3>아이디 찾기</h3>
 	<div class="row">
 		<div class="col-md-10 inputbb">
 			<div class="form-group has-danger">
