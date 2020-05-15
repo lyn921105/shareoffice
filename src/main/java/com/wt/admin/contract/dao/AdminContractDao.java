@@ -27,6 +27,6 @@ public interface AdminContractDao {
 
 	public List<AdminChartVO> lineChart();
 
-	public List<AdminChartVO> doughnutChart();
+	public List<AdminChartVO> pieChart();
 
 }

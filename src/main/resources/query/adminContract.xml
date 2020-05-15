@@ -25,7 +25,7 @@
 			<if test='search != "0"'>
 				AND
 			</if>
-			r_status=1
+			r_status=1 AND r_enddate > SYSDATE
 		</where>
 	</sql>
 
@@ -235,8 +235,20 @@
 	</select>
 
 	<!-- 도넛 차트 -->
-	<select id="doughnutChart" resultType="adminChart">
+	<select id="pieChart" resultType="adminChart">
 		SELECT count(r_member)
+		r_count,
+		r_member
+		FROM reservation_tbl
+		WHERE
+		to_char(add_months(sysdate,-1), 'yyyymm') =
+		to_char(r_reservedate,
+		'yyyymm')
+		GROUP BY r_member
+	</select>
+
+
+<!-- SELECT count(r_member)
 		r_count,
 		r_member
 		FROM reservation_tbl
@@ -247,7 +259,5 @@
 		to_char(r_enddate,
 		'yyyymm') >
 		to_char(add_months(sysdate,-1), 'yyyymm')
-		GROUP BY r_member
-	</select>
-
+		GROUP BY r_member -->
 </mapper>

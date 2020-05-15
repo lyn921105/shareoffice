@@ -33,7 +33,7 @@
 </body>
 <script>
 
-	// 상담 바차트
+	// 상담 라인차트
 	var ctx = document.getElementById("consultChart");
 	var consultChart = new Chart(ctx, {
 		type : 'line',
@@ -77,11 +77,11 @@
 	var useChart = new Chart(btx, {
 		type : 'pie',
 		data : {
-			labels : [ <c:forEach items="${doughnutChart }" var="item" varStatus="status">
+			labels : [ <c:forEach items="${pieChart }" var="item" varStatus="status">
 			<c:out value="${item.r_member}"/> + "인실",
 			</c:forEach> ],
 			datasets : [ {
-				data : [ <c:forEach items="${doughnutChart }" var="item" varStatus="status">
+				data : [ <c:forEach items="${pieChart }" var="item" varStatus="status">
 				<c:out value="${item.r_count}"/>,
 				</c:forEach> ],
 				backgroundColor : [ 'rgba(255, 99, 132, 0.2)',

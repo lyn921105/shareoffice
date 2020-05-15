@@ -91,10 +91,10 @@ public class AdminContractServiceImpl implements AdminContractService {
 	}
 
 	@Override
-	public List<AdminChartVO> doughnutChart() {
-		List<AdminChartVO> doughnutChart = null;
-		doughnutChart = adminContractDao.doughnutChart();
-		return doughnutChart;
+	public List<AdminChartVO> pieChart() {
+		List<AdminChartVO> pieChart = null;
+		pieChart = adminContractDao.pieChart();
+		return pieChart;
 	}
 
 }
