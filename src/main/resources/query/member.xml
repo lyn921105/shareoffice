@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.wt.client.member.dao.MemberDAO">
-	<!-- 게시판 글 작성 -->
+	<!-- 회원 가입 인서트 -->
 	<insert id="join" parameterType="member">
 		INSERT INTO client_tbl 
 		VALUES( #{c_id}
