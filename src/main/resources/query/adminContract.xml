@@ -235,7 +235,7 @@
 	</select>
 
 	<!-- 도넛 차트 -->
-	<select id="doughnutChart" resultType="adminChart">
+	<select id="pieChart" resultType="adminChart">
 		SELECT count(r_member)
 		r_count,
 		r_member

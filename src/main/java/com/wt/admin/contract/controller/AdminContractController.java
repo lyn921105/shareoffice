@@ -100,6 +100,7 @@ public class AdminContractController {
 		model.addAttribute("count", count);
 		model.addAttribute("total", total);
 		model.addAttribute("data", avo);
+		
 
 		return "admin/contract/adminContractRefundList";
 	}
@@ -130,13 +131,11 @@ public class AdminContractController {
 	@RequestMapping(value = "/chart")
 	public String adminContractChart(Model model) {
 		
-		
-		
 		List<AdminChartVO> lineChartList = adminContractService.lineChart();
-		List<AdminChartVO> doughnutChartList = adminContractService.doughnutChart();
+		List<AdminChartVO> pieChartList = adminContractService.pieChart();
 		
 		model.addAttribute("lineChart", lineChartList);
-		model.addAttribute("doughnutChart", doughnutChartList);
+		model.addAttribute("pieChart", pieChartList);
 		
 		return "admin/contract/adminChart";
 	}

@@ -67,8 +67,8 @@ public class AdminContractDaoImpl implements AdminContractDao {
 	}
 
 	@Override
-	public List<AdminChartVO> doughnutChart() {
-		return session.selectList("doughnutChart");
+	public List<AdminChartVO> pieChart() {
+		return session.selectList("pieChart");
 	}
 
 }
