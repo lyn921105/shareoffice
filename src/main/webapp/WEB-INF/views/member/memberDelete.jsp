@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
+<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 	<div class="container">

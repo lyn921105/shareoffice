@@ -36,7 +36,7 @@ $(function(){
 	<script type="text/javascript">
 		<c:if test="${empty loginSuccess}">
 			alert("로그인이 필요합니다");
-			location.href="/member/loginForm";
+			location.href="/login/login";
 		</c:if>
 	</script>
 
