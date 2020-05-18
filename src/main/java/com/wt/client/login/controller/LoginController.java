@@ -47,12 +47,8 @@ public class LoginController {
 	// 아이디 찾기 확인창
 	@RequestMapping(value = "/serchIdChk", method = RequestMethod.POST)
 	public ModelAndView serchIdChk(@ModelAttribute MemberVO mvo) {
-		System.out.println(mvo.getC_name());
-		System.out.println(mvo.getC_email());
-
 		ModelAndView mav = new ModelAndView();
 		String idChk = loginService.serchIdChk(mvo);
-		System.out.println(idChk);
 		mav.addObject("idChk", idChk);
 		mav.setViewName("login/serchIdChk");
 		return mav;
@@ -65,16 +61,13 @@ public class LoginController {
 
 	}
 
+	// 비밀번호 찾기 확인창
 	@RequestMapping(value = "/serchPwChk", method = RequestMethod.POST)
 	public ModelAndView serchPwChk(@ModelAttribute MemberVO mvo) {
-		System.out.println(mvo.getC_email());
-
 		ModelAndView mav = new ModelAndView();
 		String pwChk = loginService.serchPwChk(mvo);
-		System.out.println(pwChk);
 		mav.addObject("pwChk", pwChk);
 		mav.setViewName("login/serchPwChk");
-
 		return mav;
 	}
 
